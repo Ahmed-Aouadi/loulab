@@ -328,100 +328,108 @@ button:active{transform:scale(.985)}
 <style>body[data-page="library"] .hero,body[data-page="library"] .stats,body[data-page="library"] #continue,body[data-page="library"] #features,body[data-page="library"] #platformHub{display:none!important} body[data-page="library"] #library{display:block!important;margin-top:34px}</style>
 
 <style id="loulab-book-redesign">
-/* Loulab library — restrained illustrated-book direction */
-.book-grid{align-items:stretch;gap:24px}
-.book-card{padding:0;background:#fff;border:1px solid #e9e6ef;border-radius:18px;overflow:hidden;box-shadow:0 3px 12px #29254b08;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-.book-card:hover,.book-card:focus-within{transform:translateY(-3px);border-color:#d8d0f4;box-shadow:0 10px 25px #29254b10}
-.book-card .cover{height:218px;width:auto;margin:0;border-radius:0;transform:none;transform-origin:center;box-shadow:none;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;isolation:isolate;overflow:hidden;border-bottom:1px solid #0000000a}
-.book-card .cover:before{content:"";position:absolute;inset:0 auto 0 0;width:10px;border-radius:0;background:linear-gradient(90deg,#00000018,#ffffff25,transparent);z-index:3}
-.book-card .cover:after{content:"";position:absolute;inset:12px 17px 12px 25px;border:1px solid #ffffff80;border-radius:9px;background:none;transform:none;z-index:0;pointer-events:none}
-.book-card:hover .cover,.book-card:focus-within .cover{transform:none;box-shadow:none}
-.book-cover-title{position:relative;z-index:2;max-width:76%;font-size:21px;line-height:1.45;text-align:center;font-weight:900;color:#302844}
-.book-card .cover-emoji{position:relative;z-index:2;font-size:72px;filter:drop-shadow(0 4px 2px #32274a18);transition:transform .2s}
-.book-card:hover .cover-emoji{transform:scale(1.04)}
-.book-cover-subtitle{position:relative;z-index:2;font-size:10px;font-weight:800;letter-spacing:.2px;color:#493b65;background:#ffffffa8;padding:5px 11px;border-radius:30px}
-.book-card .cover-tag{top:17px;right:18px;font-size:11px;padding:5px 9px;background:#ffffffd9}
-.book-card .fav{top:13px;left:14px;box-shadow:0 1px 4px #00000012}
-.book-card .book-body{padding:17px 18px 16px;margin:0;background:#fff;border:0;border-radius:0;box-shadow:none}
-.book-card .book-title-row{align-items:center}
-.book-card .book-title-row h3{font-size:18px;line-height:1.5}
-.book-card .book-body p{font-size:13px;line-height:1.75;min-height:44px;margin:7px 0 13px}
-.book-card .book-foot{padding-top:10px;border-top:1px solid #f0eef4}
-.book-card .book-foot .open{padding:8px 13px}
-.book-read-progress{height:4px;background:#f0eef5;border-radius:5px;overflow:hidden;margin-top:13px}
-.book-read-progress span{height:100%;display:block;background:#8a76df;border-radius:5px}
-.book-progress-label{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#858195;margin-top:6px;font-weight:700}
-@media(max-width:650px){
- .book-grid{gap:14px}
- .book-card .cover{height:176px}
- .book-card .cover-emoji{font-size:57px}
- .book-cover-title{font-size:17px}
- .book-card .book-body{padding:12px}
+/* A fresh, illustrated library system */
+#library .section-head h2{font-size:clamp(27px,3vw,36px);letter-spacing:-.5px}
+#library .section-head p{font-size:15px}
+.book-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:stretch}
+.book-card{position:relative;background:#fff;border:1px solid #e9e5f0;border-radius:24px;overflow:hidden;box-shadow:0 8px 26px #2920440a;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.book-card:hover,.book-card:focus-within{transform:translateY(-6px);border-color:#d7cdf4;box-shadow:0 18px 38px #29204416}
+.book-card .cover{height:270px;margin:0;border:0;border-radius:0;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:34px 25px 24px}
+.book-card .cover:before{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff75;border-radius:50%;inset:auto auto -155px -65px;z-index:-1}
+.book-card .cover:after{content:"";position:absolute;width:185px;height:185px;border:1px solid #ffffff70;border-radius:50%;inset:-100px -55px auto auto;z-index:-1}
+.book-card .cover-tag{position:absolute;top:18px;right:18px;background:#ffffffd9;color:#403653;border:1px solid #ffffffa8;border-radius:30px;padding:7px 12px;font-size:11px;font-weight:900;z-index:2}
+.book-card .fav{position:absolute;top:15px;left:15px;width:38px;height:38px;border:1px solid #ffffffb5;border-radius:50%;background:#ffffffdf;color:#8e829d;font-size:20px;box-shadow:0 4px 12px #35234a12;z-index:3}
+.book-card .fav.on{color:#df547b}
+.book-cover-title{position:relative;z-index:2;max-width:88%;font-size:clamp(21px,2.1vw,27px);font-weight:900;line-height:1.35;text-align:center;color:#30243f;text-shadow:0 1px #ffffff88}
+.book-card .cover-emoji{position:relative;z-index:2;font-size:86px;line-height:1.2;filter:drop-shadow(0 12px 8px #35234a20)}
+.book-cover-subtitle{position:relative;z-index:2;font-size:11px;font-weight:900;letter-spacing:.4px;color:#463755;background:#ffffffbd;border:1px solid #ffffffa6;padding:7px 15px;border-radius:30px}
+.book-card .book-body{padding:19px 20px 17px;background:#fff;border:0;border-radius:0;box-shadow:none}
+.book-card .book-title-row{align-items:center;gap:9px}
+.book-card .book-title-row h3{font-size:19px;line-height:1.45;font-weight:900}
+.book-card .level{background:#f1edff;color:#7058c8;border-radius:30px;padding:6px 10px;font-size:11px}
+.book-card .book-body p{font-size:14px;line-height:1.8;color:#737087;min-height:52px;margin:9px 0 15px}
+.book-card .book-foot{border-top:1px solid #f0edf4;padding-top:13px;font-size:12px}
+.book-card .book-foot .open{background:#7058d2;color:white;border-radius:12px;padding:10px 15px;font-weight:900}
+.book-read-progress{height:5px;background:#f0edf5;border-radius:10px;overflow:hidden;margin-top:15px}
+.book-read-progress span{height:100%;display:block;background:linear-gradient(90deg,#7058d2,#b19df3);border-radius:10px}
+.book-progress-label{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#8a8497;margin-top:7px;font-weight:800}
+/* Reading room: a real book-like page, not a small card in a grey box */
+#readerModal{padding:clamp(8px,2vw,24px);background:#19152bbd;backdrop-filter:blur(8px)}
+.reader{width:min(1040px,100%);max-height:96vh;border-radius:25px;background:#fbfaf8;box-shadow:0 28px 100px #100d205c;overflow:hidden}
+.reader-head{padding:16px 24px;background:#fff;border-bottom:1px solid #eeeaf1;gap:14px}
+.reader-book-icon{width:48px;height:48px;flex:0 0 48px;border-radius:15px;font-size:27px}
+.reader-heading b{font-size:18px;font-weight:900;color:#30283d}
+.reader-heading small{font-size:13px;color:#888196}
+.close{width:42px;height:42px;border-radius:13px;background:#f4f1f7;font-size:24px}
+.reader-progress{height:5px;background:#eeeaf3}
+.reader-progress span{background:linear-gradient(90deg,#7961d6,#b29df1)}
+.lesson-area{padding:clamp(14px,3vw,36px);min-height:500px;max-height:calc(96vh - 150px);overflow:auto;display:block;background:#f1eef6}
+.lesson{width:100%;max-width:820px;min-height:470px;margin:0 auto;padding:clamp(25px,5vw,58px) clamp(18px,5vw,68px);border:1px solid #e9e2d7;border-radius:18px;background:#fffefa;box-shadow:0 12px 34px #30234710;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#302b3b;position:relative;overflow:hidden}
+.lesson:before{content:"";position:absolute;top:0;right:0;left:0;height:8px;background:linear-gradient(90deg,#f1c978,#a998e9,#91d7c2)}
+.lesson:after{content:"";position:absolute;inset:18px;border:1px solid #f0ebdf;border-radius:11px;pointer-events:none}
+.lesson-kicker{position:relative;z-index:1;font-size:12px;font-weight:900;color:#725cc2;background:#f1edff;padding:8px 15px;border-radius:30px;margin-bottom:12px}
+.lesson h2{position:relative;z-index:1;font-size:clamp(27px,4vw,38px);line-height:1.45;margin:12px 0 12px;color:#30283d;font-weight:900}
+.lesson .desc{position:relative;z-index:1;max-width:620px;color:#6d6878;font-size:clamp(16px,2vw,19px);line-height:2;margin:0 auto 18px}
+.lesson-art{position:relative;z-index:1;font-size:clamp(70px,10vw,112px);line-height:1.4;margin:14px 0;filter:drop-shadow(0 7px 4px #3d315012)}
+.lesson-letter{position:relative;z-index:1;font-size:clamp(84px,12vw,126px);font-weight:900;color:#725bd0;background:linear-gradient(145deg,#f4f0ff,#e8e1ff);border:1px solid #e3dafb;border-radius:30px;padding:5px 42px;margin:10px;box-shadow:0 8px 20px #7861d51a}
+.lesson-word{position:relative;z-index:1;font-size:29px;font-weight:900;color:#40364e;margin:8px 0}
+.lesson-actions{position:relative;z-index:1;margin-top:18px}
+.answer-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;width:100%;max-width:690px;margin:22px auto 12px}
+.answer{min-height:88px;border:2px solid #e9e4f0;border-radius:18px;background:#fff;padding:14px;font-size:clamp(17px,2vw,21px);font-weight:900;color:#40384c;box-shadow:0 4px 0 #f0edf4;transition:.16s}
+.answer:hover:not(:disabled){transform:translateY(-2px);border-color:#b8a9ee;background:#faf8ff}
+.answer.correct{background:#e9f8ef;border-color:#75c995;color:#267548;box-shadow:0 4px 0 #d6f0df}
+.answer.incorrect{background:#fff0f2;border-color:#f09aaa;color:#a13d55}
+.result{position:relative;z-index:1;min-height:32px;font-size:15px;font-weight:900;margin:9px 0;color:#6d56cc}
+.lesson-rich{position:relative;z-index:1;width:100%;max-width:680px;text-align:right;margin:15px auto 0;display:grid;gap:13px}
+.lesson-rich section{padding:17px 20px;border:1px solid #eee9f2;border-radius:16px;background:#fff}
+.lesson-rich h3{margin:0 0 8px;font-size:18px;color:#6550b5}
+.lesson-rich p,.lesson-rich li{font-size:16px;line-height:1.9;color:#5f5a6b}
+.lesson-rich p{margin:0}.lesson-rich ul{margin:5px 0 0;padding-right:22px}
+.lesson-rich .example{background:#fff8e9;border-color:#f4e6c8}
+.lesson-rich .think{background:#f1f8ff;border-color:#dfebf8}
+.course-meta{position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:5px 0 12px}
+.course-meta span{background:#f3f0fa;color:#6b5b91;border-radius:30px;padding:7px 11px;font-size:11px;font-weight:900}
+.reader-nav{padding:15px 24px;background:#fff;border-top:1px solid #eeeaf1}
+.reader-nav .primary,.reader-nav .soft{min-width:112px;padding:12px 18px;border-radius:13px;font-weight:900}
+.page-count{font-size:14px;font-weight:900;color:#777184}
+@media(max-width:850px){.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.book-card .cover{height:245px}}
+@media(max-width:600px){
+ .book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .book-card{border-radius:17px}
+ .book-card .cover{height:178px;padding:25px 10px 15px}
+ .book-card .cover-tag{top:10px;right:9px;font-size:9px;padding:5px 8px}
+ .book-card .fav{top:8px;left:8px;width:31px;height:31px;font-size:17px}
+ .book-card .cover-emoji{font-size:58px}
+ .book-cover-title{font-size:16px}
+ .book-cover-subtitle{font-size:9px;padding:5px 9px}
+ .book-card .book-body{padding:12px 11px}
+ .book-card .book-title-row{display:block}
  .book-card .book-title-row h3{font-size:15px}
- .book-card .book-body p{font-size:12px;min-height:42px}
-}
-
-/* Reading view — clean illustrated lesson page with comfortable spacing */
-#readerModal{padding:18px;background:#27243a9c;backdrop-filter:blur(5px)}
-.reader{width:min(900px,100%);max-height:min(92vh,900px);border-radius:18px;background:#f6f5f8;overflow:hidden;box-shadow:0 22px 70px #17152b45}
-.reader-head{padding:13px 20px;background:#fff;border-bottom:1px solid #eeecf2;gap:12px}
-.reader-book-icon{width:42px;height:42px;border-radius:12px;flex:0 0 42px}
-.reader-heading b{font-size:16px}
-.reader-heading small{font-size:12px}
-.close{width:36px;height:36px;border-radius:10px;background:#f4f2f7}
-.reader-progress{height:4px;background:#ece9f2}
-.reader-progress span{background:#8069d8}
-.lesson-area{padding:24px;overflow:auto;min-height:390px;display:grid;place-items:center;background:#f0eff3}
-.lesson{width:100%;max-width:740px;min-height:410px;margin:auto;padding:38px 48px 34px;border:1px solid #e9e5dc;border-radius:8px;background:#fffefa;box-shadow:0 4px 16px #27223b0a;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;position:relative;color:#34313a}
-.lesson:before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#e6defb,#f5e8ce,#e6defb)}
-.lesson-kicker{font-size:12px;font-weight:800;color:#7662bd;background:#f3f0fb;padding:6px 12px;border-radius:20px;margin-bottom:10px}
-.lesson h2{font-size:29px;line-height:1.45;margin:12px 0 8px;color:#302b3b}
-.lesson .desc{max-width:580px;color:#686575;font-size:17px;line-height:1.9;margin:0 0 14px}
-.lesson-art{font-size:88px;line-height:1.35;margin:16px 0}
-.lesson-letter{font-size:100px;font-weight:900;color:#6853c1;background:#f3f0ff;border:1px solid #e8e1ff;border-radius:20px;padding:4px 34px;margin:10px}
-.lesson-word{font-size:25px;font-weight:900;color:#373047;margin:12px 0}
-.lesson-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-.lesson-rich{width:100%;display:grid;gap:12px;margin-top:17px;text-align:right}
-.lesson-rich section{padding:15px 18px;border:1px solid #ece8e0;border-radius:12px;background:#fff}
-.lesson-rich h3{font-size:17px;margin:0 0 7px;color:#6552ad}
-.lesson-rich p,.lesson-rich li{font-size:15px;line-height:1.9;color:#55515d}
-.lesson-rich p{margin:0}
-.lesson-rich ul{margin:5px 0 0;padding-right:22px}
-.lesson-rich .example{background:#fffaf0;border-color:#f0e6d1}
-.lesson-rich .think{background:#f5f8ff;border-color:#e5eafa}
-.course-meta{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin:10px 0}
-.course-meta span{font-size:11px;background:#f3f0fb;color:#6956ad;padding:6px 10px;border-radius:20px}
-.answer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;width:100%;margin:18px 0}
-.answer{min-height:72px;border:1px solid #e8e3da;border-radius:12px;background:#fff;font-size:19px;color:#373344;transition:background .15s,border-color .15s}
-.answer:hover{background:#f7f4ff;border-color:#c9bdf3}
-.answer.correct{background:#eaf7ef;border-color:#82c99b;color:#286b42}
-.answer.incorrect{background:#fff0f1;border-color:#e9a0aa;color:#9d3f4d}
-.result{min-height:28px;margin:7px 0;font-weight:800;color:#6752b6;line-height:1.7}
-.canvas-wrap{width:min(100%,540px);margin:14px auto;border:1px solid #e7e1f4;border-radius:12px;background:#fff;overflow:hidden}
-#practiceCanvas{width:100%;height:210px;display:block;touch-action:none}
-.canvas-tools{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.reader-nav{padding:12px 20px;background:#fff;border-top:1px solid #eeecf2;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.reader-nav .primary,.reader-nav .soft{min-width:100px}
-.page-count{font-size:13px;color:#777386;font-weight:800}
-@media(max-width:650px){
- #readerModal{padding:7px}
- .reader{max-height:96vh;border-radius:13px}
- .reader-head{padding:10px 12px}
- .lesson-area{padding:10px;min-height:0;max-height:calc(96vh - 120px)}
- .lesson{min-height:430px;padding:31px 18px 26px;border-radius:6px}
- .lesson h2{font-size:24px}
+ .book-card .level{display:inline-block;margin-top:5px}
+ .book-card .book-body p{font-size:11px;line-height:1.7;min-height:48px;margin:7px 0 10px}
+ .book-card .book-foot{font-size:10px;gap:4px}
+ .book-card .book-foot .open{padding:8px 9px;font-size:10px}
+ .book-progress-label{font-size:9px}
+ #readerModal{padding:0}
+ .reader{width:100%;height:100%;max-height:100vh;border-radius:0}
+ .reader-head{padding:10px 13px}
+ .reader-book-icon{width:40px;height:40px;flex-basis:40px}
+ .reader-heading b{font-size:15px}
+ .lesson-area{padding:10px;min-height:0;max-height:none;flex:1}
+ .lesson{min-height:100%;padding:28px 18px}
+ .lesson:after{inset:10px}
+ .lesson h2{font-size:25px}
  .lesson .desc{font-size:15px}
- .lesson-art{font-size:67px;margin:13px 0}
- .lesson-letter{font-size:82px;padding:3px 27px}
- .lesson-word{font-size:22px}
- .lesson-rich{gap:9px}
- .lesson-rich section{padding:12px}
- .lesson-rich h3{font-size:15px}
- .lesson-rich p,.lesson-rich li{font-size:13px}
- .answer-grid{grid-template-columns:1fr;gap:8px}
- .answer{min-height:56px}
- .reader-nav{padding:9px 11px}
- .reader-nav .primary,.reader-nav .soft{min-width:86px;padding:9px 12px}
+ .lesson-art{font-size:68px}
+ .lesson-letter{font-size:82px;padding:4px 28px}
+ .answer-grid{grid-template-columns:1fr;gap:8px;margin:13px auto}
+ .answer{min-height:58px;font-size:17px}
+ .lesson-rich section{padding:13px}
+ .lesson-rich h3{font-size:16px}
+ .lesson-rich p,.lesson-rich li{font-size:14px}
+ .reader-nav{padding:10px 12px}
+ .reader-nav .primary,.reader-nav .soft{min-width:90px;padding:10px 12px;font-size:13px}
+ .page-count{font-size:12px}
 }
 </style>
 
@@ -602,6 +610,10 @@ const books=[
 {kind:"quiz",title:"تحقق من فهمك",desc:"أي كسر أكبر: ٥/٦ أم ٣/٦؟",options:["٣/٦","٥/٦","متساويان"],answer:1,explain:"المقامات متساوية و٥ أكبر من ٣."}]}
 
 ];
+// توسعة تعليمية: صفحات إضافية وأنشطة مراجعة لكل كتاب.
+const extraBookPages = {"letters":[{"kind":"fact","title":"أين نسمع حرف الألف؟","art":"🐰 🍇 🌙","desc":"نسمع الألف في أول كلمة أرنب، وفي وسط كلمة باب، وفي آخر كلمة عصا. جرّب أن تنطق الكلمات ببطء."},{"kind":"quiz","title":"اختر الحرف المناسب","desc":"أي حرف تبدأ به كلمة بَطَّة؟","options":["أ","ب","ت"],"answer":1,"explain":"بَطَّة تبدأ بحرف الباء."},{"kind":"quiz","title":"تحدّي الحروف","desc":"أي كلمة تبدأ بحرف التاء؟","options":["تفاحة 🍎","أسد 🦁","باب 🚪"],"answer":0,"explain":"تفاحة تبدأ بحرف التاء."}],"numbers":[{"kind":"fact","title":"نعدّ من حولنا","art":"🧸 🧸 🧸","desc":"المس كل لعبة وعدّ بصوت واضح: واحد، اثنان، ثلاثة. العدّ يساعدنا على معرفة عدد الأشياء."},{"kind":"fact","title":"أكثر أم أقل؟","art":"🍓 🍓 　🍓 🍓 🍓","desc":"المجموعة التي فيها ثلاث فراولات أكبر من المجموعة التي فيها فراولتان. قارن العددين قبل أن تختار."},{"kind":"quiz","title":"اختبار العدّ","desc":"كم نجمة في الصورة؟ ⭐ ⭐ ⭐ ⭐","options":["٢","٣","٤"],"answer":2,"explain":"أحسنت! نعدّ أربع نجمات."}],"colors":[{"kind":"fact","title":"ألوان من حولنا","art":"🍋 🥕 🥒","desc":"الليمونة صفراء، والجزر برتقالي، والخيار أخضر. نستطيع اكتشاف الألوان بالنظر والمقارنة."},{"kind":"fact","title":"امزج لونين","art":"🔴 + 🟡 = 🟠","desc":"عندما نمزج الأحمر مع الأصفر نحصل على البرتقالي. جرّب المزج بالألوان المائية مع شخص كبير."},{"kind":"quiz","title":"صيد الألوان","desc":"أي شيء لونه أخضر غالباً؟","options":["ورقة شجر 🍃","فراولة 🍓","سماء ☁️"],"answer":0,"explain":"أوراق كثير من النباتات خضراء."}],"shapes":[{"kind":"fact","title":"الأشكال في بيتنا","art":"🪟 🚪 ⏰","desc":"قد تشبه النافذة المستطيل، والساعة الدائرية دائرة، وبعض البلاطات مربعات. ابحث عن شكلين في غرفتك."},{"kind":"fact","title":"عدّ الزوايا","art":"🔺 ٣　　🟦 ٤","desc":"للمثلث ثلاث زوايا، وللمربع أربع زوايا. مرّر إصبعك حول الشكل وعدّ زواياه."},{"kind":"quiz","title":"محقق الأشكال","desc":"أي شكل له ثلاثة أضلاع؟","options":["مربع 🟦","مثلث 🔺","دائرة 🔵"],"answer":1,"explain":"المثلث له ثلاثة أضلاع."}],"animals":[{"kind":"fact","title":"أين تعيش الحيوانات؟","art":"🐟 🌊　🦁 🌳","desc":"تعيش الأسماك في الماء، وتعيش الأسود في البرية. لكل حيوان بيئة تناسب حاجاته."},{"kind":"fact","title":"كيف تتحرك؟","art":"🐦 🐇 🐍","desc":"يطير العصفور بجناحيه، ويقفز الأرنب بأرجله، ويزحف الثعبان بجسمه."},{"kind":"quiz","title":"من صاحب الجناحين؟","desc":"أي حيوان يستطيع الطيران بجناحيه؟","options":["العصفور 🐦","الفيل 🐘","الأرنب 🐰"],"answer":0,"explain":"للعصفور جناحان وريش يساعدانه على الطيران."}],"body":[{"kind":"fact","title":"نحافظ على أسناننا","art":"🪥😁","desc":"ننظف أسناننا بالفرشاة والمعجون صباحاً وقبل النوم، ونزور طبيب الأسنان للاطمئنان عليها."},{"kind":"fact","title":"حواسي الخمس","art":"👀 👂 👃 👅 ✋","desc":"نرى بالعينين، ونسمع بالأذنين، ونشم بالأنف، ونتذوق باللسان، ونلمس بالجلد."},{"kind":"quiz","title":"أي حاسة نستخدم؟","desc":"عندما نشم رائحة الورد نستخدم…","options":["العينين","الأنف","الأذنين"],"answer":1,"explain":"الأنف يساعدنا على شم الروائح."}],"writing":[{"kind":"fact","title":"كيف نمسك القلم؟","art":"✍️","desc":"أمسك القلم براحة من دون ضغط شديد، واجلس وظهرك مستقيم والورقة أمامك."},{"kind":"trace","title":"تدرّب على الخطوط","desc":"ارسم خطوطاً طويلة وقصيرة، ثم جرّب الخطوط المتموجة والدوائر. تحكّم في حركة يدك بهدوء."},{"kind":"trace","title":"ارسم طريقاً للحرف","desc":"ابدأ من أعلى اللوحة وارسم مسارات تشبه الألف والباء والتاء. لا تقلق إن لم تكن الخطوط متقنة من أول مرة."}],"food":[{"kind":"fact","title":"طبق متوازن","art":"🥦 🍞 🥚 🍎","desc":"يساعدنا تنويع الطعام على الحصول على عناصر مختلفة. اجمع في وجبتك خضاراً وفاكهة ومصدراً للبروتين."},{"kind":"fact","title":"الماء مهم","art":"💧🥛","desc":"يحتاج الجسم إلى الماء كل يوم. اشرب الماء بانتظام، خاصة بعد اللعب والحركة."},{"kind":"quiz","title":"اختيار صحي","desc":"أي خيار يساعدنا على شرب الماء؟","options":["الماء 💧","الحلوى 🍬","رقائق البطاطا"],"answer":0,"explain":"الماء هو أفضل اختيار لإرواء العطش."}],"drawing":[{"kind":"fact","title":"الأشكال تصنع رسماً","art":"⚪ 🔺 🟦","desc":"يمكن تحويل الدائرة إلى شمس، والمثلث إلى سقف بيت، والمربع إلى نافذة. ابدأ بأشكال بسيطة ثم أضف التفاصيل."},{"kind":"draw","title":"ارسم حديقة صغيرة","desc":"ارسم شمساً وزهرتين وشجرة في حديقة من خيالك. اختر ألواناً مختلفة وأضف تفصيلاً من ابتكارك."},{"kind":"draw","title":"ابتكر شخصية","desc":"ارسم شخصية خيالية لها وجه وملابس وشيء تحمله. امنحها اسماً وقصة قصيرة."}],"school":[{"kind":"fact","title":"نتعاون في الصف","art":"🤝📚","desc":"نستمع عندما يتحدث الآخرون، ونرفع أيدينا قبل الكلام، ونتشارك الأدوات باحترام."},{"kind":"fact","title":"حقيبتي المرتبة","art":"🎒✏️📒","desc":"أضع كتبي ودفاتري وأقلامي في أماكنها، وأراجع جدولي حتى أحضر ما أحتاجه."},{"kind":"quiz","title":"موقف في المدرسة","desc":"إذا احتاج زميلك إلى مساعدة، ماذا تفعل؟","options":["أتجاهله","أساعده بلطف","أسخر منه"],"answer":1,"explain":"التعاون واللطف يجعلان المدرسة مكاناً أفضل."}],"time":[{"kind":"fact","title":"قبل المدرسة وبعدها","art":"🌅 🎒 🌇","desc":"نستيقظ ونستعد، ثم نتعلم ونلعب، وبعد العودة نرتاح وننجز واجباتنا ونستعد للنوم."},{"kind":"fact","title":"ترتيب الأحداث","art":"🪥 ➜ 🍞 ➜ 🎒","desc":"من المفيد ترتيب خطوات الصباح: غسل الوجه والأسنان، تناول الفطور، ثم تجهيز الحقيبة."},{"kind":"quiz","title":"ماذا يأتي أولاً؟","desc":"ما الخطوة المناسبة قبل النوم؟","options":["ترتيب الحقيبة لليوم التالي","بدء يوم المدرسة","تناول فطور الصباح"],"answer":0,"explain":"تجهيز الحقيبة مساءً يساعدنا على بداية هادئة."}],"review":[{"kind":"quiz","title":"تحدّي الملاحظة","desc":"أي مجموعة تحتوي على خمسة عناصر؟","options":["⭐⭐⭐","🍎🍎🍎🍎🍎","🌸🌸"],"answer":1,"explain":"المجموعة الثانية فيها خمس تفاحات."},{"kind":"quiz","title":"تحدّي الكلمات","desc":"أي كلمة تبدأ بحرف الألف؟","options":["أرنب 🐰","بيت 🏠","تفاح 🍎"],"answer":0,"explain":"أرنب تبدأ بحرف الألف."},{"kind":"finish","title":"وسام المستكشف","desc":"أنهيت تحديات متنوعة. راجع ما تعلمته وشارك إنجازك مع عائلتك.","art":"🏅🌟"}],"reading-68":[{"kind":"lesson","title":"أفهم الفكرة الرئيسية","objective":"تمييز الفكرة التي يدور حولها النص.","explain":"الفكرة الرئيسية هي أهم ما يريد النص أن يخبرنا به. اقرأ النص كاملاً، ثم اسأل: عمّ يتحدث؟ وما المعلومة التي تتكرر أو تجمع التفاصيل؟","example":"النص: زرع سامي شتلة صغيرة، وسقاها كل يوم، وبعد أسابيع ظهرت أوراق خضراء. الفكرة الرئيسية: اعتنى سامي بالنبتة حتى نمت.","steps":["اقرأ العنوان.","حدّد الشخص أو الموضوع.","لخّص النص في جملة واحدة."],"think":"إذا كان النص يتحدث عن نحلة تجمع الرحيق وتعود إلى خليتها، فما موضوعه الأساسي؟","art":"📖🌱"},{"kind":"lesson","title":"أستنتج من القرائن","objective":"استخدام تفاصيل النص للوصول إلى معنى غير مذكور مباشرة.","explain":"الاستنتاج يجمع بين معلومة من النص ومعرفتك السابقة. لا نخمن عشوائياً؛ نبحث عن دليل يدعم إجابتنا.","example":"وجدت ليلى الأرض مبللة والناس يحملون المظلات. نستنتج أن المطر هطل قبل قليل.","steps":["ابحث عن دليل واضح.","اربط الدليل بما تعرفه.","اكتب استنتاجاً منطقياً."],"think":"رأيت آثار أقدام مبللة قرب الباب ومعطفاً يقطر ماءً. ماذا يمكن أن تستنتج؟","art":"🔎"}],"math-68":[{"kind":"lesson","title":"الجمع مع إعادة التجميع","objective":"جمع عددين من منزلتين عندما يتجاوز مجموع الآحاد تسعة.","explain":"نجمع الآحاد أولاً. إذا كان الناتج عشرة أو أكثر، نكتب رقم الآحاد ونضيف عشرة إلى منزلة العشرات.","example":"٢٧ + ١٥: الآحاد ٧ + ٥ = ١٢، نكتب ٢ ونحتفظ بعشرة. العشرات ٢ + ١ + ١ = ٤. الناتج ٤٢.","steps":["رتّب العددين تحت بعضهما.","اجمع الآحاد واحتفظ بالعشرة إن لزم.","اجمع العشرات."],"think":"احسب ٣٨ + ١٦، واشرح أين وضعت العشرة الإضافية.","art":"➕"},{"kind":"lesson","title":"الضرب بوصفه جمعاً متكرراً","objective":"فهم الضرب من خلال مجموعات متساوية.","explain":"عندما نكرر العدد نفسه في مجموعات متساوية يمكننا استعمال الضرب بدلاً من الجمع المتكرر.","example":"ثلاث سلال في كل سلة ٤ برتقالات: ٤ + ٤ + ٤ = ١٢، أي ٣ × ٤ = ١٢.","steps":["حدّد عدد المجموعات.","حدّد عدد العناصر في كل مجموعة.","اضرب العددين."],"think":"هناك ٥ أطباق في كل طبق قطعتان من الخبز. كم قطعة لدينا؟","art":"✖️"}],"science-68":[{"kind":"lesson","title":"حالات المادة","objective":"التعرّف إلى الصلب والسائل والغاز من أمثلة يومية.","explain":"المادة الصلبة تحافظ غالباً على شكلها، والسائل يأخذ شكل الوعاء، والغاز ينتشر ليملأ الحيز المتاح له.","example":"مكعب الثلج صلب، والماء في الكأس سائل، وبخار الماء غاز.","steps":["لاحظ شكل المادة.","انقلها إلى وعاء آخر إن أمكن بأمان.","قارن ما تغيّر وما بقي."],"think":"هل يحتفظ الحليب بشكل الكأس أم يأخذ شكله؟ ولماذا؟","art":"🧊💧☁️"},{"kind":"lesson","title":"نحمي بيئتنا","objective":"اقتراح سلوكيات تقلل النفايات وتحافظ على الموارد.","explain":"نحمي البيئة بتقليل الاستهلاك وإعادة الاستخدام وفرز النفايات، ونوفر الماء والطاقة ونحافظ على النباتات.","example":"استخدام قارورة ماء قابلة لإعادة التعبئة يقلل شراء القوارير أحادية الاستخدام.","steps":["أغلق الصنبور عند عدم الحاجة.","استعمل الأشياء أكثر من مرة عندما يكون ذلك آمناً.","ضع النفايات في الحاوية المناسبة."],"think":"اذكر تغييراً واحداً تستطيع تطبيقه في مدرستك لتقليل النفايات.","art":"🌍"}],"logic-912":[{"kind":"lesson","title":"اكتشاف الأنماط","objective":"التعرّف إلى قاعدة التتابع والتنبؤ بالعنصر التالي.","explain":"النمط ترتيب يتكرر وفق قاعدة. قد تكون القاعدة زيادة عدد، أو تبديل لونين، أو تكرار مجموعة.","example":"٢، ٤، ٦، ٨: نضيف ٢ في كل مرة، لذلك العدد التالي ١٠.","steps":["قارن عنصرين متتاليين.","ابحث عما يتكرر أو يتغير.","اختبر القاعدة على أكثر من خطوة."],"think":"ما العدد التالي: ٣، ٦، ١٢، ٢٤؟ وما القاعدة؟","art":"🔢"},{"kind":"lesson","title":"فكّر مثل المبرمج","objective":"تقسيم المشكلة إلى خطوات مرتبة قبل كتابة الحل.","explain":"الخوارزمية مجموعة تعليمات واضحة ومرتبة. يجب أن تكون كل خطوة محددة، وأن تؤدي الخطوات معاً إلى النتيجة المطلوبة.","example":"لتحضير كوب ماء: أحضر الكوب، افتح الصنبور، املأ الكوب، أغلق الصنبور.","steps":["حدّد النتيجة المطلوبة.","قسّم المهمة إلى خطوات صغيرة.","رتّب الخطوات واختبرها."],"think":"اكتب ثلاث خطوات مرتبة لترتيب كتبك على الرف.","art":"💻"}],"fractions-912":[{"kind":"lesson","title":"البسط والمقام","objective":"قراءة الكسر وفهم معنى جزئه العلوي والسفلي.","explain":"المقام في أسفل الكسر يبيّن إلى كم جزء متساوٍ قُسّم الكل، والبسط في أعلاه يبيّن عدد الأجزاء التي نأخذها.","example":"في ٣⁄٤، قُسّم الشكل إلى أربعة أجزاء متساوية وأخذنا ثلاثة منها.","steps":["تأكد أن الأجزاء متساوية.","اقرأ المقام أولاً.","اقرأ البسط لمعرفة الأجزاء المختارة."],"think":"في الكسر ٢⁄٥، إلى كم جزء قُسّم الكل؟ وكم جزءاً اخترنا؟","art":"🍕"},{"kind":"lesson","title":"الأعداد العشرية","objective":"ربط الجزء من عشرة بالكتابة العشرية.","explain":"الرقم الأول بعد الفاصلة العشرية يمثل الأعشار. فالعدد ٠٫٥ يعني خمسة أعشار، ويمكن كتابته ٥⁄١٠.","example":"إذا قُسمت وحدة إلى عشرة أجزاء متساوية وأخذنا ثلاثة، فهذا ٠٫٣ أو ٣⁄١٠.","steps":["حدّد موقع الفاصلة.","اقرأ منزلة الأعشار.","اربط العدد العشري بكسر مقامه ١٠."],"think":"كيف تكتب سبعة أعشار بالصيغة العشرية؟","art":"🔟"}]};
+books.forEach(book => { const extra = extraBookPages[book.id] || []; book.pages.push(...extra); });
+
 const categories=["الكل","اللغة العربية","الرياضيات","العلوم","التقنية","الكتابة","الفنون","الاكتشاف","الحياة","الألعاب"];
 const storageKey="loulab-progress-v1";
 let state=loadState(),activeCategory="الكل",activeAge="all",currentBook=null,pageIndex=0,answered=false,drawColor="#7257d8",drawing=false,lastPoint=null;
