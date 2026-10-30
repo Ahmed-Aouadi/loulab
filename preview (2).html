@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتبتي الصغيرة | تعلم والعب</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink:#29334d;
+  --muted:#7d879e;
+  --purple:#8065d9;
+  --pink:#ff829f;
+  --yellow:#ffcf62;
+  --blue:#75c9ee;
+  --green:#8bd7ad;
+  --paper:#fffdf8;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Baloo Bhaijaan 2',sans-serif;
+  background:#f6f5ff;
+  color:var(--ink);
+}
+
+button{font-family:inherit;cursor:pointer}
+
+header{
+  padding:20px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:white;
+  box-shadow:0 4px 20px #34345c0d;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:23px;
+  font-weight:800;
+}
+
+.logo-icon{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  background:#eee8ff;
+  border-radius:16px;
+  font-size:28px;
+}
+
+.header-label{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.hero{
+  margin:30px auto;
+  width:86%;
+  min-height:260px;
+  border-radius:30px;
+  padding:35px 5%;
+  background:linear-gradient(115deg,#8b75e9,#b29cf4);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero h1{font-size:37px;margin:0 0 8px}
+.hero p{font-size:18px;margin:0;opacity:.9}
+.hero-art{font-size:110px;filter:drop-shadow(0 12px 8px #463b7540)}
+.hero-button{
+  margin-top:20px;
+  background:white;
+  color:#735bd0;
+  border:0;
+  border-radius:14px;
+  padding:11px 25px;
+  font-size:17px;
+  font-weight:800;
+}
+
+main{width:86%;margin:auto}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:35px 0 18px;
+}
+
+.section-title h2{font-size:25px;margin:0}
+.section-title span{color:var(--muted)}
+
+.categories{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.category{
+  border:1px solid #e9e6f5;
+  background:white;
+  padding:8px 19px;
+  border-radius:30px;
+  color:#68718a;
+  font-size:15px;
+}
+
+.category.active{
+  background:var(--purple);
+  color:white;
+  border-color:var(--purple);
+}
+
+.books{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:23px;
+  padding-bottom:60px;
+}
+
+.book{
+  background:white;
+  border-radius:23px;
+  overflow:hidden;
+  box-shadow:0 5px 20px #36365c0b;
+  transition:.25s;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.book:hover{
+  transform:translateY(-6px);
+  box-shadow:0 13px 28px #36365c16;
+}
+
+.book-cover{
+  height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+}
+
+.book-cover .emoji{font-size:75px;z-index:1}
+.book-cover .cover-title{
+  font-size:21px;
+  font-weight:800;
+  color:#34405b;
+  z-index:1;
+}
+
+.book-info{padding:15px 18px 18px}
+.book-info h3{font-size:19px;margin:0 0 4px}
+.book-info p{font-size:14px;color:var(--muted);margin:0 0 13px}
+
+.book-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.open-book{
+  background:#f0edff;
+  color:#705bd0;
+  border:0;
+  padding:7px 15px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.reader{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:20;
+  background:#f2f1fa;
+  overflow:auto;
+}
+
+.reader-top{
+  height:70px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  box-shadow:0 3px 15px #34345c0b;
+}
+
+.back-button,.close-button{
+  border:0;
+  background:#f0edff;
+  color:#715dd0;
+  border-radius:12px;
+  padding:9px 18px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.reader-title{font-size:19px;font-weight:800}
+
+.progress{
+  height:7px;
+  background:#e7e4f4;
+  width:100%;
+}
+
+.progress-fill{
+  height:100%;
+  width:0;
+  background:var(--purple);
+  transition:.3s;
+}
+
+.page-area{
+  min-height:calc(100vh - 150px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.page{
+  background:var(--paper);
+  width:min(850px,100%);
+  min-height:520px;
+  border-radius:28px;
+  box-shadow:0 12px 40px #33334d13;
+  padding:35px 45px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.page-number{
+  position:absolute;
+  bottom:15px;
+  color:#a6a6b3;
+  font-size:13px;
+}
+
+.page h2{
+  font-size:32px;
+  margin:5px 0 10px;
+  color:#6251b5;
+}
+
+.page .instruction{
+  font-size:19px;
+  color:#777f94;
+  margin:0 0 25px;
+}
+
+.illustration{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin:15px 0 25px;
+}
+
+.big-emoji{
+  font-size:90px;
+  display:inline-block;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+
+.letter{
+  font-size:105px;
+  font-weight:800;
+  color:#8065d9;
+  background:#eee9ff;
+  border-radius:25px;
+  min-width:130px;
+  padding:5px 25px;
+}
+
+.example-word{
+  font-size:28px;
+  font-weight:800;
+  color:#34405b;
+}
+
+.cards{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:15px 0;
+}
+
+.choice{
+  border:3px solid #ece9f5;
+  background:white;
+  border-radius:20px;
+  min-width:110px;
+  min-height:110px;
+  padding:12px;
+  font-size:45px;
+  transition:.2s;
+}
+
+.choice:hover{transform:scale(1.05)}
+.choice.correct{border-color:#70ce98;background:#edfff3}
+.choice.wrong{border-color:#ff849c;background:#fff0f3}
+
+.choice span{
+  display:block;
+  font-size:15px;
+  color:#68718a;
+  font-weight:700;
+}
+
+.feedback{
+  min-height:35px;
+  font-size:19px;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.feedback.good{color:#35a76a}
+.feedback.bad{color:#e66b80}
+
+.navigation{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:15px;
+  background:white;
+}
+
+.nav-button{
+  border:0;
+  border-radius:14px;
+  background:var(--purple);
+  color:white;
+  font-size:17px;
+  font-weight:800;
+  padding:10px 28px;
+}
+
+.nav-button:disabled{opacity:.35;cursor:not-allowed}
+
+.page-counter{color:var(--muted);font-size:15px}
+
+.match-items{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.match-item{
+  background:#f1edff;
+  border:3px solid transparent;
+  border-radius:18px;
+  padding:15px 20px;
+  font-size:42px;
+  min-width:90px;
+}
+
+.match-item.selected{border-color:var(--purple)}
+.match-item.matched{background:#e8ffef;border-color:#7cd49d}
+
+.color-circles{
+  display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
+  margin:25px;
+}
+
+.color-dot{
+  width:80px;height:80px;border-radius:50%;
+  border:4px solid white;
+  box-shadow:0 3px 12px #0002;
+  cursor:pointer;
+}
+
+.drawing{
+  border:3px dashed #c7baf4;
+  border-radius:25px;
+  width:260px;height:210px;
+  display:grid;place-items:center;
+  font-size:110px;
+  margin:15px auto;
+  background:white;
+}
+
+footer{
+  text-align:center;
+  color:#969bb0;
+  padding:25px;
+}
+
+@media(max-width:650px){
+  header{padding:12px 5%}
+  .header-label{display:none}
+  .hero{width:92%;padding:25px;min-height:220px}
+  .hero h1{font-size:27px}
+  .hero-art{font-size:70px}
+  main{width:92%}
+  .page{padding:25px 15px;min-height:480px}
+  .page h2{font-size:25px}
+  .big-emoji{font-size:65px}
+  .letter{font-size:75px;min-width:100px}
+  .page-area{padding:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">📚</div>
+    <div>مكتبتي الصغيرة</div>
+  </div>
+  <div class="header-label">نتعلم كل يوم شيئاً جديداً 🌟</div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>مرحباً يا بطل! 👋</h1>
+    <p>هيا نكتشف عالم المعرفة والمرح معاً.</p>
+    <button class="hero-button" onclick="document.getElementById('library').scrollIntoView({behavior:'smooth'})">
+      اكتشف الكتب ←
+    </button>
+  </div>
+  <div class="hero-art">🧒🏻📖</div>
+</section>
+
+<main id="library">
+  <div class="section-title">
+    <h2>📚 مكتبتنا التعليمية</h2>
+    <span id="book-count">12 كتاباً</span>
+  </div>
+
+  <div class="categories" id="categories"></div>
+  <div class="books" id="books"></div>
+</main>
+
+<footer>صُنعت بحب للأطفال ❤️ | مكتبة التعلم والمرح</footer>
+
+<div class="reader" id="reader">
+  <div class="reader-top">
+    <button class="back-button" onclick="closeReader()">← المكتبة</button>
+    <div class="reader-title" id="reader-title"></div>
+    <button class="close-button" onclick="closeReader()">✕</button>
+  </div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <div class="page-area">
+    <div class="page" id="page"></div>
+  </div>
+
+  <div class="navigation">
+    <button class="nav-button" id="prev" onclick="movePage(-1)">السابق</button>
+    <span class="page-counter" id="page-counter"></span>
+    <button class="nav-button" id="next" onclick="movePage(1)">التالي ←</button>
+  </div>
+</div>
+
+<script>
+const books = [
+{
+ id:1,title:"أتعلم الحروف العربية",category:"اللغة العربية",
+ desc:"اكتشف الحروف وتعلم كلمات جديدة.",
+ emoji:"🔤",color:"#e9e3ff",pages:[
+  {type:"welcome",title:"رحلتي مع الحروف",text:"هيا نتعلم الحروف العربية بطريقة ممتعة!",emoji:"🧒🏻📚"},
+  {type:"letter",letter:"أ",word:"أسد",emoji:"🦁",title:"حرف الألف"},
+  {type:"letter",letter:"ب",word:"بطة",emoji:"🦆",title:"حرف الباء"},
+  {type:"letter",letter:"ت",word:"تفاحة",emoji:"🍎",title:"حرف التاء"},
+  {type:"letter",letter:"ث",word:"ثعلب",emoji:"🦊",title:"حرف الثاء"},
+  {type:"letter",letter:"ج",word:"جمل",emoji:"🐪",title:"حرف الجيم"},
+  {type:"quiz",title:"اختر الإجابة الصحيحة",text:"ما الكلمة التي تبدأ بحرف ب؟",options:["🍎 تفاحة","🦆 بطة","🦁 أسد"],answer:1},
+  {type:"quiz",title:"اختبر نفسك",text:"ما الحرف الأول من كلمة أسد؟",options:["ب","أ","ت"],answer:1}
+ ]
+},
+{
+ id:2,title:"مغامرة الأرقام",category:"الرياضيات",
+ desc:"تعلم العد من 1 إلى 10.",
+ emoji:"🔢",color:"#fff0cc",pages:[
+  {type:"welcome",title:"عالم الأرقام",text:"هل أنت مستعد للعد؟",emoji:"🔢🎈"},
+  {type:"number",number:1,objects:"🍎",title:"العدد واحد"},
+  {type:"number",number:2,objects:"🍎 🍎",title:"العدد اثنان"},
+  {type:"number",number:3,objects:"⭐ ⭐ ⭐",title:"العدد ثلاثة"},
+  {type:"number",number:4,objects:"🦋 🦋 🦋 🦋",title:"العدد أربعة"},
+  {type:"number",number:5,objects:"🌸 🌸 🌸 🌸 🌸",title:"العدد خمسة"},
+  {type:"quiz",title:"كم عدد التفاحات؟",text:"🍎 🍎 🍎",options:["1","2","3"],answer:2},
+  {type:"quiz",title:"اختر العدد خمسة",text:"أي عدد نبحث عنه؟",options:["2","5","4"],answer:1}
+ ]
+},
+{
+ id:3,title:"الألوان الجميلة",category:"الفنون",
+ desc:"اكتشف الألوان من حولك.",
+ emoji:"🎨",color:"#ffe5eb",pages:[
+  {type:"welcome",title:"حديقة الألوان",text:"الألوان تجعل عالمنا جميلاً!",emoji:"🌈🎨"},
+  {type:"color",title:"اللون الأحمر",color:"#ff5353",word:"أحمر",emoji:"🍎"},
+  {type:"color",title:"اللون الأزرق",color:"#55a9ee",word:"أزرق",emoji:"🐟"},
+  {type:"color",title:"اللون الأصفر",color:"#ffd342",word:"أصفر",emoji:"🌞"},
+  {type:"color",title:"اللون الأخضر",color:"#52c879",word:"أخضر",emoji:"🍀"},
+  {type:"color",title:"اللون البرتقالي",color:"#ff9b39",word:"برتقالي",emoji:"🍊"},
+  {type:"quiz",title:"اختبر معلوماتك",text:"ما لون الموز؟ 🍌",options:["أحمر","أصفر","أزرق"],answer:1}
+ ]
+},
+{
+ id:4,title:"الأشكال الهندسية",category:"الرياضيات",
+ desc:"تعرف على الدائرة والمربع والمثلث.",
+ emoji:"🔺",color:"#e2f4ff",pages:[
+  {type:"welcome",title:"مدينة الأشكال",text:"الأشكال موجودة في كل مكان!",emoji:"🏠🔷"},
+  {type:"shape",title:"الدائرة",shape:"🔵",word:"دائرة",example:"مثل العجلة"},
+  {type:"shape",title:"المربع",shape:"🟦",word:"مربع",example:"مثل النافذة"},
+  {type:"shape",title:"المثلث",shape:"🔺",word:"مثلث",example:"مثل سقف البيت"},
+  {type:"shape",title:"المستطيل",shape:"🟩",word:"مستطيل",example:"مثل الباب"},
+  {type:"quiz",title:"اختر الشكل",text:"أي شكل يشبه العجلة؟",options:["🔺 مثلث","🔵 دائرة","🟦 مربع"],answer:1}
+ ]
+},
+{
+ id:5,title:"الحيوانات وأصواتها",category:"الاكتشاف",
+ desc:"تعرف على الحيوانات وبيئاتها.",
+ emoji:"🦁",color:"#e3f8e9",pages:[
+  {type:"welcome",title:"رحلة إلى عالم الحيوان",text:"هيا نزور أصدقاءنا الحيوانات!",emoji:"🦁🐘🐒"},
+  {type:"animal",title:"الأسد",emoji:"🦁",text:"الأسد ملك الغابة."},
+  {type:"animal",title:"الفيل",emoji:"🐘",text:"الفيل حيوان كبير وله خرطوم طويل."},
+  {type:"animal",title:"الأرنب",emoji:"🐰",text:"الأرنب يحب الجزر."},
+  {type:"animal",title:"القطة",emoji:"🐱",text:"القطة تقول: مواء."},
+  {type:"animal",title:"البقرة",emoji:"🐮",text:"البقرة تعطينا الحليب."},
+  {type:"quiz",title:"من يحب الجزر؟",text:"اختر الحيوان الصحيح",options:["🐰 الأرنب","🐘 الفيل","🦁 الأسد"],answer:0}
+ ]
+},
+{
+ id:6,title:"جسمي وحواسي",category:"الاكتشاف",
+ desc:"تعرف على جسمك والحواس الخمس.",
+ emoji:"🧒",color:"#ffe9dc",pages:[
+  {type:"welcome",title:"أنا أتعرف على جسمي",text:"جسمي رائع ويساعدني على اكتشاف العالم.",emoji:"🧒🏻🌍"},
+  {type:"body",title:"العينان",emoji:"👀",text:"أرى بعينيّ الأشياء الجميلة."},
+  {type:"body",title:"الأذنان",emoji:"👂",text:"أسمع بأذنيّ الأصوات."},
+  {type:"body",title:"الأنف",emoji:"👃",text:"أشم بأنفيّ الروائح."},
+  {type:"body",title:"اللسان",emoji:"👅",text:"أتذوق بلساني."},
+  {type:"body",title:"اليدان",emoji:"🙌",text:"ألمس بيديّ الأشياء."},
+  {type:"quiz",title:"بماذا نسمع؟",text:"اختر العضو الصحيح",options:["👀 العينان","👂 الأذنان","👃 الأنف"],answer:1}
+ ]
+},
+{
+ id:7,title:"أتعلم الكتابة",category:"الكتابة",
+ desc:"تدرب على كتابة الحروف والأرقام.",
+ emoji:"✏️",color:"#fff0d9",pages:[
+  {type:"welcome",title:"أنا أتعلم الكتابة",text:"خذ قلمك واستعد للكتابة!",emoji:"✏️📒"},
+  {type:"trace",title:"تدرب على حرف الألف",letter:"أ",text:"شاهد الحرف وحاول كتابته في دفترك."},
+  {type:"trace",title:"تدرب على حرف الباء",letter:"ب",text:"اكتب حرف الباء عدة مرات."},
+  {type:"trace",title:"تدرب على حرف التاء",letter:"ت",text:"انتبه إلى النقطتين فوق الحرف."},
+  {type:"trace",title:"اكتب العدد 1",letter:"١",text:"اكتب العدد واحد في دفترك."},
+  {type:"trace",title:"اكتب العدد 2",letter:"٢",text:"اكتب العدد اثنين في دفترك."}
+ ]
+},
+{
+ id:8,title:"الفواكه والخضروات",category:"الاكتشاف",
+ desc:"تعرف على الأطعمة الصحية.",
+ emoji:"🍉",color:"#ffe6e3",pages:[
+  {type:"welcome",title:"سلة الطعام اللذيذ",text:"الفواكه والخضروات مفيدة لجسمنا.",emoji:"🍓🍇🍉"},
+  {type:"food",title:"التفاح",emoji:"🍎",text:"التفاح فاكهة لذيذة."},
+  {type:"food",title:"الموز",emoji:"🍌",text:"الموز غني بالطاقة."},
+  {type:"food",title:"البرتقال",emoji:"🍊",text:"البرتقال يحتوي على فيتامينات."},
+  {type:"food",title:"الجزر",emoji:"🥕",text:"الجزر من الخضروات المفيدة."},
+  {type:"food",title:"البطيخ",emoji:"🍉",text:"البطيخ فاكهة منعشة."},
+  {type:"quiz",title:"أي منها فاكهة؟",text:"اختر الإجابة الصحيحة",options:["🥕 جزر","🍎 تفاح","🥔 بطاطا"],answer:1}
+ ]
+},
+{
+ id:9,title:"أرسم وألون",category:"الفنون",
+ desc:"اكتشف الأشكال وتعلم الرسم.",
+ emoji:"🖍️",color:"#eee7ff",pages:[
+  {type:"welcome",title:"مرسم الفنان الصغير",text:"كل طفل يستطيع أن يكون فناناً!",emoji:"🧑‍🎨🎨"},
+  {type:"draw",title:"ارسم شمساً جميلة",emoji:"☀️",text:"ارسم شمساً في دفترك ولونها بالأصفر."},
+  {type:"draw",title:"ارسم بيتاً",emoji:"🏠",text:"ارسم بيتاً له باب ونافذتان."},
+  {type:"draw",title:"ارسم زهرة",emoji:"🌸",text:"ارسم زهرة ملونة بألوانك المفضلة."},
+  {type:"draw",title:"ارسم سمكة",emoji:"🐟",text:"ارسم سمكة في البحر الأزرق."}
+ ]
+},
+{
+ id:10,title:"المدرسة وأصدقائي",category:"الحياة",
+ desc:"تعلم آداب المدرسة والتعاون.",
+ emoji:"🏫",color:"#e4f3ff",pages:[
+  {type:"welcome",title:"مدرستي الجميلة",text:"في المدرسة أتعلم وألعب وأكوّن صداقات.",emoji:"🏫🎒"},
+  {type:"scene",title:"أحافظ على نظافة مدرستي",emoji:"🧹",text:"أضع النفايات في سلة المهملات."},
+  {type:"scene",title:"أحترم معلمي",emoji:"👩‍🏫",text:"أستمع إلى معلمي وأحترمه."},
+  {type:"scene",title:"أساعد أصدقائي",emoji:"🤝",text:"أتعاون مع أصدقائي وأشاركهم ألعابي."},
+  {type:"scene",title:"أحافظ على أدواتي",emoji:"🎒",text:"أرتب كتبي وأحافظ على أدواتي."},
+  {type:"quiz",title:"ماذا نفعل في المدرسة؟",text:"اختر التصرف الصحيح",options:["🗑️ أرمي الأوراق","🤝 أساعد صديقي","😴 أنام في القسم"],answer:1}
+ ]
+},
+{
+ id:11,title:"الوقت وأيام الأسبوع",category:"الرياضيات",
+ desc:"تعرف على الأيام وتنظيم الوقت.",
+ emoji:"⏰",color:"#fff2d8",pages:[
+  {type:"welcome",title:"أيامي الجميلة",text:"لكل يوم أعمال جميلة نقوم بها.",emoji:"📅⏰"},
+  {type:"day",title:"أيام الأسبوع",days:["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"]},
+  {type:"scene",title:"أستيقظ مبكراً",emoji:"🌞",text:"أستيقظ صباحاً وأستعد ليومي."},
+  {type:"scene",title:"أذهب إلى المدرسة",emoji:"🎒",text:"أذهب إلى المدرسة لأتعلم."},
+  {type:"scene",title:"أنام مبكراً",emoji:"🌙",text:"أنام مبكراً حتى أستيقظ نشيطاً."}
+ ]
+},
+{
+ id:12,title:"مراجعة وألعاب ذكية",category:"الألعاب",
+ desc:"اختبر معلوماتك في ألعاب ممتعة.",
+ emoji:"🏆",color:"#ffe9f3",pages:[
+  {type:"welcome",title:"بطل المعرفة",text:"حان وقت اختبار معلوماتك!",emoji:"🏆🌟"},
+  {type:"quiz",title:"سؤال الحروف",text:"ما الحرف الأول من كلمة موز؟",options:["م","ب","أ"],answer:0},
+  {type:"quiz",title:"سؤال الأرقام",text:"كم عدد النجوم؟ ⭐ ⭐ ⭐ ⭐",options:["3","4","5"],answer:1},
+  {type:"quiz",title:"سؤال الحيوانات",text:"أي حيوان يطير؟",options:["🐘 الفيل","🐦 العصفور","🐱 القطة"],answer:1},
+  {type:"quiz",title:"سؤال الألوان",text:"ما لون العشب؟",options:["🔴 أحمر","🟢 أخضر","🔵 أزرق"],answer:1},
+  {type:"quiz",title:"سؤال الأشكال",text:"أي شكل له ثلاثة أضلاع؟",options:["🔵 دائرة","🔺 مثلث","🟦 مربع"],answer:1},
+  {type:"finish",title:"أحسنت يا بطل!",text:"لقد أكملت مغامرتك التعليمية. استمر في التعلم!",emoji:"🥇🎉"}
+ ]
+}
+];
+
+const categories=["الكل","اللغة العربية","الرياضيات","الكتابة","الفنون","الاكتشاف","الحياة","الألعاب"];
+let activeCategory="الكل";
+let currentBook=null;
+let currentPage=0;
+let selectedAnswer=null;
+
+function renderCategories(){
+ const container=document.getElementById("categories");
+ container.innerHTML=categories.map(c=>`
+ <button class="category ${c===activeCategory?'active':''}" onclick="filterBooks('${c}')">${c}</button>
+ `).join("");
+}
+
+function renderBooks(){
+ const filtered=activeCategory==="الكل"?books:books.filter(b=>b.category===activeCategory);
+ document.getElementById("book-count").textContent=filtered.length+" كتب";
+ document.getElementById("books").innerHTML=filtered.map(b=>`
+ <div class="book" onclick="openBook(${b.id})">
+   <div class="book-cover" style="background:${b.color}">
+     <div class="emoji">${b.emoji}</div>
+     <div class="cover-title">${b.title}</div>
+   </div>
+   <div class="book-info">
+     <h3>${b.title}</h3>
+     <p>${b.desc}</p>
+     <div class="book-meta">
+       <span>📖 ${b.pages.length} صفحات</span>
+       <button class="open-book">افتح الكتاب ←</button>
+     </div>
+   </div>
+ </div>`).join("");
+}
+
+function filterBooks(category){
+ activeCategory=category;
+ renderCategories();
+ renderBooks();
+}
+
+function openBook(id){
+ currentBook=books.find(b=>b.id===id);
+ currentPage=0;
+ document.getElementById("reader").style.display="block";
+ document.getElementById("reader-title").textContent=currentBook.title;
+ document.body.style.overflow="hidden";
+ renderPage();
+}
+
+function closeReader(){
+ document.getElementById("reader").style.display="none";
+ document.body.style.overflow="auto";
+}
+
+function movePage(direction){
+ currentPage+=direction;
+ selectedAnswer=null;
+ renderPage();
+}
+
+function renderPage(){
+ const p=currentBook.pages[currentPage];
+ const total=currentBook.pages.length;
+ const page=document.getElementById("page");
+
+ document.getElementById("page-counter").textContent=`الصفحة ${currentPage+1} من ${total}`;
+ document.getElementById("progress-fill").style.width=((currentPage+1)/total*100)+"%";
+ document.getElementById("prev").disabled=currentPage===0;
+ document.getElementById("next").disabled=currentPage===total-1;
+
+ let html="";
+
+ if(p.type==="welcome"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">${p.text}</p>
+   <div class="illustration"><span class="big-emoji">${p.emoji}</span></div>
+   <div class="example-word">هيا نبدأ! 🚀</div>`;
+ }
+
+ if(p.type==="letter"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">انطق الحرف ثم تعرف على الكلمة.</p>
+   <div class="illustration">
+    <div class="letter">${p.letter}</div>
+    <div class="big-emoji">${p.emoji}</div>
+   </div>
+   <div class="example-word">${p.word}</div>
+   <p class="instruction">حاول كتابة الحرف في دفترك ✏️</p>`;
+ }
+
+ if(p.type==="number"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">شاهد العدد وعد الأشياء.</p>
+   <div class="letter">${p.number}</div>
+   <div class="big-emoji">${p.objects}</div>
+   <div class="example-word">${numberWords[p.number]}</div>`;
+ }
+
+ if(p.type==="color"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">هذا مثال على اللون ${p.word}.</p>
+   <div class="big-emoji">${p.emoji}</div>
+   <div style="width:160px;height:75px;border-radius:20px;background:${p.color};margin:15px"></div>
+   <div class="example-word">${p.word}</div>`;
+ }
+
+ if(p.type==="shape"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">تعرف على هذا الشكل.</p>
+   <div class="big-emoji">${p.shape}</div>
+   <div class="example-word">${p.word}</div>
+   <p class="instruction">${p.example}</p>`;
+ }
+
+ if(["animal","body","food","scene","draw"].includes(p.type)){
+  html=`
+   <h2>${p.title}</h2>
+   <div class="illustration"><span class="big-emoji">${p.emoji}</span></div>
+   <p class="instruction">${p.text}</p>
+   ${p.type==="draw"?'<div class="drawing">✏️</div><p>استخدم ألوانك وأبدع!</p>':''}`;
+ }
+
+ if(p.type==="quiz"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">${p.text}</p>
+   <div class="cards">
+    ${p.options.map((option,i)=>`
+     <button class="choice" onclick="checkAnswer(${i})" id="choice-${i}">
+       ${option}
+     </button>`).join("")}
+   </div>
+   <div class="feedback" id="feedback"></div>`;
+ }
+
+ if(p.type==="trace"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">${p.text}</p>
+   <div class="letter" style="font-size:130px;color:#b8a9ed">${p.letter}</div>
+   <p class="instruction">انظر إلى الحرف ثم اكتبه في دفترك.</p>
+   <div style="font-size:30px;color:#d8d2eb;letter-spacing:15px">ــــــــــــــــ</div>`;
+ }
+
+ if(p.type==="day"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">نتعرف على أيام الأسبوع السبعة.</p>
+   <div class="cards">
+    ${p.days.map((day,i)=>`
+      <div class="choice" style="font-size:19px;background:${dayColors[i]}">
+       <span style="font-size:30px">${dayEmojis[i]}</span>
+       ${day}
+      </div>`).join("")}
+   </div>`;
+ }
+
+ if(p.type==="finish"){
+  html=`
+   <h2>${p.title}</h2>
+   <p class="instruction">${p.text}</p>
+   <div class="big-emoji">${p.emoji}</div>
+   <div class="example-word">أنت بطل المعرفة! ❤️</div>
+   <button class="nav-button" onclick="closeReader()">العودة إلى المكتبة</button>`;
+ }
+
+ page.innerHTML=html+`<div class="page-number">مكتبتي الصغيرة • ${currentPage+1}</div>`;
+}
+
+function checkAnswer(index){
+ const p=currentBook.pages[currentPage];
+ const feedback=document.getElementById("feedback");
+
+ p.options.forEach((_,i)=>{
+  const btn=document.getElementById("choice-"+i);
+  btn.classList.remove("correct","wrong");
+  if(i===p.answer)btn.classList.add("correct");
+  else if(i===index)btn.classList.add("wrong");
+ });
+
+ if(index===p.answer){
+  feedback.textContent="أحسنت! إجابة صحيحة 👏🌟";
+  feedback.className="feedback good";
+ }else{
+  feedback.textContent="حاول مرة أخرى، أنت تستطيع! 💪";
+  feedback.className="feedback bad";
+ }
+}
+
+const numberWords=["","واحد","اثنان","ثلاثة","أربعة","خمسة"];
+const dayEmojis=["☀️","🌤️","🌈","🌻","📚","🕌","🎈"];
+const dayColors=["#fff1d5","#e7f5ff","#fce7ef","#e6f8e9","#eee8ff","#fff0dc","#e7f5ff"];
+
+renderCategories();
+renderBooks();
+</script>
+
+</body>
+</html>
