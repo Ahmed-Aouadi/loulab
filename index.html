@@ -130,8 +130,37 @@ a{color:inherit;text-decoration:none}
 </style>
 
 <style>
-.chess-shell{display:grid;grid-template-columns:minmax(0,560px) minmax(210px,1fr);gap:20px;align-items:start;margin-top:18px}.chess-board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));aspect-ratio:1;border:7px solid #554735;border-radius:12px;overflow:hidden;box-shadow:0 12px 28px #34251520;direction:ltr}.chess-square{border:0;border-radius:0;aspect-ratio:1;display:grid;place-items:center;padding:0;position:relative;font-family:"Segoe UI Symbol","DejaVu Sans",serif;font-size:clamp(24px,5.2vw,52px);line-height:1}.chess-square.light{background:#f0d9b5}.chess-square.dark{background:#b58863}.chess-square.selected{box-shadow:inset 0 0 0 5px #f5d547}.chess-square.last{background-image:linear-gradient(#f7e45a66,#f7e45a66)}.chess-square.target:after{content:"";position:absolute;width:24%;height:24%;border-radius:50%;background:#176b3a99}.chess-square.capture:after{width:78%;height:78%;background:transparent;border:5px solid #176b3a99}.chess-piece.white{color:#fffdf4;text-shadow:1px 2px 2px #272018,-1px -1px 1px #272018}.chess-piece.black{color:#191919;text-shadow:0 1px 1px #fff8}.chess-side{background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px}.chess-status{background:#f3f0ff;padding:12px;border-radius:12px;font-weight:800;margin:12px 0}.chess-moves{max-height:180px;overflow:auto;font-size:14px;line-height:1.9;color:var(--muted);direction:ltr;text-align:left}.chess-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chess-controls button,.chess-promotion button{border:1px solid var(--line);border-radius:11px;background:#fff;padding:9px 13px;font-weight:800;color:var(--ink)}.chess-controls button.primary{background:var(--purple);color:#fff}.chess-promotion{display:none;gap:8px;flex-wrap:wrap;margin-top:10px}.chess-promotion.show{display:flex}.chess-hint{font-size:14px;color:var(--muted);line-height:1.8}.chess-rank{font-size:10px;position:absolute;bottom:2px;left:3px;opacity:.65}.chess-files{font-size:10px;position:absolute;top:2px;right:3px;opacity:.65}
-@media(max-width:720px){.chess-shell{grid-template-columns:1fr}.chess-board{border-width:5px}.chess-square{font-size:clamp(25px,9vw,48px)}}
+/* Chess club — styled to match Loulab's soft, playful learning interface */
+.chess-shell{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.85fr);gap:22px;align-items:start;margin-top:20px;padding:20px;background:linear-gradient(135deg,#f5f2ff 0%,#fff9f2 100%);border:1px solid #ebe6fb;border-radius:26px}
+.chess-board{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));aspect-ratio:1;border:8px solid #fff;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px #51418a1c;direction:ltr;background:#fff}
+.chess-square{border:0;border-radius:0;aspect-ratio:1;display:grid;place-items:center;padding:0;position:relative;font-family:"Segoe UI Symbol","DejaVu Sans",serif;font-size:clamp(25px,4.8vw,54px);line-height:1;transition:filter .15s,box-shadow .15s}
+.chess-square.light{background:#f2efff}.chess-square.dark{background:#b9a9eb}
+.chess-square:hover{filter:brightness(1.06)}
+.chess-square.selected{box-shadow:inset 0 0 0 5px #ffc857;z-index:1}
+.chess-square.last{background-image:linear-gradient(#ffe28b70,#ffe28b70)}
+.chess-square.target:after{content:"";position:absolute;width:23%;height:23%;border-radius:50%;background:#4e9b7899}
+.chess-square.capture:after{width:78%;height:78%;background:transparent;border:5px solid #4e9b7899}
+.chess-piece.white{color:#fff;text-shadow:0 2px 2px #342b56,1px 0 2px #342b56,-1px 0 2px #342b56;filter:drop-shadow(0 2px 1px #40356b44)}
+.chess-piece.black{color:#39304f;text-shadow:0 1px 1px #fff9;filter:drop-shadow(0 2px 1px #40356b22)}
+.chess-side{background:#fff;border:1px solid #eae6f7;border-radius:21px;padding:20px;box-shadow:0 8px 24px #51418a0b}
+.chess-side>div:first-child{display:inline-grid;place-items:center;width:76px;height:66px;border-radius:20px;background:var(--yellow);font-size:32px}
+.chess-side h3{font-size:18px;font-weight:900;color:var(--ink)}
+.chess-status{background:#f2efff;border:1px solid #e5defd;color:#634bc4;padding:13px 14px;border-radius:14px;font-weight:900;margin:12px 0;line-height:1.6}
+.chess-moves{max-height:175px;overflow:auto;background:#faf9ff;border:1px solid #efedf7;border-radius:13px;padding:12px;font-size:14px;line-height:1.9;color:#666b82;direction:ltr;text-align:left;white-space:pre-wrap}
+.chess-controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.chess-controls button,.chess-promotion button{border:1px solid #e8e5f2;border-radius:12px;background:#fff;padding:10px 15px;font-weight:800;color:#6550bd;transition:.18s}
+.chess-controls button:hover,.chess-promotion button:hover{background:#f5f2ff;border-color:#cfc4f5;transform:translateY(-1px)}
+.chess-controls button.primary{background:var(--purple);border-color:var(--purple);color:#fff;box-shadow:0 6px 14px #7257d82b}
+.chess-controls button:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.chess-promotion{display:none;gap:8px;flex-wrap:wrap;margin-top:12px;padding:13px;background:#fff;border:1px solid #eee9fb;border-radius:15px}
+.chess-promotion.show{display:flex}
+.chess-promotion b{color:var(--ink);font-size:14px}
+.chess-hint{font-size:14px;color:var(--muted);line-height:1.9}
+.chess-rank{font-size:10px;position:absolute;bottom:3px;left:4px;opacity:.7;color:#5b4b91;font-weight:900}
+.chess-files{font-size:10px;position:absolute;top:3px;right:4px;opacity:.7;color:#5b4b91;font-weight:900}
+.chess-side hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+@media(max-width:760px){.chess-shell{grid-template-columns:1fr;padding:13px;gap:14px}.chess-board{border-width:6px;border-radius:16px}.chess-square{font-size:clamp(26px,8.6vw,48px)}.chess-side{padding:16px}}
+@media(max-width:390px){.chess-shell{margin-inline:-5px;padding:9px}.chess-square{font-size:clamp(22px,8vw,34px)}.chess-controls button{flex:1;padding:9px 8px;font-size:13px}}
 </style>
 </head>
 <body>
