@@ -457,6 +457,96 @@ body[data-page="library"] #library{margin-top:20px!important;padding:30px clamp(
 }
 </style>
 
+
+<style id="loulab-design-v3">
+/* Loulab visual system — calm editorial + playful learning */
+:root{--ink:#20263b;--muted:#737b91;--purple:#6653c7;--purple2:#8878df;--line:#e9e8f0;--paper:#fff;--shadow:0 18px 48px rgba(36,32,76,.08)}
+body{background:#f5f5fa;background-image:radial-gradient(#dcd9ee 0.7px,transparent .7px);background-size:22px 22px}
+.topbar{height:72px;background:rgba(255,255,255,.92);box-shadow:0 3px 20px #28234a08}
+.topinner{max-width:1240px}
+.brand{font-size:26px;gap:12px}
+.brandmark{border-radius:14px;background:#6653c7;box-shadow:0 7px 16px #6653c733}
+.navlinks{gap:22px;font-size:14px}
+.navlinks a{padding:10px 0;position:relative;transition:color .2s}
+.navlinks a:hover{color:#6653c7}
+.top-actions .primary,.primary{border-radius:12px;background:#6653c7;box-shadow:0 6px 15px #6653c72b;transition:transform .2s,box-shadow .2s}
+.primary:hover{background:#5844b7;box-shadow:0 9px 20px #6653c738;transform:translateY(-2px)}
+.stars-pill{border-color:#f0e2ae;background:#fffaf0;color:#846718}
+.wrap{max-width:1240px;padding-inline:28px}
+.hero{min-height:350px;margin:30px auto 24px;padding:52px 58px;border-radius:28px;background:linear-gradient(115deg,#433b86 0%,#6653c7 52%,#9384e2 100%);box-shadow:0 20px 50px #51439c24}
+.hero:before{width:420px;height:420px;left:12%;top:-280px;background:#ffffff0b}
+.hero:after{width:300px;height:300px;right:-140px;bottom:-190px;background:#ffffff12}
+.hero>div:first-child{position:relative;z-index:2}
+.eyebrow{background:#ffffff18;border-color:#ffffff40;letter-spacing:.1px}
+.hero h1{font-size:clamp(36px,4.2vw,54px);line-height:1.3;letter-spacing:-.7px}
+.hero p{font-size:17px;max-width:520px;line-height:2;color:#f0edff}
+.hero-cta .primary{border-radius:12px;padding:13px 23px}
+.hero-cta .hero-link{border-radius:12px;background:#ffffff0d}
+.hero-art{min-height:240px}
+.art-card{width:215px;height:225px;border-radius:27px;background:linear-gradient(145deg,#fff,#f4f0ff);box-shadow:0 25px 55px #241c5a50;transform:rotate(-4deg)}
+.art-card:before{inset:11px;border:1px dashed #b9afe9}
+.art-book{font-size:96px}
+.stats{gap:13px;margin:22px 0 42px}
+.stat{border:1px solid #e9e7f2;border-radius:17px;padding:17px 18px;box-shadow:0 5px 18px #28234a05;transition:transform .2s,box-shadow .2s}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.stat-icon{border-radius:13px!important}
+.stat strong{font-size:25px;color:#292d43}
+.section-head{margin:44px 0 19px;align-items:center}
+.section-head h2{font-size:27px;letter-spacing:-.25px}
+.section-head p{font-size:14px;margin-top:5px}
+.section-head .text-link{font-size:14px}
+.resume{border-radius:18px;border-color:#e7e3f6;padding:18px 22px;box-shadow:0 7px 22px #30275b07}
+.level-selector{gap:10px;margin:20px 0 18px}
+.age-level{border-radius:15px;padding:14px 16px;transition:.2s;box-shadow:0 3px 12px #30275b05}
+.age-level:hover{border-color:#c8bff0;transform:translateY(-2px)}
+.age-level.active{border:1px solid #8979db;background:#f1efff;box-shadow:0 5px 15px #7866d51a}
+.age-level strong{font-size:15px}
+.toolbar{margin:22px 0 17px}
+.searchbox{max-width:410px}
+.searchbox input{height:48px;border-radius:13px;border-color:#e4e3ed;box-shadow:0 3px 12px #28234a05}
+.searchbox input:focus{border-color:#9d91e1;box-shadow:0 0 0 4px #8b7be51a}
+.filters{gap:7px}
+.filter{border-radius:11px;padding:9px 14px;font-size:13px;transition:.18s}
+.filter:hover{border-color:#c8c0ee;color:#6653c7}
+.filter.active{background:#6653c7;border-color:#6653c7}
+.book-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-bottom:58px}
+.book-card{border:1px solid #e9e7f0;border-radius:19px;box-shadow:0 5px 18px #29234b08;transition:transform .22s,border-color .22s,box-shadow .22s}
+.book-card:hover{transform:translateY(-6px);border-color:#d5cef4;box-shadow:0 18px 34px #30275b14}
+.cover{height:164px}
+.cover:before{width:160px;height:160px;right:-45px;top:-78px;background:#ffffff65}
+.cover:after{width:115px;height:115px;left:-35px;bottom:-65px;background:#ffffff55}
+.cover-emoji{font-size:68px;filter:drop-shadow(0 7px 4px #24203a20);transition:transform .22s}
+.book-card:hover .cover-emoji{transform:scale(1.08) translateY(-2px)}
+.cover-tag{top:12px;right:12px;padding:5px 9px;font-size:11px;box-shadow:0 2px 8px #2222}
+.fav{top:10px;left:10px;box-shadow:0 2px 8px #2222}
+.book-body{padding:15px 16px 16px}
+.book-title-row h3{font-size:17px;line-height:1.55}
+.level{font-size:10px}
+.book-body p{font-size:13px;line-height:1.7;min-height:43px;margin:7px 0 13px}
+.book-foot{font-size:12px}
+.book-foot .open{border-radius:9px;padding:8px 11px;transition:.18s}
+.book-foot .open:hover{background:#e8e3ff}
+.feature-strip{gap:14px;margin:12px 0 58px}
+.feature{border-radius:18px;padding:21px 22px;box-shadow:0 5px 18px #29234b06;transition:transform .2s,box-shadow .2s}
+.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.feature .ficon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:#f2efff;font-size:24px}
+.feature h3{font-size:17px;margin:12px 0 5px}
+.feature p{font-size:13px;line-height:1.9}
+.footer{background:#fff;border-top:1px solid #e9e7f0;padding:30px 20px;line-height:2}
+.reader{border-radius:22px;box-shadow:0 28px 90px #17152b66}
+.reader-head{padding:14px 19px}
+.reader-workspace{background:#f2f1f7}
+.reader-toc{background:#fff;border-left:1px solid #e9e7f0}
+.lesson-area{padding:26px}
+.lesson{border:1px solid #e9e7f0;border-radius:18px;box-shadow:0 8px 28px #29234b08}
+.lesson h2{letter-spacing:-.3px}
+.reader-nav{padding:13px 19px}
+.toast{border-radius:12px}
+@media(max-width:1050px){.book-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.navlinks{gap:14px;font-size:13px}.wrap{padding-inline:22px}}
+@media(max-width:850px){.hero{padding:38px 34px}.book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{gap:10px}.navlinks{display:none}}
+@media(max-width:600px){.wrap{padding:0 15px}.topbar{height:64px}.brand{font-size:22px}.brandmark{width:40px;height:40px}.hero{margin-top:17px;padding:28px 23px;border-radius:22px}.hero h1{font-size:32px;line-height:1.35}.hero p{font-size:15px;line-height:1.9}.hero-cta{gap:8px}.hero-cta .primary,.hero-cta .hero-link{padding:11px 14px;font-size:13px}.stats{grid-template-columns:repeat(2,minmax(0,1fr));margin:14px 0 30px}.stat{padding:12px;border-radius:14px}.stat strong{font-size:21px}.section-head{margin:34px 0 15px}.section-head h2{font-size:22px}.level-selector{gap:7px}.age-level{padding:10px;border-radius:12px}.age-level strong{font-size:13px}.age-level small{font-size:11px}.toolbar{gap:10px}.filters{gap:6px}.filter{padding:8px 11px;font-size:12px}.book-grid{gap:10px}.cover{height:125px}.cover-emoji{font-size:54px}.book-body{padding:11px}.book-title-row h3{font-size:14px}.book-body p{font-size:11px;min-height:43px}.book-foot{font-size:10px}.book-foot .open{font-size:10px;padding:7px 8px}.feature-strip{gap:10px}.feature{padding:17px}.feature h3{font-size:16px}.feature p{font-size:12px}.lesson-area{padding:10px}.lesson{padding:18px 12px}.reader{border-radius:17px}.reader-workspace{min-height:0}}
+@media(prefers-reduced-motion:reduce){.book-card,.stat,.feature,.age-level,.cover-emoji{transition:none!important}}
+</style>
 </head>
 <body data-page="library">
 <header class="topbar">
