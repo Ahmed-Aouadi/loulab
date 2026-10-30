@@ -352,5 +352,75 @@ document.getElementById("readerModal").addEventListener("click",e=>{if(e.target.
 document.addEventListener("keydown",e=>{if(!document.getElementById("readerModal").classList.contains("open"))return;if(e.key==="Escape")closeReader();if(e.key==="ArrowLeft")goPage(1);if(e.key==="ArrowRight")goPage(-1)});
 renderFilters();renderBooks();updateStats();
 </script>
+
+<style>
+.platform-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.platform-nav button{border:1px solid #e9e6f4;background:#fff;color:#62558f;border-radius:12px;padding:9px 13px;font-weight:800}.platform-nav button.active{background:#7257d8;color:#fff}
+.platform-panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;margin:20px 0 34px;box-shadow:var(--shadow)}.platform-panel.show{display:block}.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.platform-tile{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fcfbff}.platform-tile strong{display:block;font-size:25px;color:var(--purple)}.platform-tile small{color:var(--muted)}.platform-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.platform-head h2{margin:0;font-size:24px}.profile-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.profile-row input,.profile-row select{border:1px solid #e7e5ef;border-radius:11px;padding:10px;background:#fff}.profile-chip{background:#f2efff;border-radius:30px;padding:8px 13px;font-weight:800}.activity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.activity-card{border:1px solid var(--line);border-radius:17px;padding:16px;background:#fff}.activity-card button{margin-top:10px}.daily-box{background:linear-gradient(120deg,#fff5d7,#fff0e7);border-radius:18px;padding:18px;margin:16px 0}.parent-note{color:var(--muted);line-height:1.8}.platform-progress{height:9px;border-radius:20px;background:#efedf7;overflow:hidden;margin:8px 0}.platform-progress span{display:block;height:100%;background:#7b64df;border-radius:20px}
+@media(max-width:650px){.platform-grid{grid-template-columns:repeat(2,1fr)}.activity-grid{grid-template-columns:1fr}.platform-panel{padding:15px}}
+</style>
+<section class="wrap" id="platformHub">
+ <div class="platform-head"><div><h2>مساحة لُولاب التعليمية 🌈</h2><p class="parent-note">مساحة الطفل والإنجازات ومتابعة التعلّم في مكان واحد.</p></div><div class="profile-row"><span class="profile-chip" id="activeProfileLabel">👧 المتعلّم</span><button class="soft" id="switchProfile">تبديل الملف</button></div></div>
+ <div class="platform-nav" role="tablist" aria-label="أقسام المنصة">
+  <button class="active" data-hub="student">مساحة الطفل</button><button data-hub="activities">الألعاب والأنشطة</button><button data-hub="achievements">إنجازاتي</button><button data-hub="parent">لوحة ولي الأمر</button>
+ </div>
+ <section class="platform-panel show" id="hub-student">
+  <div class="daily-box"><div class="platform-head"><div><b>⭐ تحدّي اليوم</b><p id="dailyPrompt">أجب عن سؤال اليوم واجمع نجومك!</p></div><span style="font-size:42px">🎯</span></div><div id="dailyAnswers" class="profile-row"></div><p id="dailyFeedback" aria-live="polite"></p></div>
+  <div class="platform-grid">
+   <div class="platform-tile">📚 <strong id="hubBooks">12</strong><small>كتاباً متاحاً</small></div>
+   <div class="platform-tile">⭐ <strong id="hubStars">0</strong><small>نجمة جمعتها</small></div>
+   <div class="platform-tile">🏅 <strong id="hubCompleted">0</strong><small>كتب مكتملة</small></div>
+  </div>
+  <div class="section-head"><div><h2>رحلتك هذا الأسبوع</h2><p>كل خطوة صغيرة تصنع فرقاً كبيراً.</p></div></div>
+  <div class="platform-progress"><span id="weeklyBar" style="width:0%"></span></div><p class="parent-note" id="weeklyText">ابدأ نشاطاً اليوم لتظهر إنجازاتك هنا.</p>
+  <button class="primary" onclick="document.getElementById('library').scrollIntoView({behavior:'smooth'})">تابع التعلّم ←</button>
+ </section>
+ <section class="platform-panel" id="hub-activities"><div class="platform-head"><h2>الألعاب والأنشطة 🎮</h2><span class="profile-chip">تعلّم باللعب</span></div><div class="activity-grid">
+  <article class="activity-card"><div style="font-size:35px">🔤</div><b>صيد الحروف</b><p class="parent-note">اختر الحرف الذي تبدأ به الكلمة.</p><button class="soft" data-game="letters">ابدأ اللعبة</button></article>
+  <article class="activity-card"><div style="font-size:35px">🔢</div><b>عدّ النجوم</b><p class="parent-note">تدرّب على العدّ بطريقة ممتعة.</p><button class="soft" data-game="count">ابدأ اللعبة</button></article>
+  <article class="activity-card"><div style="font-size:35px">🎨</div><b>مرسم الألوان</b><p class="parent-note">افتح كتاب مرسم الصغار وارسم ما تحب.</p><button class="soft" data-book="drawing">افتح المرسم</button></article>
+  <article class="activity-card"><div style="font-size:35px">🧠</div><b>اختبار المعرفة</b><p class="parent-note">راجع معلوماتك في تحدٍّ قصير.</p><button class="soft" data-book="review">ابدأ الاختبار</button></article>
+ </div><p id="gameFeedback" aria-live="polite"></p></section>
+ <section class="platform-panel" id="hub-achievements"><h2>إنجازاتي 🏆</h2><div class="platform-grid" id="achievementGrid"></div></section>
+ <section class="platform-panel" id="hub-parent"><div class="platform-head"><h2>لوحة وليّ الأمر 👨‍👩‍👧</h2><span class="profile-chip">ملخص على هذا الجهاز</span></div><p class="parent-note">تعرض هذه اللوحة بيانات الملف الحالي المحفوظة محلياً على هذا الجهاز. لا توجد مزامنة سحابية أو حسابات حقيقية بعد.</p><div class="platform-grid"><div class="platform-tile">📖 <strong id="parentLessons">0</strong><small>صفحة تم التعلّم منها</small></div><div class="platform-tile">⭐ <strong id="parentStars">0</strong><small>مجموع النجوم</small></div><div class="platform-tile">✅ <strong id="parentDone">0</strong><small>كتب مكتملة</small></div></div><div class="section-head"><div><h2>التقدم حسب الكتاب</h2><p>تابع ما أنجزه الطفل في كل كتاب.</p></div></div><div id="parentBookProgress"></div><p class="parent-note">نصيحة: خصّصوا 10 إلى 15 دقيقة يومياً للقراءة والأنشطة، مع تشجيع الطفل دون ضغط.</p></section>
+</section>
+<div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle"><section class="reader" style="max-width:520px"><header class="reader-head"><div class="reader-heading"><b id="profileTitle">ملفات المتعلمين</b><small>أنشئ ملفاً لكل طفل على هذا الجهاز</small></div><button class="close" id="closeProfiles">×</button></header><div class="lesson-area" style="display:block"><div id="profileList"></div><div class="profile-row" style="margin-top:18px"><input id="newProfileName" maxlength="24" placeholder="اسم الطفل"><button class="primary" id="addProfile">إضافة ملف</button></div><p class="parent-note">الملفات محلية على هذا المتصفح، ولا تستخدم كلمات مرور.</p></div></section></div>
+<script>
+(()=>{
+ const KEY='loulab-platform-profiles-v1';
+ let profiles={};
+ try{profiles=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+ let active=localStorage.getItem('loulab-active-profile')||'default';
+ function readBase(){try{return JSON.parse(localStorage.getItem('loulab-progress-v1'))||{stars:0,completed:[],progress:{},favorites:[],lessons:0}}catch(e){return{stars:0,completed:[],progress:{},favorites:[],lessons:0}}}
+ function persist(){localStorage.setItem(KEY,JSON.stringify(profiles));localStorage.setItem('loulab-active-profile',active)}
+ function syncProfile(){profiles[active]={name:profiles[active]?.name||'المتعلّم',data:readBase()};persist()}
+ function applyProfile(id){syncProfile();active=id;const d=profiles[id]?.data||{stars:0,completed:[],progress:{},favorites:[],lessons:0};localStorage.setItem('loulab-progress-v1',JSON.stringify(d));persist();document.getElementById('activeProfileLabel').textContent='👧 '+(profiles[id]?.name||'المتعلّم');refreshHub()}
+ function refreshHub(){
+  const d=readBase(),completed=d.completed||[],progress=d.progress||{};
+  document.getElementById('hubBooks').textContent=String(document.querySelectorAll('.book-card').length||12);
+  document.getElementById('hubStars').textContent=d.stars||0;document.getElementById('hubCompleted').textContent=completed.length;
+  document.getElementById('parentLessons').textContent=d.lessons||0;document.getElementById('parentStars').textContent=d.stars||0;document.getElementById('parentDone').textContent=completed.length;
+  const pct=Math.min(100,Math.round((Object.values(progress).reduce((a,b)=>a+b,0)/50)*100));document.getElementById('weeklyBar').style.width=pct+'%';document.getElementById('weeklyText').textContent='أنجزت '+(d.lessons||0)+' صفحة تعليمية. واصل التقدم خطوة بخطوة!';
+  document.getElementById('parentBookProgress').innerHTML=(books).map(b=>{const n=progress[b.id]||0,p=Math.round(n/b.pages.length*100);return '<div style="margin:12px 0"><div class="platform-head"><b>'+b.icon+' '+b.title+'</b><small>'+p+'%</small></div><div class="platform-progress"><span style="width:'+p+'%"></span></div></div>'}).join('');
+  const badges=[['🌱','بداية الرحلة',(d.lessons||0)>=1],['⭐','جامع النجوم',(d.stars||0)>=10],['📚','قارئ نشيط',completed.length>=3],['🏆','بطل الكتب',completed.length>=8],['🎨','فنان صغير',completed.includes('drawing')],['🧠','محب التحديات',completed.includes('review')]];
+  document.getElementById('achievementGrid').innerHTML=badges.map(x=>'<div class="platform-tile" style="opacity:'+(x[2]?1:.48)+'">'+x[0]+' <b>'+x[1]+'</b><small style="display:block">'+(x[2]?'تم فتح الإنجاز':'واصل التعلّم لفتحه')+'</small></div>').join('');
+  const daily=[{q:'أي كلمة تبدأ بحرف الألف؟',o:['🍎 أسد','🐘 فيل','🌙 قمر'],a:0},{q:'كم ضلعاً للمثلث؟',o:['2','3','4'],a:1},{q:'أي حيوان له خرطوم؟',o:['🐰 أرنب','🐘 فيل','🐦 عصفور'],a:1}];
+  const day=Math.floor(Date.now()/86400000),item=daily[day%daily.length],done=localStorage.getItem('loulab-daily-'+active)===String(day);
+  document.getElementById('dailyPrompt').textContent=item.q;document.getElementById('dailyFeedback').textContent=done?'أحسنت! أنجزت تحدّي اليوم 🌟':'';
+  document.getElementById('dailyAnswers').innerHTML=item.o.map((v,i)=>'<button class="soft" data-daily="'+i+'" '+(done?'disabled':'')+'>'+v+'</button>').join('');
+  document.querySelectorAll('[data-daily]').forEach(btn=>btn.addEventListener('click',()=>{if(Number(btn.dataset.daily)===item.a){const s=readBase();s.stars=(s.stars||0)+3;localStorage.setItem('loulab-progress-v1',JSON.stringify(s));localStorage.setItem('loulab-daily-'+active,String(day));document.getElementById('dailyFeedback').textContent='إجابة صحيحة! ربحت 3 نجوم 🎉';refreshHub()}else document.getElementById('dailyFeedback').textContent='حاول مرة أخرى، أنت تستطيع!'}));
+  persist();
+ }
+ document.querySelectorAll('[data-hub]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-hub]').forEach(x=>x.classList.toggle('active',x===btn));document.querySelectorAll('.platform-panel').forEach(x=>x.classList.toggle('show',x.id==='hub-'+btn.dataset.hub));refreshHub()}));
+ document.querySelectorAll('[data-book]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('library').scrollIntoView({behavior:'smooth'});setTimeout(()=>window.openBook?.(btn.dataset.book),250)}));
+ document.querySelectorAll('[data-game]').forEach(btn=>btn.addEventListener('click',()=>{const target=document.getElementById('gameFeedback');target.textContent=btn.dataset.game==='letters'?'اختر كتاب حديقة الحروف من المكتبة لبدء صيد الحروف.':'افتح مملكة الأرقام من المكتبة لتبدأ العدّ.';document.getElementById('library').scrollIntoView({behavior:'smooth'})}));
+ const modal=document.getElementById('profileModal');
+ function renderProfiles(){document.getElementById('profileList').innerHTML=Object.entries(profiles).map(([id,p])=>'<div class="profile-row" style="justify-content:space-between;border:1px solid #eee;border-radius:13px;padding:10px;margin:8px 0"><b>👧 '+p.name+'</b><button class="soft" data-profile="'+id+'">اختيار</button></div>').join('');document.querySelectorAll('[data-profile]').forEach(b=>b.addEventListener('click',()=>{applyProfile(b.dataset.profile);modal.classList.remove('open')}))}
+ document.getElementById('switchProfile').addEventListener('click',()=>{syncProfile();renderProfiles();modal.classList.add('open')});document.getElementById('closeProfiles').addEventListener('click',()=>modal.classList.remove('open'));
+ document.getElementById('addProfile').addEventListener('click',()=>{const name=document.getElementById('newProfileName').value.trim();if(!name)return;syncProfile();const id='child-'+Date.now();profiles[id]={name,data:{stars:0,completed:[],progress:{},favorites:[],lessons:0}};document.getElementById('newProfileName').value='';applyProfile(id);renderProfiles()});
+ const originalSave=window.saveState;window.saveState=function(){if(originalSave)originalSave();syncProfile();refreshHub()};
+ if(!profiles[active])profiles[active]={name:'المتعلّم',data:readBase()};applyProfile(active);
+ window.addEventListener('storage',()=>refreshHub());
+})();
+</script>
 </body>
 </html>
