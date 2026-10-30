@@ -161,7 +161,7 @@ a{color:inherit;text-decoration:none}
 .chess-side hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 @media(max-width:760px){.chess-shell{grid-template-columns:1fr;padding:13px;gap:14px}.chess-board{border-width:6px;border-radius:16px}.chess-square{font-size:clamp(26px,8.6vw,48px)}.chess-side{padding:16px}}
 @media(max-width:390px){.chess-shell{margin-inline:-5px;padding:9px}.chess-square{font-size:clamp(22px,8vw,34px)}.chess-controls button{flex:1;padding:9px 8px;font-size:13px}}
-</style>
+.creative-game{display:none;position:fixed;inset:0;z-index:80;background:#24203bba;backdrop-filter:blur(7px);padding:16px;align-items:center;justify-content:center}.creative-game.open{display:flex}.creative-game-card{width:min(650px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:26px;padding:22px;box-shadow:0 25px 90px #17132c55}.creative-game-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:16px}.creative-game-head small{color:var(--purple);font-weight:900}.creative-game-head h3{margin:3px 0;font-size:23px}.creative-prompt{background:linear-gradient(135deg,#f1edff,#fff5e9);border-radius:20px;padding:20px;text-align:center;margin:12px 0}.creative-prompt strong{font-size:26px;display:block;margin:8px}.creative-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.creative-option{border:2px solid #ece9f6;background:#fbfaff;border-radius:16px;padding:15px;font-size:22px;font-weight:900;min-height:68px}.creative-option:disabled{opacity:.7}.creative-option.good{background:#e8f8ef;border-color:#69c48d}.creative-option.bad{background:#fff0f1;border-color:#ef9ba7}.creative-feedback{text-align:center;min-height:30px;font-weight:900;color:#654fc1;margin:12px 0}.creative-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.memory-pad{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:330px;margin:18px auto}.memory-pad button{height:95px;border:0;border-radius:22px;font-size:35px;transition:transform .15s}.bridge-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}.bridge-piece{padding:13px 17px;border:2px solid #e8e4f2;border-radius:14px;background:#faf9ff;font-size:23px;font-weight:900}.chess-square.in-check{background:#ffb4b9!important;box-shadow:inset 0 0 0 5px #e3485b;animation:checkPulse .85s infinite alternate}.chess-win{display:none;margin:14px 0;padding:17px;border-radius:17px;background:linear-gradient(120deg,#fff3c9,#ffe7ef);text-align:center;font-weight:900;color:#684caa}.chess-win.show{display:block;animation:winPop .45s ease-out}.chess-win strong{display:block;font-size:25px}.chess-win span{font-size:34px;display:block;letter-spacing:5px}@keyframes checkPulse{to{filter:brightness(1.18);box-shadow:inset 0 0 0 7px #e3485b,0 0 18px #e3485b66}}@keyframes winPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}@media(max-width:500px){.creative-game-card{padding:15px}.creative-options{gap:7px}.creative-option{font-size:19px;padding:10px}.memory-pad button{height:82px}}</style>
 </head>
 <body>
 <header class="topbar">
@@ -413,7 +413,12 @@ renderFilters();renderBooks();updateStats();
   <article class="activity-card"><div style="font-size:35px">🔢</div><b>عدّ النجوم</b><p class="parent-note">تدرّب على العدّ بطريقة ممتعة.</p><button class="soft" data-game="count">ابدأ اللعبة</button></article>
   <article class="activity-card"><div style="font-size:35px">🎨</div><b>مرسم الألوان</b><p class="parent-note">افتح كتاب مرسم الصغار وارسم ما تحب.</p><button class="soft" data-book="drawing">افتح المرسم</button></article>
   <article class="activity-card"><div style="font-size:35px">🧠</div><b>اختبار المعرفة</b><p class="parent-note">راجع معلوماتك في تحدٍّ قصير.</p><button class="soft" data-book="review">ابدأ الاختبار</button></article>
- </div><p id="gameFeedback" aria-live="polite"></p></section>
+  <article class="activity-card"><div style="font-size:35px">🕵️</div><b>محقق الظلال</b><p class="parent-note">اكتشف الشيء من ظله قبل أن تختفي الأدلة.</p><button class="soft" data-creative-game="shadows">ابدأ المغامرة</button></article>
+  <article class="activity-card"><div style="font-size:35px">🎵</div><b>نبض الذاكرة</b><p class="parent-note">احفظ تسلسل الرموز وأعده دون خطأ.</p><button class="soft" data-creative-game="memory">ابدأ التحدي</button></article>
+  <article class="activity-card"><div style="font-size:35px">🌉</div><b>مهندس الجسر</b><p class="parent-note">رتّب القطع بذكاء ليعبر أصدقاؤك النهر.</p><button class="soft" data-creative-game="bridge">ابنِ الجسر</button></article>
+  <article class="activity-card"><div style="font-size:35px">🚀</div><b>إنقاذ الكواكب</b><p class="parent-note">حل ألغازاً حسابية لإعادة النجوم إلى مداراتها.</p><button class="soft" data-creative-game="planets">أنقذ الكواكب</button></article>
+ </div><p id="gameFeedback" aria-live="polite"></p>
+ <div class="creative-game" id="creativeGame" role="dialog" aria-modal="true" aria-labelledby="creativeTitle"><div class="creative-game-card"><div class="creative-game-head"><div><small>مغامرة لُولاب</small><h3 id="creativeTitle">لعبة جديدة</h3></div><button class="close" id="closeCreativeGame" aria-label="إغلاق">×</button></div><div id="creativeStage"></div></div></div></section>
  <section class="platform-panel" id="hub-achievements"><h2>إنجازاتي 🏆</h2><div class="platform-grid" id="achievementGrid"></div></section>
  <section class="platform-panel" id="hub-parent"><div class="platform-head"><h2>لوحة وليّ الأمر 👨‍👩‍👧</h2><span class="profile-chip">ملخص على هذا الجهاز</span></div><p class="parent-note">تعرض هذه اللوحة بيانات الملف الحالي المحفوظة محلياً على هذا الجهاز. لا توجد مزامنة سحابية أو حسابات حقيقية بعد.</p><div class="platform-grid"><div class="platform-tile">📖 <strong id="parentLessons">0</strong><small>صفحة تم التعلّم منها</small></div><div class="platform-tile">⭐ <strong id="parentStars">0</strong><small>مجموع النجوم</small></div><div class="platform-tile">✅ <strong id="parentDone">0</strong><small>كتب مكتملة</small></div></div><div class="section-head"><div><h2>التقدم حسب الكتاب</h2><p>تابع ما أنجزه الطفل في كل كتاب.</p></div></div><div id="parentBookProgress"></div><p class="parent-note">نصيحة: خصّصوا 10 إلى 15 دقيقة يومياً للقراءة والأنشطة، مع تشجيع الطفل دون ضغط.</p></section>
 
@@ -427,7 +432,7 @@ renderFilters();renderBooks();updateStats();
   </div>
   <aside class="chess-side">
    <div style="font-size:38px">🏰 ♞ ♟️</div><h3 style="margin:5px 0">دور من الآن؟</h3><div class="chess-status" id="chessStatus" aria-live="polite">الأبيض يبدأ اللعب</div>
-   <p class="chess-hint" id="chessHint">اضغط على قطعة من قطعك، ثم اختر المربع الذي تريد الانتقال إليه. العب مع صديق بالتناوب.</p>
+   <p class="chess-hint" id="chessHint">اضغط على قطعة من قطعك، ثم اختر المربع الذي تريد الانتقال إليه. العب مع صديق بالتناوب.</p><div class="chess-win" id="chessOutcome" role="status" aria-live="assertive"><span>🏆 ✨ 🎉</span><strong id="chessOutcomeTitle">فوز رائع!</strong><p id="chessOutcomeText">أحسنتما!</p><button class="primary" id="chessPlayAgain">العبا من جديد</button></div>
    <h3>سجل النقلات</h3><div class="chess-moves" id="chessMoves">لا توجد نقلات بعد.</div>
    <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
    <b>قواعد سريعة</b><p class="chess-hint">الهدف هو محاصرة ملك الخصم (كش مات). يتحرك كل لاعب مرة واحدة بالتناوب. يمكنك التراجع أو بدء مباراة جديدة في أي وقت.</p>
@@ -488,12 +493,12 @@ import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/dist/esm/ches
   const files="abcdefgh";
   function squareName(r,c){return files[c]+(8-r)}
   function status(){
-   const el=document.getElementById("chessStatus"),hint=document.getElementById("chessHint");
-   if(game.isCheckmate()){el.textContent="كش مات! "+(game.turn()==="w"?"الأسود":"الأبيض")+" يفوز 🎉";hint.textContent="أحسنتما! ابدآ مباراة جديدة لتجربة خطة أخرى.";return}
-   if(game.isStalemate()){el.textContent="تعادل: حالة جمود";hint.textContent="لا توجد نقلة قانونية والملك ليس في كش.";return}
-   if(game.isDraw()){el.textContent="انتهت المباراة بالتعادل";hint.textContent="يمكنكما بدء مباراة جديدة.";return}
-   el.textContent=(game.turn()==="w"?"دور الأبيض ⚪":"دور الأسود ⚫")+(game.isCheck()?" — كش!":"");
-   hint.textContent=game.isCheck()?"ملكك في كش! يجب حمايته الآن.":"اختر إحدى قطعك ثم اضغط على مربع مضاء لإتمام النقلة.";
+   const el=document.getElementById("chessStatus"),hint=document.getElementById("chessHint"),out=document.getElementById("chessOutcome");
+   out.classList.remove("show");
+   if(game.isCheckmate()){const winner=game.turn()==="w"?"الأسود":"الأبيض";el.textContent="كش مات! "+winner+" يفوز 🎉";hint.textContent="انتهت المباراة! شاهدوا التتويج ثم ابدآ مباراة جديدة.";document.getElementById("chessOutcomeTitle").textContent="فوز "+winner+"!";document.getElementById("chessOutcomeText").textContent="خطة رائعة! لقد حوصِر الملك ولم يعد لديه مخرج.";out.classList.add("show");return}
+   if(game.isStalemate()||game.isDraw()){el.textContent=game.isStalemate()?"تعادل — جمود!":"تعادل!";hint.textContent="لا يوجد فائز هذه المرة. جرّبا خطة جديدة.";document.getElementById("chessOutcomeTitle").textContent="مباراة متكافئة!";document.getElementById("chessOutcomeText").textContent="أحسنتما اللعب. التعادل يحتاج إلى تفكير أيضاً.";out.classList.add("show");return}
+   el.textContent=(game.turn()==="w"?"دور الأبيض ⚪":"دور الأسود ⚫")+(game.isCheck()?" — 🚨 كش!":"");
+   hint.textContent=game.isCheck()?"🚨 ملكك في كش! المربعات المضيئة هي النقلات القانونية التي تنقذه. اختر قطعة ثم تحرّك فوراً.":"اختر إحدى قطعك؛ ستظهر دوائر على كل المربعات القانونية.";
   }
   function render(){
    board.innerHTML="";
@@ -503,6 +508,7 @@ import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/dist/esm/ches
     const r=flipped?7-rr:rr,c=flipped?7-cc:cc,sq=squareName(r,c),piece=matrix[r][c],btn=document.createElement("button");
     btn.type="button";btn.className="chess-square "+((r+c)%2===0?"light":"dark");
     if(sq===selected)btn.classList.add("selected");if(last.includes(sq))btn.classList.add("last");
+    if(game.isCheck()&&piece&&piece.type==="k"&&piece.color===game.turn())btn.classList.add("in-check");
     const target=legalTargets.find(m=>m.to===sq);if(target)btn.classList.add(piece?"capture":"target");
     if(piece){const span=document.createElement("span");span.className="chess-piece "+(piece.color==="w"?"white":"black");span.textContent=glyph[piece.color+piece.type];btn.appendChild(span)}
     if(cc===0){const rank=document.createElement("span");rank.className="chess-rank";rank.textContent=8-r;btn.appendChild(rank)}
@@ -529,11 +535,37 @@ import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/dist/esm/ches
   }
   document.querySelectorAll("[data-promotion]").forEach(b=>b.addEventListener("click",()=>{if(!pending)return;game.move({from:pending.from,to:pending.to,promotion:b.dataset.promotion});pending=null;selected=null;legalTargets=[];document.getElementById("chessPromotion").classList.remove("show");render()}));
   document.getElementById("chessNew").addEventListener("click",()=>{game.reset();selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()});
+  document.getElementById("chessPlayAgain").addEventListener("click",()=>{game.reset();selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()});
   document.getElementById("chessUndo").addEventListener("click",()=>{if(game.undo()){selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()}});
   document.getElementById("chessFlip").addEventListener("click",()=>{flipped=!flipped;render()});
   render();
  }
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(bootChess,0));else setTimeout(bootChess,0);
+})();
+</script>
+
+<script>
+(()=>{
+ const modal=document.getElementById('creativeGame'),stage=document.getElementById('creativeStage'),title=document.getElementById('creativeTitle');
+ if(!modal||!stage)return;
+ let round=0,sequence=[],input=[],locked=false,chosen=[];
+ const colors=[['🍓','#ef6b82'],['🌞','#f3bd45'],['🌿','#65bd91'],['💎','#7c83e8']];
+ const cases=[['🐾','🐱',['🐱','🐟','🦋','🐢']],['🌵','🌵',['🌳','🌵','🌷','🍄']],['🪽','🦅',['🐌','🐧','🦅','🐠']],['🚲','🚲',['🚗','🚲','🚂','🛴']]];
+ const plans=[{q:'رتّب بناء الجسر من الأساس إلى الأعلى',items:['🪵','🧱','🪜'],ans:['🧱','🪵','🪜'],why:'الدعامات أولاً، ثم ألواح العبور، ثم الدرابزين.'},{q:'ما الترتيب الآمن لعبور النهر؟',items:['🧒','🦺','🌉'],ans:['🌉','🦺','🧒'],why:'نبني الجسر، نرتدي سترة النجاة، ثم نعبر.'},{q:'رتّب إصلاح المصباح بأمان',items:['💡','🔌','🛠️'],ans:['🔌','🛠️','💡'],why:'نفصل الكهرباء، نصلح المصباح، ثم نختبره.'}];
+ function award(){let d={};try{d=JSON.parse(localStorage.getItem('loulab-progress-v1')||'{}')}catch(e){}d.stars=(d.stars||0)+5;localStorage.setItem('loulab-progress-v1',JSON.stringify(d));['topStars','statStars','hubStars','parentStars'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=d.stars});const f=document.getElementById('gameFeedback');if(f)f.textContent='🌟 رائع! ربحت 5 نجوم من هذه المغامرة.'}
+ function open(id){round=0;locked=false;chosen=[];modal.classList.add('open');({shadows:shadow,memory:memoryStart,bridge:bridge,planets:planet})[id]()}
+ function close(){modal.classList.remove('open')}
+ document.querySelectorAll('[data-creative-game]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.creativeGame)));
+ document.getElementById('closeCreativeGame').addEventListener('click',close);
+ modal.addEventListener('click',e=>{if(e.target===modal)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ function replay(fn,label){stage.innerHTML='<div class="creative-prompt"><strong>'+label+'</strong></div><div class="creative-actions"><button class="primary" id="replayCreative">العب مرة أخرى</button></div>';document.getElementById('replayCreative').onclick=()=>{round=0;fn()}}
+ function shadow(){title.textContent='🕵️ محقق الظلال';const c=cases[round];stage.innerHTML='<div class="creative-prompt"><div style="font-size:78px;filter:grayscale(1) brightness(.25)">'+c[0]+'</div><strong>من صاحب هذا الظل؟</strong><small>اكتشف الشكل الحقيقي من بين الأدلة.</small></div><div class="creative-options">'+c[2].map((x,i)=>'<button class="creative-option" data-answer="'+i+'">'+x+'</button>').join('')+'</div><p class="creative-feedback" id="feedback">اختر الإجابة الصحيحة.</p>';stage.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{const ok=c[2][+b.dataset.answer]===c[1];stage.querySelectorAll('button').forEach(x=>x.disabled=true);b.classList.add(ok?'good':'bad');document.getElementById('feedback').textContent=ok?'أحسنت! كشفت الدليل 🔎':'ليست هي. تذكّر شكل الظل!';setTimeout(()=>{round++;if(round===cases.length){award();replay(shadow,'🏆 أغلقت القضية بنجاح!')}else shadow()},850)})}
+ function memoryStart(){title.textContent='🎵 نبض الذاكرة';round=0;sequence=[];memoryNext()}
+ function memoryNext(){locked=true;input=[];sequence.push(Math.floor(Math.random()*4));stage.innerHTML='<div class="creative-prompt"><strong>احفظ النبضات!</strong><small>شاهد الرموز المضيئة ثم أعد ترتيبها.</small><p>المستوى '+sequence.length+' من 5</p></div><div class="memory-pad">'+colors.map((p,i)=>'<button data-pad="'+i+'" style="background:'+p[1]+'">'+p[0]+'</button>').join('')+'</div><p class="creative-feedback" id="feedback">شاهد جيداً...</p>';const pads=[...stage.querySelectorAll('[data-pad]')];let k=0;function flash(){if(k===sequence.length){locked=false;document.getElementById('feedback').textContent='دورك! أعد التسلسل.';return}const el=pads[sequence[k++]];el.style.transform='scale(1.08)';el.style.filter='brightness(1.3)';setTimeout(()=>{el.style.transform='';el.style.filter='';setTimeout(flash,180)},420)}setTimeout(flash,450);pads.forEach((b,i)=>b.onclick=()=>{if(locked)return;if(i!==sequence[input.length]){locked=true;document.getElementById('feedback').textContent='اختلط الإيقاع! نعيد المحاولة من البداية.';setTimeout(memoryStart,850);return}input.push(i);if(input.length===sequence.length){locked=true;if(sequence.length===5){award();replay(memoryStart,'🎉 ذاكرة خارقة! أكملت خمسة مستويات.')}else{document.getElementById('feedback').textContent='صحيح! أصبح التسلسل أطول.';setTimeout(memoryNext,650)}}})}
+ function bridge(){title.textContent='🌉 مهندس الجسر';const p=plans[round];chosen=[];stage.innerHTML='<div class="creative-prompt"><strong>'+p.q+'</strong><small>اختر القطع بالترتيب الصحيح.</small></div><div class="bridge-row" id="slots"><span class="bridge-piece">؟</span><span class="bridge-piece">؟</span><span class="bridge-piece">؟</span></div><div class="bridge-row">'+[...p.items].sort(()=>Math.random()-.5).map(x=>'<button class="bridge-piece" data-piece="'+x+'">'+x+'</button>').join('')+'</div><p class="creative-feedback" id="feedback">ابنِ الجسر خطوة خطوة.</p><div class="creative-actions"><button class="soft" id="clearBridge">مسح</button><button class="primary" id="checkBridge">اختبر البناء</button></div>';function paint(){document.getElementById('slots').innerHTML=[0,1,2].map(i=>'<span class="bridge-piece">'+(chosen[i]||'؟')+'</span>').join('')}stage.querySelectorAll('[data-piece]').forEach(b=>b.onclick=()=>{if(chosen.length<3&&!chosen.includes(b.dataset.piece)){chosen.push(b.dataset.piece);b.disabled=true;paint()}});document.getElementById('clearBridge').onclick=()=>{chosen=[];stage.querySelectorAll('[data-piece]').forEach(b=>b.disabled=false);paint()};document.getElementById('checkBridge').onclick=()=>{if(JSON.stringify(chosen)!==JSON.stringify(p.ans)){document.getElementById('feedback').textContent='ليس آمناً بعد. فكّر في الخطوة التي يجب أن تبدأ أولاً.';return}document.getElementById('feedback').textContent='بناء ممتاز! '+p.why;stage.querySelectorAll('button').forEach(b=>b.disabled=true);setTimeout(()=>{round++;if(round===plans.length){award();replay(bridge,'🏗️ أصبحت مهندس الجسور!')}else bridge()},1200)}}
+ function planet(){title.textContent='🚀 إنقاذ الكواكب';round=0;planetNext()}
+ function planetNext(){const a=2+Math.floor(Math.random()*7),b=1+Math.floor(Math.random()*8),sum=a+b,opts=[sum,sum+1,Math.max(1,sum-2),sum+3].sort(()=>Math.random()-.5);stage.innerHTML='<div class="creative-prompt"><div style="font-size:55px">🪐 ✨ 🚀</div><strong>أعد النجوم إلى مدار الكوكب!</strong><div style="font-size:35px;font-weight:900">'+a+' + '+b+' = ؟</div><small>أنقذ خمسة كواكب متتالية.</small></div><div class="creative-options">'+opts.map(n=>'<button class="creative-option" data-sum="'+n+'">'+n+' ⭐</button>').join('')+'</div><p class="creative-feedback" id="feedback">اختر ناتج الجمع الصحيح.</p>';stage.querySelectorAll('[data-sum]').forEach(btn=>btn.onclick=()=>{const ok=+btn.dataset.sum===sum;stage.querySelectorAll('button').forEach(x=>x.disabled=true);btn.classList.add(ok?'good':'bad');if(!ok){document.getElementById('feedback').textContent='لم يستعد الكوكب مداره. لنجرّب مسألة جديدة!';setTimeout(planetNext,900);return}round++;if(round===5){award();replay(planet,'🏆 أنقذت المجموعة الشمسية!')}else{document.getElementById('feedback').textContent='عاد كوكب إلى مداره!';setTimeout(planetNext,650)}})}
 })();
 </script>
 </body>
