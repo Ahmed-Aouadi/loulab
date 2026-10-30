@@ -165,6 +165,162 @@ a{color:inherit;text-decoration:none}
 @media(max-width:390px){.chess-shell{margin-inline:-5px;padding:9px}.chess-square{font-size:clamp(22px,8vw,34px)}.chess-controls button{flex:1;padding:9px 8px;font-size:13px}}
 .creative-game{display:none;position:fixed;inset:0;z-index:80;background:#24203bba;backdrop-filter:blur(7px);padding:16px;align-items:center;justify-content:center}.creative-game.open{display:flex}.creative-game-card{width:min(650px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:26px;padding:22px;box-shadow:0 25px 90px #17132c55}.creative-game-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:16px}.creative-game-head small{color:var(--purple);font-weight:900}.creative-game-head h3{margin:3px 0;font-size:23px}.creative-prompt{background:linear-gradient(135deg,#f1edff,#fff5e9);border-radius:20px;padding:20px;text-align:center;margin:12px 0}.creative-prompt strong{font-size:26px;display:block;margin:8px}.creative-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.creative-option{border:2px solid #ece9f6;background:#fbfaff;border-radius:16px;padding:15px;font-size:22px;font-weight:900;min-height:68px}.creative-option:disabled{opacity:.7}.creative-option.good{background:#e8f8ef;border-color:#69c48d}.creative-option.bad{background:#fff0f1;border-color:#ef9ba7}.creative-feedback{text-align:center;min-height:30px;font-weight:900;color:#654fc1;margin:12px 0}.creative-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.memory-pad{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:330px;margin:18px auto}.memory-pad button{height:95px;border:0;border-radius:22px;font-size:35px;transition:transform .15s}.bridge-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0}.bridge-piece{padding:13px 17px;border:2px solid #e8e4f2;border-radius:14px;background:#faf9ff;font-size:23px;font-weight:900}.chess-square.in-check{background:#ffb4b9!important;box-shadow:inset 0 0 0 5px #e3485b;animation:checkPulse .85s infinite alternate}.chess-win{display:none;margin:14px 0;padding:17px;border-radius:17px;background:linear-gradient(120deg,#fff3c9,#ffe7ef);text-align:center;font-weight:900;color:#684caa}.chess-win.show{display:block;animation:winPop .45s ease-out}.chess-win strong{display:block;font-size:25px}.chess-win span{font-size:34px;display:block;letter-spacing:5px}@keyframes checkPulse{to{filter:brightness(1.18);box-shadow:inset 0 0 0 7px #e3485b,0 0 18px #e3485b66}}@keyframes winPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}@media(max-width:500px){.creative-game-card{padding:15px}.creative-options{gap:7px}.creative-option{font-size:19px;padding:10px}.memory-pad button{height:82px}}#hub-board-games{display:block!important;scroll-margin-top:100px}
 </style>
+
+<style>
+/* Loulab visual refresh — warm, editorial and playful */
+:root{
+ --ink:#20243a;--muted:#74788d;--purple:#6554c8;--purple2:#8c7be8;
+ --line:#e9e7f1;--shadow:0 18px 48px rgba(48,39,91,.09);
+ --mint:#dff5e9;--peach:#fff0e5;--yellow:#fff4ce;--blue:#e8f1ff;--pink:#ffe8ef;
+}
+body{background:#faf9fd;color:var(--ink);font-family:'Tajawal',sans-serif;letter-spacing:0}
+.topbar{height:78px;background:rgba(255,255,255,.9);border-bottom:1px solid rgba(226,222,241,.8);box-shadow:0 4px 22px rgba(44,35,80,.035)}
+.topinner{max-width:1240px}
+.brand{font-size:27px;gap:12px;color:#302b4b}
+.brandmark{width:47px;height:47px;border-radius:17px;background:linear-gradient(145deg,#6354c8,#a99cf5);box-shadow:0 9px 20px #7564d13b;position:relative}
+.brandmark:after{content:"";position:absolute;width:9px;height:9px;border:2px solid #fff;border-radius:50%;top:7px;left:7px;opacity:.85}
+.navlinks{gap:29px;font-size:15px}
+.navlinks a{transition:color .2s,transform .2s}
+.navlinks a:hover{transform:translateY(-1px)}
+.stars-pill{padding:9px 15px;background:#fff8df;border-color:#f2e7b8}
+.primary,.soft,.icon-btn{border-radius:14px;transition:transform .2s,box-shadow .2s,background .2s}
+.primary{background:linear-gradient(135deg,#6554c8,#8473e2);box-shadow:0 8px 18px #6554c82e}
+.primary:hover{background:linear-gradient(135deg,#5948ba,#7866d7);box-shadow:0 11px 22px #6554c83d}
+.wrap{max-width:1240px}
+.hero{margin:36px auto 28px;min-height:365px;border-radius:34px;padding:52px 60px;background:radial-gradient(circle at 82% 12%,#ffffff2b 0 2px,transparent 3px),radial-gradient(circle at 67% 85%,#ffffff20 0 4px,transparent 5px),linear-gradient(116deg,#5144ae 0%,#7566d3 53%,#a99cf0 100%);box-shadow:0 24px 55px #6554c82b}
+.hero:before{width:380px;height:380px;left:17%;top:-235px;background:#ffffff10}
+.hero:after{width:280px;height:280px;right:-100px;bottom:-175px;background:#ffffff16}
+.hero h1{font-size:clamp(38px,4.4vw,56px);line-height:1.3;letter-spacing:-1.1px;max-width:650px}
+.hero p{font-size:18px;line-height:2;color:#f6f3ff;max-width:570px}
+.eyebrow{background:#ffffff20;border-color:#ffffff48;padding:8px 15px;letter-spacing:.1px}
+.hero-cta .primary,.hero-cta .hero-link{border-radius:15px;padding:14px 23px}
+.hero-cta .primary{box-shadow:0 8px 22px #34287930}
+.hero-art{min-height:255px}
+.art-card{width:238px;height:248px;border-radius:34px;background:linear-gradient(145deg,#fff,#f1edff);box-shadow:0 30px 65px #2d236c50;transform:rotate(-6deg)}
+.art-card:before{inset:12px;border:2px dashed #c9c0f4;border-radius:25px}
+.art-book{font-size:112px;filter:drop-shadow(0 14px 8px #51418a30);transform:rotate(4deg)}
+.art-spark{color:#ffe18c;text-shadow:0 3px 9px #3d2c6c40}
+.spark-a{top:-4px;right:4px}.spark-b{bottom:3px;left:-10px}
+.stats{gap:16px;margin:23px 0 46px}
+.stat{border:1px solid #eeecf4;border-radius:22px;padding:19px 20px;box-shadow:0 8px 25px #30275b06;transition:transform .2s,box-shadow .2s}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.stat-icon{width:49px;height:49px;border-radius:17px;font-size:22px}
+.stat strong{font-size:25px;letter-spacing:-.5px}
+.stat small{font-size:13px}
+.section-head{margin:43px 0 19px;align-items:center}
+.section-head h2{font-size:30px;letter-spacing:-.5px}
+.section-head p{font-size:15px;line-height:1.8}
+.section-head .text-link{padding:8px 13px;border-radius:12px;background:#f0edff}
+.resume{border-radius:23px;padding:20px 23px;box-shadow:0 8px 25px #30275b07}
+.resume-icon{border-radius:18px}
+.toolbar{margin:22px 0 18px}
+.searchbox input{height:50px;border-radius:15px;border-color:#e7e4f0;padding-right:47px;box-shadow:0 4px 15px #30275b05}
+.searchbox:before{top:5px}
+.filter{padding:10px 17px;border-radius:30px;transition:.2s}
+.filter:hover{border-color:#c9c0f1;color:var(--purple)}
+.filter.active{background:linear-gradient(135deg,#6554c8,#8574df);box-shadow:0 5px 13px #6554c82b}
+.level-selector{gap:13px;margin:22px 0 20px}
+.age-level{border-radius:19px;padding:15px 17px;box-shadow:0 5px 17px #30275b05;transition:transform .2s,border-color .2s,box-shadow .2s}
+.age-level:hover{transform:translateY(-2px);border-color:#c9c0f1;box-shadow:0 8px 20px #6554c812}
+.age-level.active{background:linear-gradient(135deg,#f1efff,#faf8ff);border:2px solid #8b7be2;box-shadow:0 7px 19px #6554c817}
+.book-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:65px}
+.book-card{border:1px solid #eeecf4;border-radius:25px;box-shadow:0 7px 24px rgba(41,34,75,.045);transition:transform .25s,box-shadow .25s,border-color .25s}
+.book-card:hover{transform:translateY(-7px);box-shadow:0 22px 42px rgba(48,39,91,.12);border-color:#d9d2f7}
+.cover{height:194px;isolation:isolate}
+.cover:before{width:190px;height:190px;right:-62px;top:-95px;background:#ffffff55}
+.cover:after{width:135px;height:135px;left:-44px;bottom:-78px;background:#ffffff50}
+.cover-emoji{font-size:76px;width:126px;height:126px;display:grid;place-items:center;border-radius:36px;background:rgba(255,255,255,.68);border:1px solid #ffffffbd;box-shadow:0 15px 28px rgba(50,40,85,.12);backdrop-filter:blur(8px);filter:drop-shadow(0 5px 3px #2c244511);transition:transform .25s}
+.book-card:hover .cover-emoji{transform:translateY(-4px) rotate(-4deg) scale(1.04)}
+.cover-tag{top:15px;right:15px;padding:7px 12px;background:#ffffffed;border:1px solid #ffffff;color:#5d5871;box-shadow:0 4px 12px #29254b0c}
+.fav{top:14px;left:14px;width:37px;height:37px;box-shadow:0 4px 12px #29254b10;transition:transform .2s}
+.fav:hover{transform:scale(1.08)}
+.book-body{padding:19px 20px 20px}
+.book-title-row h3{font-size:20px;line-height:1.5}
+.level{background:#f1efff;color:#6653c4;padding:6px 10px}
+.book-body p{font-size:14px;line-height:1.8;margin:9px 0 17px;min-height:48px}
+.book-foot{font-size:13px}
+.book-foot .open{padding:9px 14px;border-radius:12px;transition:.2s}
+.book-foot .open:hover{background:#e8e3ff;transform:translateX(-2px)}
+.feature-strip{gap:18px;margin:14px 0 72px}
+.feature{padding:25px 24px;border-radius:23px;box-shadow:0 7px 24px #30275b06;transition:transform .2s,box-shadow .2s}
+.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.feature .ficon{width:52px;height:52px;border-radius:17px;background:#f1efff;display:grid;place-items:center}
+.feature:nth-child(2) .ficon{background:#fff1e5}.feature:nth-child(3) .ficon{background:#e8f7ee}
+.feature h3{font-size:19px;margin:13px 0 7px}
+.feature p{font-size:14px;line-height:1.9}
+.footer{padding:34px 20px;background:#fff;border-top:1px solid #eeecf4;line-height:2}
+.modal{background:rgba(25,22,46,.72)}
+.reader{border-radius:28px;box-shadow:0 35px 100px #17152b66}
+.reader-head{padding:17px 22px}
+.reader-book-icon{border-radius:15px}
+.lesson-area{padding:28px;background:linear-gradient(145deg,#f7f5ff,#fffaf5)}
+.lesson{border-radius:25px;padding:32px;border-color:#eeebf5;box-shadow:0 12px 32px #30275b07}
+.lesson-kicker{letter-spacing:.1px}
+.lesson h2{font-size:31px}
+.lesson .desc{line-height:1.95}
+.lesson-rich section{border-radius:18px;padding:18px 20px}
+.answer{border-radius:17px;transition:transform .18s,border-color .18s,background .18s}
+.answer:hover{transform:translateY(-2px)}
+.reader-nav{padding:15px 22px}
+.close{transition:.2s}.close:hover{background:#e9e6f5;color:#4e43a3}
+.toast{border-radius:16px;box-shadow:0 12px 30px #17152b30}
+.real-game-card{border-radius:23px;box-shadow:0 8px 24px #30275b07;transition:transform .2s,box-shadow .2s}
+.real-game-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.real-game-art{border-radius:19px}
+.board-game-window,.creative-game-card{border-radius:28px}
+.chess-shell{border-radius:28px;box-shadow:0 10px 30px #30275b07}
+.chess-board{border-radius:21px}
+.chess-side{border-radius:22px}
+button:active{transform:scale(.985)}
+@media(max-width:850px){
+ .hero{padding:38px 34px;min-height:330px}
+ .hero h1{font-size:40px}
+ .book-grid{gap:16px}
+ .stats{gap:11px}
+}
+@media(max-width:650px){
+ .topbar{height:68px}
+ .brand{font-size:23px}.brandmark{width:42px;height:42px}
+ .hero{margin:19px auto 22px;padding:29px 23px;border-radius:26px}
+ .hero h1{font-size:34px;letter-spacing:-.5px}
+ .hero p{font-size:15px;line-height:1.9}
+ .hero-cta{gap:9px}.hero-cta .primary,.hero-cta .hero-link{padding:12px 15px;font-size:14px}
+ .stats{margin:15px 0 34px;gap:9px}
+ .stat{border-radius:17px;padding:12px 11px}
+ .stat-icon{width:37px;height:37px;border-radius:13px}
+ .stat strong{font-size:20px}
+ .section-head{margin:32px 0 15px}
+ .section-head h2{font-size:24px}
+ .level-selector{gap:8px;margin:17px 0}
+ .age-level{border-radius:15px;padding:11px 10px}
+ .book-grid{gap:11px;margin-bottom:45px}
+ .cover{height:138px}
+ .cover-emoji{width:88px;height:88px;border-radius:27px;font-size:53px}
+ .cover-tag{top:9px;right:9px;font-size:10px;padding:5px 8px}
+ .fav{top:8px;left:8px;width:31px;height:31px;font-size:17px}
+ .book-body{padding:12px 12px 13px}
+ .book-title-row h3{font-size:15px}
+ .book-body p{font-size:11px;line-height:1.7;min-height:39px}
+ .level{font-size:10px}
+ .book-foot{font-size:10px}
+ .book-foot .open{font-size:10px;padding:7px 8px}
+ .feature-strip{gap:11px;margin-bottom:45px}
+ .feature{padding:18px;border-radius:19px}
+ .feature h3{font-size:17px}
+ .reader{border-radius:20px}
+ .lesson-area{padding:10px}
+ .lesson{border-radius:19px;padding:19px 13px}
+ .lesson h2{font-size:24px}
+ .lesson-rich section{padding:13px}
+}
+@media(max-width:370px){
+ .book-grid{grid-template-columns:1fr}
+ .cover{height:160px}
+ .cover-emoji{width:102px;height:102px;font-size:62px}
+ .book-title-row{display:flex}
+}
+</style>
+
 </head>
 <body>
 <header class="topbar">
