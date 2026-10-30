@@ -343,7 +343,7 @@ const books=[
 {kind:"quiz",title:"تحقق من فهمك",desc:"أي كسر أكبر: ٥/٦ أم ٣/٦؟",options:["٣/٦","٥/٦","متساويان"],answer:1,explain:"المقامات متساوية و٥ أكبر من ٣."}]}
 
 ];
-const categories=["الكل","اللغة العربية","الرياضيات","الكتابة","الفنون","الاكتشاف","الحياة","الألعاب"];
+const categories=["الكل","اللغة العربية","الرياضيات","العلوم","التقنية","الكتابة","الفنون","الاكتشاف","الحياة","الألعاب"];
 const storageKey="loulab-progress-v1";
 let state=loadState(),activeCategory="الكل",activeAge="all",currentBook=null,pageIndex=0,answered=false,drawColor="#7257d8",drawing=false,lastPoint=null;
 function loadState(){try{return JSON.parse(localStorage.getItem(storageKey))||{stars:0,completed:[],progress:{},favorites:[],lessons:0}}catch(e){return{stars:0,completed:[],progress:{},favorites:[],lessons:0}}}
