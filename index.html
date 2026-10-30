@@ -447,8 +447,8 @@ renderFilters();renderBooks();updateStats();
 })();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.4.0/chess.min.js" defer></script>
-<script>
+<script type="module">
+import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/dist/esm/chess.js";
 (function(){
  function bootChess(){
   if(typeof Chess!=="function")return;
@@ -500,7 +500,7 @@ renderFilters();renderBooks();updateStats();
   }
   document.querySelectorAll("[data-promotion]").forEach(b=>b.addEventListener("click",()=>{if(!pending)return;game.move({from:pending.from,to:pending.to,promotion:b.dataset.promotion});pending=null;selected=null;legalTargets=[];document.getElementById("chessPromotion").classList.remove("show");render()}));
   document.getElementById("chessNew").addEventListener("click",()=>{game.reset();selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()});
-  document.getElementById("chessUndo").addEventListener("click",()=>{if(game.undo()){game.undo();selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()}});
+  document.getElementById("chessUndo").addEventListener("click",()=>{if(game.undo()){selected=null;legalTargets=[];pending=null;document.getElementById("chessPromotion").classList.remove("show");render()}});
   document.getElementById("chessFlip").addEventListener("click",()=>{flipped=!flipped;render()});
   render();
  }
