@@ -639,10 +639,10 @@ document.getElementById('boardGameBack').addEventListener('click',close);
    area.innerHTML='<div class="bg-2048">'+state.b.map(v=>'<span class="bg-tile" data-v="'+v+'">'+(v||'')+'</span>').join('')+'</div><p class="bg-help">استخدم الأسهم ← ↑ → ↓ أو الأزرار أدناه.</p><div class="bg-arrows">'+['ArrowUp','ArrowLeft','ArrowDown','ArrowRight'].map((v,i)=>cellButton(['↑','←','↓','→'][i],'data-move="'+v+'"','bg-drop')).join('')+'</div>';return;
   }
  }
- function winLine(b,n,k){const dirs=[[0,1],[1,0],[1,1],[1,-1]];for(let i=0;i<b.length;i++)if(b[i]===n){let r=Math.floor(i/k),c=i%k;for(const [dr,dc] of dirs){let ok=true;for(let x=1;x<4;x++){let rr=r+dr*x,cc=c+dc*x;if(rr<0||rr>=k||cc<0||cc>=k||b[rr*k+cc]!==n){ok=false;break}}if(ok)return true}}return false}
+ function winLine(b,n,k,target){target=target||4;const dirs=[[0,1],[1,0],[1,1],[1,-1]];for(let i=0;i<b.length;i++)if(b[i]===n){let r=Math.floor(i/k),c=i%k;for(const [dr,dc] of dirs){let ok=true;for(let x=1;x<target;x++){let rr=r+dr*x,cc=c+dc*x;if(rr<0||rr>=k||cc<0||cc>=k||b[rr*k+cc]!==n){ok=false;break}}if(ok)return true}}return false}
  function act(i){
   if(state.over)return;
-  if(game==='tic'){if(state.b[i])return;snapshot();state.b[i]=state.turn;if(winLine(state.b,state.turn,3)){state.over=true;status('فاز اللاعب '+state.turn+' 🎉')}else if(state.b.every(Boolean)){state.over=true;status('تعادل!')}else state.turn=state.turn==='X'?'O':'X';render();return}
+  if(game==='tic'){if(state.b[i])return;snapshot();state.b[i]=state.turn;if(winLine(state.b,state.turn,3,3)){state.over=true;status('فاز اللاعب '+state.turn+' 🎉')}else if(state.b.every(Boolean)){state.over=true;status('تعادل!')}else state.turn=state.turn==='X'?'O':'X';render();return}
   if(game==='connect'){let c=i,r=-1;for(let y=5;y>=0;y--)if(!state.b[y*7+c]){r=y;break}if(r<0)return;snapshot();state.b[r*7+c]=state.turn;if(winLine(state.b,state.turn,7)){state.over=true;status((state.turn===1?'الأحمر':'الأصفر')+' فاز! 🎉')}else if(state.b.every(Boolean)){state.over=true;status('تعادل!')}else state.turn=3-state.turn;render();return}
   if(game==='reversi'){
    const r=Math.floor(i/8),c=i%8,opp=3-state.turn,dirs=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]],flips=[];
