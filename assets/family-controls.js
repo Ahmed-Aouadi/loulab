@@ -63,7 +63,8 @@ function initChildPage(){
  const title=lock.querySelector('#familyLockTitle'),message=lock.querySelector('#familyLockText');
  const apply=()=>{
   const current=settings(),u=getUsage();
-  const disabled=(page==='library'&&!current.books)||(page==='games'&&!current.games);\n  document.querySelectorAll('.creative-game,#practiceCanvas').forEach(el=>{if(!current.creative){const section=el.closest('section');if(section)section.hidden=true;else el.hidden=true}});
+  const disabled=(page==='library'&&!current.books)||(page==='games'&&!current.games);
+  document.querySelectorAll('.creative-game,#practiceCanvas').forEach(el=>{if(!current.creative){const section=el.closest('section');if(section)section.hidden=true;else el.hidden=true}});
   if(disabled){title.textContent='هذا القسم مغلق حالياً';message.textContent='قام ولي الأمر بإيقاف هذا القسم مؤقتاً. يمكنك اختيار نشاط آخر مسموح.';lock.classList.add('show');return}
   if(u.breakUntil&&Date.now()<u.breakUntil){title.textContent='استراحة قصيرة 🌿';message.textContent='ابتعد عن الشاشة لدقيقة، تحرك واشرب الماء. ستعود الأنشطة تلقائياً بعد الاستراحة.';lock.classList.add('show');return}
   if(inBedtime(current)){title.textContent='حان وقت الراحة';message.textContent='وقت الراحة الذي حدده ولي الأمر بدأ الآن. نراك غداً!';lock.classList.add('show');return}
