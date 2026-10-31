@@ -245,12 +245,13 @@ function expandCurriculum(){
      if(oldQuizzes[oldKey])QUIZ_BANK[newKey]=oldQuizzes[oldKey];
     }else{
      const topic=topics[(step-1+track*3)%topics.length];
-     const title='المستوى '+(step+1)+': '+topic[0];
+     const trackName=seed[1].split(':').slice(1).join(':').trim()||'التعلّم';
+     const title='المستوى '+(step+1)+': '+topic[0]+' — مسار '+trackName;
      expanded.push(['quiz',title]);
      LESSON_GUIDES[w+':'+index]={
-      goal:'أن يفهم الطفل '+topic[0]+' ويستخدم المعلومة في موقف بسيط.',
-      explain:topic[1]+' '+(seed[1].split(':').slice(1).join(':').trim()?('نربط الفكرة أيضًا بدرس «'+seed[1].split(':').slice(1).join(':').trim()+'».'):''),
-      example:topic[2],
+      goal:'أن يفهم الطفل '+topic[0]+' ويستخدم المعلومة في موقف بسيط ضمن مسار '+trackName+'.',
+      explain:topic[1]+' نطبّق هذه الفكرة ضمن مسار «'+trackName+'» ونربطها بما تعلّمناه سابقًا.',
+      example:topic[2]+' فكّر كيف ترتبط هذه الفكرة بدرس «'+trackName+'».',
       remember:topic[3]
      };
      QUIZ_BANK[w+':'+index]=[[topic[7],topic[4]],[['🌙','🌼','🧩','🐾'][track%4],topic[5]],[['🚗','🍎','⭐','📘'][(track+1)%4],topic[6]]];
