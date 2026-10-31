@@ -59,7 +59,8 @@ a{color:inherit}
 button,input,select,textarea{font-family:inherit}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e3b94e;outline-offset:3px}
 .toast{background:#173f36}
-.top-actions .parent-entry{display:none}\n.parent-entry{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#fffefa;color:var(--brand);font-size:13px;font-weight:800}
+.top-actions .parent-entry{display:none}
+.parent-entry{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#fffefa;color:var(--brand);font-size:13px;font-weight:800}
 .parent-entry:hover{background:var(--soft-green)}
 /* Family dashboard */
 .family-page{padding-block:30px 70px}
