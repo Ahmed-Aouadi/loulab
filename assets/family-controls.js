@@ -57,13 +57,13 @@ function initParentPage(){
  render();
 }
 function initChildPage(){
- const page=document.body.dataset.page||'home';if(page==='dashboard'||page==='parents')return;
+ const page=document.body.dataset.page||'home';if(page==='parents')return;
  const s=settings(),usage=getUsage();
  const lock=overlay('family-lock','<div class="family-lock-card"><div class="lock-icon">🌙</div><h2 id="familyLockTitle">حان وقت الراحة</h2><p id="familyLockText">انتهى وقت الاستخدام المحدد لهذا اليوم. خذ استراحة وعد غداً بنشاط جديد.</p><button class="soft" id="familyLockHome">العودة إلى الرئيسية</button></div>');
  const title=lock.querySelector('#familyLockTitle'),message=lock.querySelector('#familyLockText');
  const apply=()=>{
   const current=settings(),u=getUsage();
-  const disabled=(page==='library'&&!current.books)||(page==='games'&&!current.games);
+  const disabled=(page==='library'&&!current.books)||(page==='games'&&!current.games);\n  document.querySelectorAll('.creative-game,#practiceCanvas').forEach(el=>{if(!current.creative){const section=el.closest('section');if(section)section.hidden=true;else el.hidden=true}});
   if(disabled){title.textContent='هذا القسم مغلق حالياً';message.textContent='قام ولي الأمر بإيقاف هذا القسم مؤقتاً. يمكنك اختيار نشاط آخر مسموح.';lock.classList.add('show');return}
   if(u.breakUntil&&Date.now()<u.breakUntil){title.textContent='استراحة قصيرة 🌿';message.textContent='ابتعد عن الشاشة لدقيقة، تحرك واشرب الماء. ستعود الأنشطة تلقائياً بعد الاستراحة.';lock.classList.add('show');return}
   if(inBedtime(current)){title.textContent='حان وقت الراحة';message.textContent='وقت الراحة الذي حدده ولي الأمر بدأ الآن. نراك غداً!';lock.classList.add('show');return}
