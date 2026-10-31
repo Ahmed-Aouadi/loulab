@@ -21,6 +21,13 @@ function initParentPage(){
  const render=()=>{
   const current=settings(),usage=getUsage(),spent=mins(usage.seconds),left=Math.max(0,current.dailyLimit-spent);
   document.getElementById('familyChildLabel').textContent=current.childName;
+  let progress={stars:0,completed:[],lessons:0};
+  try{const active=localStorage.getItem('loulab-active-profile')||'default';const profiles=JSON.parse(localStorage.getItem('loulab-platform-profiles-v1')||'{}');const saved=profiles[active]?.data;progress=saved||JSON.parse(localStorage.getItem('loulab-progress-v1')||'{}');document.getElementById('familyChildLabel').textContent=profiles[active]?.name||current.childName;}catch(e){}
+  document.getElementById('familyCompleted').textContent=(progress.completed||[]).length;
+  document.getElementById('familyStars').textContent=progress.stars||0;
+  document.getElementById('familyLessons').textContent=progress.lessons||0;
+  const day=Math.floor(Date.now()/86400000),activeId=localStorage.getItem('loulab-active-profile')||'default';
+  document.getElementById('familyDaily').textContent=localStorage.getItem('loulab-daily-'+activeId)===String(day)?'مكتمل ✓':'لم يُنجز بعد';
   document.getElementById('familyTodayUsed').textContent=spent+' د';
   document.getElementById('familyTodayLeft').textContent=left+' د';
   document.getElementById('familyLimit').value=current.dailyLimit;
