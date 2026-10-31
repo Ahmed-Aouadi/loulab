@@ -548,13 +548,14 @@ body{background:#f5f5fa;background-image:radial-gradient(#dcd9ee 0.7px,transpare
 @media(prefers-reduced-motion:reduce){.book-card,.stat,.feature,.age-level,.cover-emoji{transition:none!important}}
 </style>
   <link rel="stylesheet" href="assets/loulab-atelier.css?v=1">
+<link rel="stylesheet" href="assets/loulab-v3.css?v=1">
 </head>
 <body data-page="library">
 <header class="topbar">
  <div class="topinner">
   <a class="brand" href="#" aria-label="لُولاب - الصفحة الرئيسية"><span class="brandmark">ل</span><span>لُولاب</span></a>
-  <nav class="navlinks"><a href="library.html">📚 المكتبة</a><a href="games.html#hub-board-games">🎮 الألعاب</a><a href="games.html#hub-chess">♟ الشطرنج</a><a href="dashboard.html">لوحة الطفل</a><a href="index.html#features">عن لُولاب</a></nav>
-  <div class="top-actions"><span class="stars-pill">⭐ <b id="topStars">0</b> نجمة</span><a class="primary" href="library.html">ابدأ التعلّم</a></div>
+  <nav class="navlinks"><a href="library.html">📚 المكتبة</a><a href="games.html#hub-board-games">🎮 الألعاب</a><a href="games.html#hub-chess">♟ الشطرنج</a><a href="dashboard.html">لوحة الطفل</a><a href="parents.html">👨‍👩‍👧 الوالدان</a><a href="index.html#features">عن لُولاب</a></nav>
+  <div class="top-actions"><a class="parent-entry" href="parents.html">👨‍👩‍👧 الوالدان</a><span class="stars-pill">⭐ <b id="topStars">0</b> نجمة</span><a class="primary" href="library.html">ابدأ التعلّم</a></div>
  </div>
 </header>
 <main class="wrap">
@@ -1332,5 +1333,6 @@ document.getElementById('boardGameBack').addEventListener('click',close);
 })();
 </script>
 
+<script src="assets/family-controls.js" defer></script>
 </body>
 </html>
