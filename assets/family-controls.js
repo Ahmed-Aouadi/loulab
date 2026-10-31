@@ -77,7 +77,7 @@ function initChildPage(){
  setInterval(()=>{
   if(document.visibilityState!=='visible')return;
   const current=settings(),u=getUsage();
-  if(inBedtime(current)||u.seconds>=current.dailyLimit*60){apply();return}
+  if((page==='library'&&!current.books)||(page==='games'&&!current.games)||inBedtime(current)||u.seconds>=current.dailyLimit*60){apply();return}
   u.seconds+=1;
   if(current.breakEvery&&u.seconds-lastBreak>=current.breakEvery*60){u.breakAt=u.seconds;u.breakUntil=Date.now()+60000;lastBreak=u.seconds;setUsage(u);title.textContent='استراحة قصيرة 🌿';message.textContent='ابتعد عن الشاشة لدقيقة، تحرك واشرب الماء. ستعود الأنشطة تلقائياً بعد الاستراحة.';lock.classList.add('show');return}
   setUsage(u);
