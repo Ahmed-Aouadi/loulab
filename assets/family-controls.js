@@ -19,7 +19,8 @@ function initParentPage(){
  const pinScreen=overlay('family-pin-screen',`<div class="family-pin-card"><div style="font-size:38px">🔐</div><h2>مساحة الوالدين</h2><p id="pinHelp">${s.pin?'أدخل رمز الوالدين للمتابعة':'أنشئ رمزاً سرياً من 4 أرقام على الأقل لحماية الإعدادات على هذا الجهاز.'}</p><input id="familyPinInput" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••"><button class="primary" id="familyPinSubmit" style="width:100%">${s.pin?'دخول آمن':'حفظ الرمز والمتابعة'}</button><a href="index.html" style="display:block;margin-top:14px;color:#17634f">العودة إلى مساحة الطفل</a></div>`);
  const input=pinScreen.querySelector('#familyPinInput'),submit=pinScreen.querySelector('#familyPinSubmit');
  const render=()=>{
-  const current=settings(),usage=getUsage(),spent=mins(usage.seconds),left=Math.max(0,current.dailyLimit-spent);\n  document.getElementById('familyChildLabel').textContent=current.childName;
+  const current=settings(),usage=getUsage(),spent=mins(usage.seconds),left=Math.max(0,current.dailyLimit-spent);
+  document.getElementById('familyChildLabel').textContent=current.childName;
   document.getElementById('familyTodayUsed').textContent=spent+' د';
   document.getElementById('familyTodayLeft').textContent=left+' د';
   document.getElementById('familyLimit').value=current.dailyLimit;
@@ -64,7 +65,8 @@ function initChildPage(){
   const current=settings(),u=getUsage();
   const disabled=(page==='library'&&!current.books)||(page==='games'&&!current.games);
   if(disabled){title.textContent='هذا القسم مغلق حالياً';message.textContent='قام ولي الأمر بإيقاف هذا القسم مؤقتاً. يمكنك اختيار نشاط آخر مسموح.';lock.classList.add('show');return}
-  if(u.breakUntil&&Date.now()<u.breakUntil){title.textContent='استراحة قصيرة 🌿';message.textContent='ابتعد عن الشاشة لدقيقة، تحرك واشرب الماء. ستعود الأنشطة تلقائياً بعد الاستراحة.';lock.classList.add('show');return}\n  if(inBedtime(current)){title.textContent='حان وقت الراحة';message.textContent='وقت الراحة الذي حدده ولي الأمر بدأ الآن. نراك غداً!';lock.classList.add('show');return}
+  if(u.breakUntil&&Date.now()<u.breakUntil){title.textContent='استراحة قصيرة 🌿';message.textContent='ابتعد عن الشاشة لدقيقة، تحرك واشرب الماء. ستعود الأنشطة تلقائياً بعد الاستراحة.';lock.classList.add('show');return}
+  if(inBedtime(current)){title.textContent='حان وقت الراحة';message.textContent='وقت الراحة الذي حدده ولي الأمر بدأ الآن. نراك غداً!';lock.classList.add('show');return}
   if(u.seconds>=current.dailyLimit*60){title.textContent='أحسنت! انتهى وقت اليوم';message.textContent='وصلت إلى الوقت اليومي المحدد. خذ استراحة وعد غداً لمغامرة جديدة.';lock.classList.add('show');return}
   lock.classList.remove('show');
  };
