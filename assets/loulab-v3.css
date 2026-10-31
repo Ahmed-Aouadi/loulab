@@ -1,0 +1,106 @@
+/* Loulab v3 — calm, clear, family-first design system */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Baloo+Bhaijaan+2:wght@500;600;700;800&display=swap');
+:root{--ink:#182f2a;--muted:#697b73;--brand:#17634f;--brand-2:#287d65;--surface:#fffefa;--paper:#f5f6f1;--line:#e4e9e1;--sun:#f2c85c;--coral:#e88967;--soft-green:#e8f2eb;--shadow:0 14px 38px rgba(24,47,42,.075)}
+html{scroll-padding-top:100px}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7}
+h1,h2,h3,.brand{font-family:'Baloo Bhaijaan 2','IBM Plex Sans Arabic',sans-serif}
+a{color:inherit}
+.topbar{height:74px;background:rgba(255,254,250,.96);border-bottom:1px solid var(--line);box-shadow:0 3px 18px rgba(24,47,42,.035)}
+.topinner{max-width:1320px;padding-inline:clamp(14px,3vw,34px)}
+.brand{font-size:27px;color:var(--brand);gap:10px}
+.brandmark{background:var(--brand);border-radius:14px;box-shadow:none}
+.navlinks{gap:5px;color:#5e7068}
+.navlinks a{padding:9px 12px;border-radius:11px;font-size:14px}
+.navlinks a:hover,.navlinks a[aria-current=page]{background:var(--soft-green);color:var(--brand)}
+.top-actions{gap:9px}
+.primary{background:var(--brand);box-shadow:none;border-radius:12px}
+.primary:hover{background:#104f40;box-shadow:0 7px 17px #17634f25}
+.soft{background:var(--soft-green);color:var(--brand)}
+.wrap{max-width:1320px;padding-inline:clamp(14px,3vw,34px)}
+.hero{margin:26px auto 22px;min-height:320px;border-radius:25px;padding:clamp(25px,4vw,48px);background:linear-gradient(115deg,#164f42 0%,#1e7058 72%,#3b8a6c 100%);box-shadow:0 18px 38px #164f421e}
+.hero h1{font-size:clamp(34px,4vw,53px);line-height:1.25;max-width:650px}
+.hero p{font-size:17px;line-height:1.9}
+.hero-cta .primary{background:var(--sun);color:#253d33}
+.hero-cta .hero-link{border-radius:12px}
+.art-card{background:#fff9e9;box-shadow:12px 12px 0 #e8896740,0 20px 38px #071f1a35}
+.stats{gap:12px;margin:20px 0 34px}
+.stat{border:1px solid var(--line);border-radius:17px;box-shadow:none;padding:16px}
+.stat-icon{border-radius:13px}
+.section-head{margin:34px 0 15px}
+.section-head h2{font-size:27px;color:var(--brand)}
+.section-head .text-link{background:var(--soft-green);color:var(--brand);padding:8px 12px;border-radius:10px}
+.resume,.feature,.book-card,.platform-panel,.platform-tile,.activity-card{border-color:var(--line);box-shadow:0 4px 16px rgba(24,47,42,.035)}
+.resume{border-radius:18px}
+.level-selector{gap:9px}
+.age-level{border:1px solid var(--line);border-radius:13px}
+.age-level.active{background:var(--soft-green);border:2px solid #78a991;color:var(--brand)}
+.filter{border-radius:11px}
+.filter.active{background:var(--brand);border-color:var(--brand)}
+.book-grid{gap:17px}
+.book-card{border-radius:18px}
+.cover{height:175px}
+.cover-emoji{border-radius:25px}
+.book-body{padding:16px 17px}
+.book-title-row h3{color:var(--ink)}
+.book-foot .open{background:var(--brand);color:white}
+.feature-strip{gap:13px}
+.feature{border-radius:17px}
+.feature:nth-child(2),.feature:nth-child(3){background:var(--surface)}
+.feature .ficon{background:var(--soft-green);border-radius:13px}
+.footer{background:#173f36;color:#d5e2db}
+.footer b{color:var(--sun)}
+.platform-head{background:var(--brand);border-radius:20px}
+.platform-panel{border-radius:18px}
+.platform-nav button{border-radius:11px}
+.platform-nav button.active,.platform-nav button[aria-selected=true]{background:var(--brand)}
+.daily-box{background:#fff8df;border-color:#f0dfa8}
+.reader{border-radius:22px}
+.lesson{border-radius:18px}
+button,input,select,textarea{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e3b94e;outline-offset:3px}
+.toast{background:#173f36}
+.parent-entry{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#fffefa;color:var(--brand);font-size:13px;font-weight:800}
+.parent-entry:hover{background:var(--soft-green)}
+/* Family dashboard */
+.family-page{padding-block:30px 70px}
+.family-hero{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#173f36;color:white;padding:28px 32px;border-radius:22px;margin-bottom:22px}
+.family-hero h1{font-size:32px;margin:0 0 5px}
+.family-hero p{margin:0;color:#d4e2da}
+.family-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px}
+.family-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;min-width:0}
+.family-card h2{font-size:20px;margin:0 0 5px;color:var(--brand)}
+.family-card>p{margin:0 0 16px;color:var(--muted);font-size:14px}
+.family-span-8{grid-column:span 8}.family-span-4{grid-column:span 4}.family-span-6{grid-column:span 6}.family-span-12{grid-column:span 12}
+.family-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.family-stat{background:#f3f6f1;border-radius:13px;padding:13px}
+.family-stat strong{display:block;font:800 25px 'Baloo Bhaijaan 2';color:var(--brand)}
+.family-stat span{font-size:12px;color:var(--muted)}
+.family-control{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid var(--line)}
+.family-control:last-child{border-bottom:0}
+.family-control strong{display:block;font-size:15px}.family-control small{color:var(--muted);display:block;font-size:12px}
+.family-control input[type=range]{width:150px;accent-color:var(--brand)}
+.family-control input[type=time],.family-control input[type=number],.family-control input[type=password]{border:1px solid var(--line);background:white;border-radius:10px;padding:8px 10px;color:var(--ink);max-width:130px}
+.family-toggle{width:46px;height:26px;appearance:none;background:#cbd5ce;border-radius:30px;position:relative;cursor:pointer;flex:none}
+.family-toggle:before{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;background:white;border-radius:50%;transition:.2s}
+.family-toggle:checked{background:var(--brand)}
+.family-toggle:checked:before{right:23px}
+.family-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.family-note{padding:12px 14px;border-radius:12px;background:#fff7df;color:#72591b;font-size:13px;line-height:1.7;margin-top:14px}
+.family-save{margin-top:16px}
+.family-activity{display:grid;gap:9px}
+.family-activity-row{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;background:#f5f7f2;border-radius:11px;font-size:13px}
+.family-pin-screen{position:fixed;inset:0;z-index:200;background:#122e27ed;display:grid;place-items:center;padding:20px}
+.family-pin-card{width:min(420px,100%);background:#fffefa;border-radius:20px;padding:26px;text-align:center}
+.family-pin-card h2{margin:0 0 7px;color:var(--brand)}
+.family-pin-card p{color:var(--muted);font-size:14px}
+.family-pin-card input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center;font-size:22px;letter-spacing:7px;margin:10px 0}
+.family-lock{position:fixed;inset:0;z-index:190;background:#173f36f2;color:white;display:none;place-items:center;text-align:center;padding:25px}
+.family-lock.show{display:grid}
+.family-lock-card{max-width:440px}
+.family-lock-card .lock-icon{font-size:54px}
+.family-lock-card h2{font-size:30px;margin:8px 0}
+.family-lock-card p{color:#d4e2da;line-height:1.8}
+.family-lock-card button{margin-top:10px}
+@media(max-width:800px){.family-span-8,.family-span-4,.family-span-6{grid-column:span 12}.family-hero{padding:22px;align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){.topbar{height:68px}.brand{font-size:23px}.navlinks{display:none}.hero{padding:27px 22px}.hero h1{font-size:34px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:130px}.family-page{padding-top:18px}.family-card{padding:15px}.family-stat-row{grid-template-columns:1fr 1fr}.family-control{align-items:flex-start}.family-control input[type=range]{width:115px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
