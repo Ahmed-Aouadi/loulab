@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f6f1">
+<title>مساحة الوالدين | لُولاب</title>
+<meta name="description" content="لوحة ولي الأمر لإدارة وقت الطفل والأقسام المسموحة ومتابعة الاستخدام في لُولاب.">
+<link rel="stylesheet" href="assets/loulab-atelier.css?v=1">
+<link rel="stylesheet" href="assets/loulab-v3.css?v=1">
+</head>
+<body data-page="parents">
+<header class="topbar"><div class="topinner">
+<a class="brand" href="index.html"><span class="brandmark">ل</span><span>لُولاب</span></a>
+<nav class="navlinks"><a href="index.html">مساحة الطفل</a><a href="library.html">المكتبة</a><a href="games.html">الألعاب</a><a href="parents.html" aria-current="page">مساحة الوالدين</a></nav>
+<div class="top-actions"><a class="primary" href="index.html">العودة للطفل</a></div>
+</div></header>
+<main class="wrap family-page" id="familyDashboard">
+<section class="family-hero"><div><span class="eyebrow">🔒 إعدادات الأسرة</span><h1>مساحة الوالدين</h1><p>أنت من يحدد متى يتعلم طفلك، وما الأقسام التي يمكنه استكشافها.</p></div><div><span style="display:block;color:#d4e2da;font-size:13px">ملف الطفل الحالي</span><strong id="familyChildLabel" style="font-size:22px">طفلي</strong></div></section>
+<div class="family-grid">
+<section class="family-card family-span-8"><h2>ملخص استخدام اليوم</h2><p>الوقت المسجل أثناء بقاء صفحة لُولاب مفتوحة ومرئية على هذا الجهاز.</p>
+<div class="family-stat-row"><div class="family-stat"><strong id="familyTodayUsed">0 د</strong><span>وقت الاستخدام</span></div><div class="family-stat"><strong id="familyTodayLeft">90 د</strong><span>الوقت المتبقي</span></div><div class="family-stat"><strong id="familyBedStatus">مسموح</strong><span>حالة وقت الراحة</span></div></div>
+<div style="height:9px;background:#e8eee7;border-radius:20px;overflow:hidden;margin-top:18px"><div id="familyProgress" style="height:100%;width:0;background:#287d65;border-radius:20px"></div></div><small id="familyProgressText" style="color:#697b73;display:block;margin-top:7px">0 من 90 دقيقة</small>
+</section>
+<section class="family-card family-span-4"><h2>الملف الحالي</h2><p>اسم يظهر في مساحة الأسرة على هذا الجهاز.</p><label style="display:block;font-weight:700;font-size:13px" for="familyChildName">اسم الطفل</label><input id="familyChildName" type="text" maxlength="32" style="width:100%;border:1px solid var(--line);padding:10px;border-radius:10px;margin-top:7px"><div class="family-note">تعدد الحسابات والملفات المتزامنة بين الأجهزة يحتاج إلى تسجيل دخول وقاعدة بيانات، وهو غير مفعّل في هذه النسخة.</div></section>
+<section class="family-card family-span-6"><h2>وقت الشاشة اليومي</h2><p>اختر الحد الأقصى للوقت اليومي، وحدد متى يحتاج طفلك إلى استراحة.</p>
+<div class="family-control"><div><strong>الحد اليومي</strong><small>من 15 إلى 240 دقيقة</small></div><div><input id="familyLimit" type="range" min="15" max="240" step="5" value="90"><b id="familyLimitValue">90 دقيقة</b></div></div>
+<div class="family-control"><div><strong>استراحة قصيرة</strong><small>كل كم دقيقة يتوقف النشاط؟ (0 للإيقاف)</small></div><div><input id="familyBreak" type="range" min="0" max="60" step="5" value="30"><b id="familyBreakValue">30 دقيقة</b></div></div>
+<div class="family-control"><div><strong>بداية وقت الراحة</strong><small>يُوقف استخدام المنصة بعد هذا الوقت</small></div><input id="familyBedStart" type="time" value="21:00"></div>
+<div class="family-control"><div><strong>نهاية وقت الراحة</strong><small>يُسمح بالعودة بعد هذا الوقت</small></div><input id="familyBedEnd" type="time" value="07:00"></div>
+</section>
+<section class="family-card family-span-6"><h2>الأقسام المسموحة</h2><p>يمكنك إيقاف قسم كامل مؤقتاً، وسيُمنع فتحه من صفحات المنصة.</p>
+<div class="family-control"><div><strong>📚 المكتبة والقراءة</strong><small>الكتب والقارئ التفاعلي</small></div><input class="family-toggle" id="familyBooks" type="checkbox" checked aria-label="السماح بالمكتبة"></div>
+<div class="family-control"><div><strong>🎮 الألعاب</strong><small>الألعاب الذهنية والأنشطة الترفيهية</small></div><input class="family-toggle" id="familyGames" type="checkbox" checked aria-label="السماح بالألعاب"></div>
+<div class="family-control"><div><strong>✏️ الأنشطة الإبداعية</strong><small>الرسم والتدريب العملي</small></div><input class="family-toggle" id="familyCreative" type="checkbox" checked aria-label="السماح بالأنشطة الإبداعية"></div>
+<div class="family-note">هذه القيود تعمل على هذا المتصفح والجهاز فقط، وليست بديلاً عن أدوات الرقابة الأبوية في نظام التشغيل أو حساب موثّق.</div>
+</section>
+<section class="family-card family-span-8"><h2>حماية إعدادات الوالدين</h2><p>رمز دخول محلي لمنع الطفل من فتح هذه الصفحة بالخطأ.</p><div class="family-control"><div><strong>حالة الرمز</strong><small id="familyPinStatus">لم يتم إعداد رمز بعد</small></div><button class="soft" id="familyChangePin">تغيير الرمز</button></div><div class="family-actions"><button class="soft" id="familyResetUsage">تصفير عداد اليوم</button><button class="soft" id="familyLogout">العودة إلى مساحة الطفل</button></div><div class="family-note">تنبيه مهم: الرمز والتفضيلات محفوظة في localStorage ويمكن تجاوزها بمسح بيانات المتصفح أو استخدام جهاز آخر. الحماية الحقيقية تتطلب حساب ولي أمر ومزامنة آمنة على الخادم.</div></section>
+<section class="family-card family-span-4"><h2>ما الذي نعمل عليه؟</h2><div class="family-activity"><div class="family-activity-row"><span>إدارة الوقت والأقسام</span><b>متاحة محلياً</b></div><div class="family-activity-row"><span>تقارير التعلم التفصيلية</span><b>قيد التطوير</b></div><div class="family-activity-row"><span>حساب ولي الأمر السحابي</span><b>غير مفعّل</b></div><div class="family-activity-row"><span>المزامنة بين الأجهزة</span><b>غير مفعّلة</b></div></div></section>
+</div>
+<div class="family-actions family-save"><button class="primary" id="familySave">حفظ إعدادات الأسرة</button><strong id="familySaved" role="status" style="color:#287d65"></strong></div>
+</main>
+<script src="assets/family-controls.js" defer></script>
+</body></html>
