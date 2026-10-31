@@ -1,0 +1,12 @@
+{
+  "name": "نجمة — واحة التعلّم",
+  "short_name": "نجمة",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff8ea",
+  "theme_color": "#fff8ea",
+  "description": "واحة تعلّم ولعب للأطفال من 4 إلى 10 سنوات"
+}
