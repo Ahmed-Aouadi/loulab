@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#FFF8EA">
+<title>رحلات التعلّم | لُولاب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/najma-oasis.css">
+<style>
+:root{--learn-bg:#fff8ea;--learn-ink:#2b2d42;--learn-line:#efe3cc}
+body{background:radial-gradient(ellipse at 50% 0,#fffdf5,#fff8ea 65%,#f7ecd9);color:var(--learn-ink);font-family:'Baloo Bhaijaan 2',sans-serif}
+.learn-head{max-width:1120px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.learn-brand{font-size:25px;font-weight:800;color:#315d4c}.learn-nav{display:flex;gap:10px;flex-wrap:wrap}.learn-nav a,.sound{border:1px solid var(--learn-line);background:#fff;border-radius:15px;padding:10px 16px;font-weight:800}
+.learn-wrap{max-width:1060px;margin:auto;padding:14px 22px 60px}
+.learn-hero{background:linear-gradient(115deg,#f9e8c6,#d9eddf);border:1px solid #efdbb8;border-radius:30px;padding:25px 32px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:var(--shadow)}
+.learn-hero h1{font-size:clamp(28px,4vw,42px);margin:5px 0;color:#315447}.learn-hero p{margin:0;color:#667268;font-size:17px}
+.fox{font-size:84px;filter:drop-shadow(0 8px 0 #a56b3b20)}
+.age-panel,.lesson-panel{background:#fff;border:1px solid var(--learn-line);border-radius:26px;padding:22px;margin-top:22px;box-shadow:0 7px 22px #68512c09}
+.age-panel h2,.lesson-panel h2{margin:0 0 6px;font-size:25px}.muted{color:#6b7180;margin:0 0 16px}
+.age-options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.age-choice{border:2px solid var(--learn-line);border-radius:22px;padding:18px;background:#fffdf7;text-align:right;min-height:110px;display:flex;align-items:center;gap:15px;color:var(--learn-ink)}
+.age-choice[aria-pressed=true]{border-color:#67b77b;background:#eff8ed;box-shadow:0 5px 0 #c7dfc3}
+.age-emoji{font-size:42px}.age-choice b{display:block;font-size:21px}.age-choice small{display:block;color:#697269;font-size:14px}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.method{border:1px solid var(--learn-line);background:#fffdf7;border-radius:18px;padding:15px;text-align:right;min-height:110px;color:var(--learn-ink)}
+.method[aria-pressed=true]{background:#fff1bf;border:2px solid #e4bc47}.method span{font-size:28px;display:block}.method b{font-size:17px}
+.lesson-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.progress-rail{height:13px;background:#f4ecd9;border-radius:30px;overflow:hidden;margin:15px 0}.progress-rail span{display:block;height:100%;width:0;background:#7fbd82;border-radius:30px;transition:width .3s}
+.lesson-stage{background:#fffdf7;border:1px dashed #e8d7b5;border-radius:22px;padding:20px;min-height:285px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.big-letter{font-family:'Noto Naskh Arabic',serif;font-size:116px;line-height:1.3;color:#bd8732}.forms{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.form-chip{background:#fff1bf;border-radius:16px;padding:10px 18px;font-family:'Noto Naskh Arabic',serif;font-size:35px;min-width:76px}
+.action-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px}.learn-btn{min-height:58px;padding:10px 22px;border:0;border-radius:17px;background:#ffc83d;color:#59451a;font-size:18px;font-weight:800;box-shadow:0 5px 0 #d8a72e}.learn-btn.secondary{background:#e9f2e9;color:#315d4c;box-shadow:0 5px 0 #c5dbc7}
+.answer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:650px;margin-top:16px}
+.answer{min-height:100px;border:2px solid var(--learn-line);background:#fff;border-radius:18px;font-size:21px;font-weight:800;color:var(--learn-ink)}.answer span{display:block;font-size:38px}
+.answer.good{background:#e9f6e8;border-color:#75bf80}.answer.try{background:#fff3df;border-color:#efbd78}
+.count-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:14px}.fruit{font-size:40px;border:0;background:#fff1bf;border-radius:15px;width:62px;height:62px}
+.trace-wrap{width:min(100%,560px);background:white;border:2px dashed #e3cda5;border-radius:18px;touch-action:none}.trace-wrap canvas{width:100%;height:190px;display:block;touch-action:none}
+.story-card{max-width:650px;background:#f1eaff;border-radius:22px;padding:25px;font-size:22px;line-height:2}
+.feedback{min-height:34px;margin:12px 0 0;font-size:19px;font-weight:800;color:#477c52}
+[data-age="young"] .learn-wrap{max-width:1120px}[data-age="young"] .method{min-height:130px;font-size:20px}[data-age="young"] .answer{min-height:125px;font-size:25px}[data-age="young"] .learn-btn{min-height:72px;font-size:24px}[data-age="young"] .lesson-stage{min-height:350px}
+[data-age="older"] .lesson-stage{display:grid;grid-template-columns:1.3fr .7fr;text-align:right;gap:20px}[data-age="older"] .big-letter{font-size:90px}
+@media(max-width:650px){.learn-head{align-items:flex-start;flex-direction:column}.learn-hero{padding:20px}.fox{font-size:58px}.age-options,.method-grid{grid-template-columns:1fr}.answer-grid{gap:7px}.answer{font-size:16px;min-height:85px}.learn-wrap{padding:10px 14px 40px}.lesson-panel,.age-panel{padding:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-age="young">
+<header class="learn-head"><a class="learn-brand" href="index.html">✦ لُولاب</a><nav class="learn-nav"><a href="index.html">الواحة</a><a href="library.html">المكتبة</a><a href="games.html">الألعاب</a><a href="dashboard.html">ألبومي</a></nav><button class="sound" id="sound" aria-pressed="false">🔊 اسمع التعليمات</button></header>
+<main class="learn-wrap">
+<section class="learn-hero"><div><span>🦊 مع فنّوك نتعلّم بالتجربة</span><h1>رحلات التعلّم</h1><p>نلمس، نجرّب، نرسم، نعدّ ونكتشف خطوة بخطوة.</p></div><div class="fox" aria-hidden="true">🦊</div></section>
+<section class="age-panel"><h2>اختر طريقة التعلّم المناسبة</h2><p class="muted">تتغيّر الأنشطة وحجم الأزرار والإرشادات بحسب الفئة العمرية.</p>
+<div class="age-options">
+<button class="age-choice" data-age-choice="young" aria-pressed="true"><span class="age-emoji">🧸</span><span><b>صغار النجوم · 4–6</b><small>صوت، صور كبيرة، لمس وعدّ وسحب بسيط. نشاط واحد في كل مرة.</small></span></button>
+<button class="age-choice" data-age-choice="older" aria-pressed="false"><span class="age-emoji">🚀</span><span><b>كبار النجوم · 7–10</b><small>قراءة قصيرة، ألغاز، ترتيب، ذاكرة، حساب وتحديات متعددة الخطوات.</small></span></button>
+</div>
+</section>
+<section class="lesson-panel"><div class="lesson-top"><div><h2>اختر مغامرتك</h2><p class="muted">هذه أنشطة عملية مستوحاة من طرق التعلّم المحددة في ملف التصميم.</p></div><span id="lessonCount">المحطة 1 من 5</span></div>
+<div class="method-grid" id="methods">
+<button class="method" data-method="letter" aria-pressed="true"><span>✍️</span><b>تتبّع الحرف وتركيبه</b><small>شاهد أشكال الحرف ثم ارسمه بإصبعك</small></button>
+<button class="method" data-method="count" aria-pressed="false"><span>🌴</span><b>العدّ بالنقر</b><small>المس ثمار النخلة وعدّ حتى 10</small></button>
+<button class="method" data-method="sort" aria-pressed="false"><span>🪴</span><b>رتّب مراحل النمو</b><small>ضع البذرة ثم النبتة ثم النخلة</small></button>
+<button class="method" data-method="memory" aria-pressed="false"><span>🧠</span><b>لعبة الذاكرة</b><small>اعثر على الصور المتشابهة</small></button>
+<button class="method" data-method="math" aria-pressed="false"><span>🌰</span><b>الجمع بالتمر</b><small>اجمع التمر في الأطباق</small></button>
+<button class="method" data-method="story" aria-pressed="false"><span>📖</span><b>قصة فنّوك</b><small>اقرأ واستمع إلى قصة المشاركة</small></button>
+</div>
+</section>
+<section class="lesson-panel"><div class="lesson-top"><div><h2 id="taskTitle">حرف الباء وأشكاله</h2><p class="muted" id="taskIntro">تعرّف إلى الحرف، ثم تتبّعه بإصبعك.</p></div><button class="sound" id="repeat">🔊 أعد التعليمات</button></div>
+<div class="progress-rail"><span id="progress"></span></div>
+<div class="lesson-stage" id="stage">
+<div><div class="big-letter">ب</div><div class="forms"><span class="form-chip">بـ</span><span class="form-chip">ـبـ</span><span class="form-chip">ـب</span><span class="form-chip">ب</span></div><p>بَطَّةٌ · بَيْتٌ · بَحْرٌ</p></div>
+<div><p>ارسم مسار حرف الباء في المساحة</p><div class="trace-wrap"><canvas id="trace" width="560" height="190" aria-label="مساحة تتبع حرف الباء"></canvas></div><div class="action-row"><button class="learn-btn secondary" id="clearTrace">امسح الرسم</button><button class="learn-btn" id="finishTrace">أنهي التتبّع</button></div></div>
+</div>
+<p class="feedback" id="feedback" role="status" aria-live="polite">رائع! خذ وقتك، فنّوك يشجّعك.</p><div class="action-row"><button class="learn-btn" id="next">النشاط التالي ←</button><a class="learn-btn secondary" href="index.html">العودة إلى الواحة</a></div>
+</section>
+</main>
+<script>
+(()=>{'use strict';
+const $=s=>document.querySelector(s);let age='young',method='letter',muted=false,step=0,count=0,first=null,matched=[];
+const instructions={letter:'هذا حرف الباء. له أربعة أشكال. تتبّع الحرف بإصبعك، ثم تعرّف إلى كلماته.',count:'المس كل ثمرة تمر مرة واحدة، ثم اختر العدد الصحيح.',sort:'رتّب مراحل نمو النخلة: بذرة، نبتة صغيرة، نخلة.',memory:'اقلب البطاقات وابحث عن كل صورتين متشابهتين.',math:'لدينا ثلاث تمرات ثم نضيف تمرتين. كم يصبح المجموع؟',story:'استمع إلى قصة فنّوك وتعلّم كيف نشارك أصدقاءنا.'};
+const titles={letter:['حرف الباء وأشكاله','تتبّع الحرف بالإصبع'],count:['عدّ ثمار النخلة','المس كل ثمرة ثم اختر العدد'],sort:['كيف تكبر النخلة؟','رتّب الصور من البداية إلى النهاية'],memory:['ذاكرة الواحة','اعثر على زوجين متشابهين'],math:['نجمع التمر','احسب التمر في الطبقين'],story:['فنّوك يتعلّم المشاركة','قصة قصيرة من ست لقطات']};
+function speak(t){if(muted||!('speechSynthesis'in window))return;speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=age==='young'?.78:.9;speechSynthesis.speak(u)}
+function updateAge(a){age=a;document.body.dataset.age=a;document.querySelectorAll('[data-age-choice]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.ageChoice===a)));speak(a==='young'?'أهلاً يا صغير النجوم. سنلعب بصورة وصوت وخطوة واحدة في كل مرة.':'أهلاً بك يا كبير النجوم. لنجرّب الألغاز والحساب والترتيب.')}
+function setMethod(m){method=m;step=0;count=0;first=null;matched=[];document.querySelectorAll('[data-method]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.method===m)));$('#taskTitle').textContent=titles[m][0];$('#taskIntro').textContent=titles[m][1];$('#lessonCount').textContent='المحطة '+(Object.keys(titles).indexOf(m)+1)+' من 6';$('#progress').style.width='0%';render()}
+function render(){let html='';
+if(method==='letter'){html='<div><div class="big-letter">ب</div><div class="forms"><span class="form-chip">بـ</span><span class="form-chip">ـبـ</span><span class="form-chip">ـب</span><span class="form-chip">ب</span></div><p>بَطَّةٌ · بَيْتٌ · بَحْرٌ</p></div><div><p>ارسم مسار حرف الباء بإصبعك</p><div class="trace-wrap"><canvas id="trace" width="560" height="190"></canvas></div><div class="action-row"><button class="learn-btn secondary" id="clearTrace">امسح الرسم</button><button class="learn-btn" id="finishTrace">أنهي التتبّع</button></div></div>'}
+if(method==='count'){html='<div><div class="big-letter">🌴</div><h3>المس ثمار النخلة وعدّها</h3><div class="count-row">'+Array.from({length:age==='young'?5:10},(_,i)=>'<button class="fruit" aria-label="ثمرة تمر" data-fruit="'+i+'">🌰</button>').join('')+'</div><p>لمست <b id="countNum">0</b> ثمرات</p><div class="answer-grid">'+(age==='young'?[3,5,7]:[8,10,12]).map(n=>'<button class="answer" data-count-answer="'+n+'">'+n+'</button>').join('')+'</div></div>'}
+if(method==='sort'){html='<div><div class="big-letter">🌱</div><h3>رتّب مراحل نمو النخلة</h3><p>اختر الصور بالترتيب الصحيح</p><div class="answer-grid">'+[['🌴','نخلة'],['🌰','بذرة'],['🌱','نبتة']].map(([e,t])=>'<button class="answer" data-sort="'+t+'"><span>'+e+'</span>'+t+'</button>').join('')+'</div><p>ترتيبك: <b id="sortOrder">—</b></p></div>'}
+if(method==='memory'){let cards=['🌴','🌰','🌴','🌰'];html='<div><h3>اقلب البطاقات واعثر على الأزواج</h3><div class="answer-grid">'+cards.map((e,i)=>'<button class="answer" data-memory="'+i+'" data-symbol="'+e+'"><span>❔</span></button>').join('')+'</div><p>الأزواج المكتشفة: <b id="pairs">0</b> / 2</p></div>'}
+if(method==='math'){html='<div><div class="big-letter">🌰 + 🌰</div><h3>في الطبق 3 تمرات، أضفنا تمرتين</h3><p style="font-size:35px">🌰 🌰 🌰 + 🌰 🌰 = ؟</p><div class="answer-grid">'+[4,5,6].map(n=>'<button class="answer" data-math="'+n+'">'+n+' تمرات</button>').join('')+'</div></div>'}
+if(method==='story'){html='<div class="story-card"><div style="font-size:60px">🦊 🤝 🐢</div><h3>فنّوك يتعلّم المشاركة</h3><p>وجد فنّوك سلّة تمر لذيذة. أراد صديقه السلحفاة أن يتذوّق منها. ابتسم فنّوك وقسّم التمر بينهما. فرح الصديقان، وعرف فنّوك أن المشاركة تجعل اللعب أجمل.</p><p><b>ماذا فعل فنّوك؟</b></p><div class="answer-grid"><button class="answer" data-story="wrong">احتفظ بكل التمر</button><button class="answer" data-story="right">شارك صديقه</button></div></div>'}
+$('#stage').innerHTML=html;wireCanvas()}
+function success(msg){$('#feedback').textContent=msg||'أحسنت! أنت نجم لامع ⭐';$('#progress').style.width='100%';speak($('#feedback').textContent)}
+function wireCanvas(){const c=$('#trace');if(!c)return;const ctx=c.getContext('2d');ctx.strokeStyle='#bd8732';ctx.lineWidth=13;ctx.lineCap='round';ctx.lineJoin='round';let drawing=false;const pos=e=>{const r=c.getBoundingClientRect();return{x:(e.clientX-r.left)*c.width/r.width,y:(e.clientY-r.top)*c.height/r.height}};c.addEventListener('pointerdown',e=>{drawing=true;c.setPointerCapture(e.pointerId);const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});c.addEventListener('pointermove',e=>{if(!drawing)return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()});c.addEventListener('pointerup',()=>drawing=false);$('#clearTrace')?.addEventListener('click',()=>ctx.clearRect(0,0,c.width,c.height));$('#finishTrace')?.addEventListener('click',()=>success('رسمت الحرف بيدك! ممتاز يا بطل.'))}
+$('#stage').addEventListener('click',e=>{let b=e.target.closest('button');if(!b)return;
+if(b.dataset.fruit!==undefined){b.disabled=true;b.textContent='✓';count++;$('#countNum').textContent=count;$('#progress').style.width=(count/(age==='young'?5:10)*100)+'%'}
+if(b.dataset.countAnswer){let total=age==='young'?5:10;if(count!==total){$('#feedback').textContent='المس كل الثمار أولاً، ثم اختر العدد.'}else if(Number(b.dataset.countAnswer)===total)success('أحسنت! عددت الثمار بشكل صحيح.');else $('#feedback').textContent='محاولة جميلة. أعد العدّ بهدوء.'}
+if(b.dataset.sort){let expected=['بذرة','نبتة','نخلة'];let val=b.dataset.sort;if(val===expected[step]){step++;$('#sortOrder').textContent=expected.slice(0,step).join(' ← ');b.disabled=true;if(step===3)success('رتّبت مراحل نمو النخلة بشكل صحيح!');else $('#feedback').textContent='صحيح! اختر المرحلة التالية.'}else{$('#feedback').textContent='ليست هذه المرحلة التالية. تذكّر: تبدأ النخلة من بذرة صغيرة.'}}
+if(b.dataset.memory!==undefined){let i=Number(b.dataset.memory);if(matched.includes(i)||b.dataset.open==='1')return;b.dataset.open='1';b.querySelector('span').textContent=b.dataset.symbol;if(first===null)first=i;else{let prev=$('[data-memory="'+first+'"]');if(prev.dataset.symbol===b.dataset.symbol){matched.push(first,i);$('#pairs').textContent=matched.length/2;if(matched.length===4)success('وجدت كل الأزواج!');first=null}else{setTimeout(()=>{prev.dataset.open='0';b.dataset.open='0';prev.querySelector('span').textContent='❔';b.querySelector('span').textContent='❔'},650);first=null}}}
+if(b.dataset.math){if(Number(b.dataset.math)===5)success('صحيح! ثلاثة زائد اثنين يساوي خمسة.');else $('#feedback').textContent='جرّب أن تعدّ التمرات واحدة واحدة.'}
+if(b.dataset.story){if(b.dataset.story==='right')success('صحيح! المشاركة تجعلنا سعداء.');else $('#feedback').textContent='فكّر: هل كان صديقه سعيدًا عندما شاركه؟'}
+});
+document.querySelectorAll('[data-age-choice]').forEach(b=>b.addEventListener('click',()=>updateAge(b.dataset.ageChoice)));
+document.querySelectorAll('[data-method]').forEach(b=>b.addEventListener('click',()=>setMethod(b.dataset.method)));
+$('#sound').addEventListener('click',()=>{muted=!muted;$('#sound').textContent=muted?'🔇 الصوت مكتوم':'🔊 اسمع التعليمات';$('#sound').setAttribute('aria-pressed',String(!muted));if(muted&&'speechSynthesis'in window)speechSynthesis.cancel();else speak(instructions[method])});
+$('#repeat').addEventListener('click',()=>speak(instructions[method]));
+$('#next').addEventListener('click',()=>{let keys=Object.keys(titles);setMethod(keys[(keys.indexOf(method)+1)%keys.length])});
+render();updateAge('young');
+})();
+</script>
+</body></html>
