@@ -59,7 +59,7 @@ a{color:inherit}
 button,input,select,textarea{font-family:inherit}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #e3b94e;outline-offset:3px}
 .toast{background:#173f36}
-.parent-entry{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#fffefa;color:var(--brand);font-size:13px;font-weight:800}
+.top-actions .parent-entry{display:none}\n.parent-entry{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:11px;background:#fffefa;color:var(--brand);font-size:13px;font-weight:800}
 .parent-entry:hover{background:var(--soft-green)}
 /* Family dashboard */
 .family-page{padding-block:30px 70px}
@@ -102,5 +102,5 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .family-lock-card p{color:#d4e2da;line-height:1.8}
 .family-lock-card button{margin-top:10px}
 @media(max-width:800px){.family-span-8,.family-span-4,.family-span-6{grid-column:span 12}.family-hero{padding:22px;align-items:flex-start;flex-direction:column}}
-@media(max-width:600px){.topbar{height:68px}.brand{font-size:23px}.navlinks{display:none}.hero{padding:27px 22px}.hero h1{font-size:34px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:130px}.family-page{padding-top:18px}.family-card{padding:15px}.family-stat-row{grid-template-columns:1fr 1fr}.family-control{align-items:flex-start}.family-control input[type=range]{width:115px}}
+@media(max-width:600px){.topbar{height:68px}.top-actions .parent-entry{display:inline-flex}.brand{font-size:23px}.navlinks{display:none}.hero{padding:27px 22px}.hero h1{font-size:34px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:130px}.family-page{padding-top:18px}.family-card{padding:15px}.family-stat-row{grid-template-columns:1fr 1fr}.family-control{align-items:flex-start}.family-control input[type=range]{width:115px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
