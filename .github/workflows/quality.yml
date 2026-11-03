@@ -1,0 +1,40 @@
+name: Quality checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: node --check app.js && node --check sw.js
+      - name: Validate manifest JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest','utf8'))"
+      - name: Check required app files
+        run: |
+          test -s index.html
+          test -s app.css
+          test -s app.js
+          test -s sw.js
+          test -s manifest.webmanifest
+          grep -q 'dir="rtl"' index.html
+          grep -q '380' README.md
+      - name: Check lesson catalogue dimensions
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const js = fs.readFileSync('app.js', 'utf8');
+          const cats = (js.match(/^\['(arabic|math|science|english|logic|life|art|digital|nature|values)'/gm) || []).length;
+          if (cats !== 10) throw new Error('Expected ten curriculum domains; found ' + cats);
+          if (!js.includes('n<38')) throw new Error('Expected 38 lessons per domain');
+          console.log('Curriculum definition: 10 domains × 38 lessons = 380 lesson records.');
+          NODE
