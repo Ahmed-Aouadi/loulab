@@ -1,0 +1,1 @@
+{ "name": "burum", "private": true, "version": "2.0.0", "type": "module", "description": "بُرعُم — منصّة تعلّم عربية للأطفال من 3 إلى 10 سنوات", "scripts": { "start": "python3 -m http.server 8080", "validate": "node scripts/validate-content.mjs", "test": "node --test tests/", "check": "npm run validate && npm test" } }
