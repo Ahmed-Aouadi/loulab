@@ -13,7 +13,16 @@ let S = load();
 function load() {
   try { const raw = localStorage.getItem(KEY); if (raw) { const d = JSON.parse(raw); if (d && d.v === 2 && Array.isArray(d.profiles)) return merge(defaults(), d); } } catch { /* بيانات تالفة: نبدأ من جديد */ }
   const d = defaults();
-  try { const old = JSON.parse(localStorage.getItem('buroom-state') || 'null'); if (old && old.name) { const p = newProfile(old.name, +old.age || 6, 0); d.profiles.push(p); d.active = p.id; localStorage.removeItem('buroom-state'); } } catch { /* لا شيء للترحيل */ }
+  try {
+    const old = JSON.parse(localStorage.getItem('buroom-state') || 'null');
+    if (old && typeof old.name === 'string' && old.name.trim()) {
+      const p = newProfile(old.name, Math.min(10, Math.max(3, +old.age || 6)), 0);
+      d.profiles.push(p); d.active = p.id;
+      // احفظ النسخة الجديدة أولاً؛ لا تحذف بيانات الإصدار القديم قبل نجاح الكتابة.
+      localStorage.setItem(KEY, JSON.stringify(d));
+      localStorage.removeItem('buroom-state');
+    }
+  } catch { /* تعذّر الترحيل: نُبقي النسخة القديمة كما هي للمحاولة لاحقاً */ }
   return d;
 }
 const listeners = new Set();
