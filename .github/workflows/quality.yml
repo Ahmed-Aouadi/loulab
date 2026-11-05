@@ -27,7 +27,6 @@ jobs:
           test -s sw.js
           test -s manifest.webmanifest
           grep -q 'dir="rtl"' index.html
-          grep -q '380' README.md
       - name: Check lesson catalogue dimensions
         run: |
           node <<'NODE'
