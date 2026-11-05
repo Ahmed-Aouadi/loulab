@@ -28,9 +28,12 @@ for (const l of LESSONS) {
     } else E(w, 'نوع نشاط غير معروف: ' + a.t);
   });
 }
+// رموز إيموجي حديثة (Unicode 12+) تظهر مربعات على الأجهزة الأقدم: نمنعها في المحتوى
+const OLD = /[\u{1FA70}-\u{1FAFF}]|\u{1F43B}\u200D\u2744|\u{1F9D1}\u200D/u;
+if (OLD.test(JSON.stringify({ LESSONS, STORIES }))) E('emoji', 'يوجد إيموجي حديث قد لا يظهر على الأجهزة القديمة');
 STORIES.forEach(s => { if (!s.pages?.length || !s.q) E('story-' + s.id, 'قصة ناقصة'); });
 // مواد بلا دروس لفئة عمرية: مسموح فقط لبلدي والعالم تحت 7 سنوات
-for (const b of BANDS) for (const s of SUBJECTS) if (!LESSONS.some(l => l.band === b && l.subject === s.id) && !(s.id === 'country' && (b === '3-4' || b === '5-6'))) E(`${b}/${s.id}`, 'لا دروس');
+for (const b of BANDS) for (const s of SUBJECTS) if (!LESSONS.some(l => l.band === b && l.subject === s.id) && !(s.id === 'country' && b === '3-4')) E(`${b}/${s.id}`, 'لا دروس');
 const stats = Object.fromEntries(BANDS.map(b => [b, LESSONS.filter(l => l.band === b).length]));
 console.log(`الدروس: ${LESSONS.length} | الأنشطة: ${acts} | القصص: ${STORIES.length}`);
 console.log('حسب الفئة:', JSON.stringify(stats));

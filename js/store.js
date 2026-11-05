@@ -7,7 +7,7 @@ export const AVATARS = [['🦊', '#FFD9B8'], ['🐪', '#F6E3A8'], ['🐢', '#C9E
 export const STICKERS = ['🦊', '🐪', '🐢', '🦉', '🦋', '🐝', '🐘', '🐬', '🌻', '🌈', '🚀', '🍉', '🎈', '🌙', '⭐', '🦁', '🐠', '🍓', '🌴', '⛵', '🎨', '🧸', '🍀', '🏆'];
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 export const todayKey = today;
-const defaults = () => ({ v: 2, active: null, profiles: [], parent: { pin: null, limit: 0, brk: 20, bed: { on: false, from: '20:00', to: '06:00' }, lockSeq: false, lockBand: true }, settings: { sound: true, speech: true, autospeak: true } });
+const defaults = () => ({ v: 2, active: null, profiles: [], parent: { pin: null, limit: 0, brk: 20, bed: { on: false, from: '20:00', to: '06:00' }, lockSeq: false, lockBand: true }, settings: { sound: true, speech: true, autospeak: true, calm: false, textSize: 'm' } });
 const merge = (a, b) => { for (const k in b) a[k] = (a[k] && typeof a[k] === 'object' && !Array.isArray(a[k]) && b[k] && typeof b[k] === 'object') ? merge(a[k], b[k]) : b[k]; return a; };
 let S = load();
 function load() {

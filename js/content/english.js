@@ -6,7 +6,7 @@ const SETS = {
   fruits: [['apple', '🍎', 'تفاحة'], ['banana', '🍌', 'موزة'], ['orange', '🍊', 'برتقالة'], ['grapes', '🍇', 'عنب'], ['strawberry', '🍓', 'فراولة'], ['watermelon', '🍉', 'بطّيخ'], ['lemon', '🍋', 'ليمونة'], ['pear', '🍐', 'إجّاصة']],
   family: [['mother', '👩', 'أمّ'], ['father', '👨', 'أب'], ['brother', '👦', 'أخ'], ['sister', '👧', 'أخت'], ['grandmother', '👵', 'جدّة'], ['grandfather', '👴', 'جدّ']],
   body: [['eye', '👁️', 'عين'], ['ear', '👂', 'أذن'], ['nose', '👃', 'أنف'], ['mouth', '👄', 'فم'], ['hand', '✋', 'يد'], ['foot', '🦶', 'قدم']],
-  school: [['book', '📖', 'كتاب'], ['pencil', '✏️', 'قلم رصاص'], ['bag', '🎒', 'حقيبة'], ['ruler', '📏', 'مسطرة'], ['school', '🏫', 'مدرسة'], ['teacher', '🧑‍🏫', 'معلّم']],
+  school: [['book', '📖', 'كتاب'], ['pencil', '✏️', 'قلم رصاص'], ['bag', '🎒', 'حقيبة'], ['ruler', '📏', 'مسطرة'], ['school', '🏫', 'مدرسة'], ['teacher', '👩‍🏫', 'معلّم']],
   weather: [['sunny', '☀️', 'مشمس'], ['rainy', '🌧️', 'ممطر'], ['cloudy', '☁️', 'غائم'], ['snowy', '❄️', 'ثلجي'], ['windy', '💨', 'عاصف']],
   food: [['bread', '🍞', 'خبز'], ['milk', '🥛', 'حليب'], ['egg', '🥚', 'بيضة'], ['cheese', '🧀', 'جبن'], ['rice', '🍚', 'أرز'], ['water', '💧', 'ماء']],
 };
@@ -23,6 +23,10 @@ const vocab = (key, slug, band, title, icon, n = 5) => {
 vocab('animals', 'animals34', '3-4', 'Animals', '🐶'); vocab('colors', 'colors34', '3-4', 'Colors', '🎨'); vocab('numbers', 'numbers34', '3-4', 'Numbers', '🔢');
 vocab('numbers', 'numbers56', '5-6', 'Numbers 1–10', '🔟', 6); vocab('family', 'family56', '5-6', 'My family', '👨‍👩‍👧'); vocab('fruits', 'fruits56', '5-6', 'Fruits', '🍓'); vocab('body', 'body56', '5-6', 'My body', '🖐️'); vocab('animals', 'animals56', '5-6', 'More animals', '🦁', 6);
 vocab('school', 'school78', '7-8', 'At school', '🏫'); vocab('food', 'food78', '7-8', 'Food', '🍞'); vocab('weather', 'weather78', '7-8', 'Weather', '⛅'); vocab('fruits', 'fruits78', '7-8', 'Fruits and colors', '🍉', 6);
+vocab('fruits', 'fruits34', '3-4', 'Fruits', '🍎'); vocab('family', 'family34', '3-4', 'My family', '👪', 4);
+vocab('colors', 'colors56', '5-6', 'Colors', '🌈', 6); vocab('school', 'school56', '5-6', 'At school', '🎒'); vocab('weather', 'weather56', '5-6', 'Weather', '🌦️', 4);
+vocab('animals', 'animals78', '7-8', 'Animals', '🐘', 6); vocab('body', 'body78', '7-8', 'Body parts', '🖐️', 6); vocab('family', 'family78', '7-8', 'Family words', '👨‍👩‍👧');
+vocab('food', 'food910', '9-10', 'Food and drink', '🥛', 6); vocab('school', 'school910', '9-10', 'School things', '📏', 6); vocab('animals', 'animals910', '9-10', 'Animal names', '🦁', 8);
 const G = (slug, band, title, icon, qs) => { const r = rng('en-' + slug); out.push(lesson('english', 'en-' + slug, band, 'Sentences', title, icon, 'أفهم جملاً بسيطة بالإنجليزية.', qs.map(([q, a, w1, w2, x]) => ch(q, a, [w1, w2], r, { lang: 'en', ...(x || {}) })))); };
 G('greet56', '5-6', 'Greetings', '👋', [['What do we say in the morning?', 'Good morning', 'Good night', 'Goodbye'], ['What do we say when we leave?', 'Goodbye', 'Hello', 'Good morning'], ['What do we say to thank someone?', 'Thank you', 'Sorry', 'Please'], ['How do you say «من فضلك»؟', 'Please', 'Hello', 'Sorry'], ['How do you say «آسف»؟', 'Sorry', 'Thank you', 'Goodbye']]);
 G('be78', '7-8', 'I am, he is', '🧑', [['I ___ a student.', 'am', 'is', 'are'], ['He ___ my brother.', 'is', 'am', 'are'], ['They ___ happy.', 'are', 'is', 'am'], ['She ___ a teacher.', 'is', 'are', 'am'], ['We ___ at school.', 'are', 'is', 'am']]);

@@ -75,4 +75,7 @@ L('word910', '9-10', 'مسائل', 'مسائل كلامية', '📝', 'أحلّ 
 L('pat910', '9-10', 'الأنماط', 'أنماط الأعداد', '🔢', 'أكتشف قاعدة النمط.', [gNumSeq([3, 4, 6, 7, 9, 25]), gDouble, gNumSeq([3, 4, 6, 7, 9, 25]), gDouble, gNumSeq([3, 4, 6, 7, 9, 25])]);
 L('money910', '9-10', 'النقود والقياس', 'النقود والوحدات', '💰', 'أحسب بالنقود والوحدات.', [gChange, gUnit, gMoney, gUnit, gChange]);
 L('clock910', '9-10', 'الوقت', 'قراءة الساعة', '🕒', 'أقرأ الساعة بدقة.', rep(gClock([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]), 6));
+// كتابة الأرقام: تتبّع ثم عدّ
+const traceLesson = (slug, band, title, ds) => { const r = rng('m-' + slug), items = []; ds.forEach(d => { items.push({ t: 'trace', glyph: String(d), q: `تتبّع الرقم ${d} بإصبعك`, say: `تتبّع الرقم ${d}` }); items.push(ch('كم عدد ما تراه؟', String(d), near(r, d, 0, 12).map(String), r, { vis: pick(['🍎', '⭐', '🐟', '🎈'], r).repeat(d) })); }); out.push(lesson('math', 'm-' + slug, band, 'كتابة الأرقام', title, '✏️', 'أكتب الرقم وأعدّ به.', items)); };
+traceLesson('tr34a', '3-4', 'أكتب 1 و2 و3', [1, 2, 3]); traceLesson('tr34b', '3-4', 'أكتب 4 و5 و6', [4, 5, 6]); traceLesson('tr56a', '5-6', 'أكتب 7 و8 و9', [7, 8, 9]); traceLesson('tr56b', '5-6', 'أكتب الأرقام 0 و1 و10', [0, 1, 10]);
 export const math = out;

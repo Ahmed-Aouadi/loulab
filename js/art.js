@@ -24,7 +24,7 @@ const leaf = (x, y, rot, sc, fill) => `<path d="M0 0C-11-8-11-24 0-33C11-24 11-8
 export function plant(stage, color = '#E95D8A', size = 120) {
   const g = '#22B573', g2 = '#7ED957', st = (y) => `<path d="M60 92V${y}" stroke="#0E8F57" stroke-width="6" stroke-linecap="round"/>`;
   let body = '';
-  if (stage === 0) body = '<ellipse cx="60" cy="91" rx="7" ry="4.5" fill="#7B4B2A"/>';
+  if (stage === 0) body = '<path d="M42 96Q60 78 78 96z" fill="#7B4B2A" stroke="#17342C" stroke-width="2.5"/><ellipse cx="60" cy="88" rx="6" ry="4" fill="#C9985F" stroke="#17342C" stroke-width="2"/><path d="M92 54l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FFC93C" stroke="#B45309" stroke-width="1.5"/>';
   if (stage === 1) body = st(70) + leaf(60, 72, -40, .6, g2) + leaf(60, 72, 40, .6, g);
   if (stage === 2) body = st(52) + leaf(60, 78, -55, .8, g) + leaf(60, 78, 55, .8, g2) + leaf(60, 54, -30, .7, g2) + leaf(60, 54, 30, .7, g);
   if (stage >= 3) body = st(44) + leaf(60, 80, -60, .9, g) + leaf(60, 80, 60, .9, g2) + leaf(60, 62, -40, .75, g2) + leaf(60, 62, 40, .75, g);

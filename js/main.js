@@ -8,6 +8,7 @@ import { studio } from './studio.js';
 import { mount, esc } from './activities.js';
 import { icon, mascot, avatarHtml } from './art.js';
 import { speak, stopSpeak, sfx } from './audio.js';
+import { explore, bindExplore } from './explore.js';
 import { $, toast, modal, confirmDialog, gate, closeGate, bigMascotDialog } from './ui.js';
 
 const view = $('#view'), top = $('#top'), dock = $('#dock');
@@ -21,8 +22,9 @@ function chrome() {
 }
 function setFull(on) { document.body.classList.toggle('full', on); }
 
+function applyPrefs() { const t = S.get().settings; document.documentElement.style.setProperty('--zoom', { m: 1, l: 1.15, xl: 1.3 }[t.textSize] || 1); document.body.classList.toggle('calm', !!t.calm); }
 function render() {
-  stopSpeak(); const [r = 'home', a, b] = (location.hash.replace(/^#\/?/, '') || 'home').split('/'); route = r;
+  applyPrefs(); stopSpeak(); const [r = 'home', a, b] = (location.hash.replace(/^#\/?/, '') || 'home').split('/'); route = r;
   const p = S.profile();
   if (!p) { setFull(true); view.innerHTML = V.welcome(); $('#wn')?.focus(); return; }
   if (S.inBedtime() && Date.now() > ext) return block('bed');
@@ -32,6 +34,7 @@ function render() {
   if (r === 'game') return gameView(a);
   if (r === 'story') return storyView(a, +b || 0);
   if (r === 'parents') return parentsView();
+  if (r === 'explore') { view.innerHTML = explore(a); bindExplore(view); window.scrollTo({ top: 0 }); return; }
   const map = { home: () => V.home(), learn: () => V.learn(a), games: () => V.games(), stories: () => V.stories(), bag: () => V.bag() };
   view.innerHTML = (map[r] || map.home)(); view.focus({ preventScroll: true }); window.scrollTo({ top: 0 });
 }
@@ -102,6 +105,7 @@ document.addEventListener('click', async e => {
   if (t.closest('[data-band]')) { if (S.get().parent.lockBand && !await gate()) return; const m = modal(`<h2>اختر المستوى</h2><div class="bands">${BANDS.map(b => `<button class="btn ${b === S.currentBand() ? '' : 'ghost'}" data-b="${b}">${BAND_NAMES[b]} <small>${b.replace('-', '–')} سنوات</small></button>`).join('')}</div>`); m.el.onclick = ev => { const b = ev.target.closest('[data-b]'); if (b) { S.setBandOverride(b.dataset.b); m.close(); render(); } }; return; }
   const da = t.closest('[data-delart]'); if (da) { if (await confirmDialog('حذف هذه الرسمة؟', 'احذف', 'ألغِ')) { S.delArt(+da.dataset.delart); render(); } return; }
   if (route !== 'parents') return;
+  if (t.closest('[data-print]')) { let a = $('#printArea'); if (!a) { a = document.createElement('div'); a.id = 'printArea'; document.body.appendChild(a); } a.innerHTML = V.reportHtml(); window.print(); return; }
   if (t.closest('[data-lock]')) { closeGate(); location.hash = '#/home'; return; }
   const sw = t.closest('[data-switch]'); if (sw) { S.setActive(sw.dataset.switch); render(); return; }
   if (t.closest('[data-add]')) { const r = await profileForm(); if (r) { S.addProfile(r.name, r.age, r.av); render(); } return; }
@@ -116,7 +120,7 @@ document.addEventListener('change', async e => {
   if (route !== 'parents') return; const t = e.target;
   if (t.matches('[data-import]')) { const f = t.files[0]; if (!f) return; try { const d = JSON.parse(await f.text()); if (d.v !== 2 || !Array.isArray(d.profiles)) throw 0; if (await confirmDialog('سيُستبدل كل ما على هذا الجهاز بمحتوى الملف. متابعة؟', 'استبدل', 'ألغِ')) { S.replaceAll(d); toast('تم الاستيراد'); render(); } } catch { toast('هذا الملف ليس نسخة صالحة من بُرعُم'); } return; }
   const k = t.dataset.set; if (!k) return; const path = k.split('.'), key = path.pop(); let o = S.get(); path.forEach(x => o = o[x]);
-  o[key] = t.type === 'checkbox' ? t.checked : /^\d+$/.test(t.value) ? +t.value : t.value; S.save(); if (k === 'parent.bed.on') render();
+  o[key] = t.type === 'checkbox' ? t.checked : /^\d+$/.test(t.value) ? +t.value : t.value; S.save(); applyPrefs(); if (k === 'parent.bed.on') render();
 });
 function whoMenu() {
   const g = S.get(), m = modal(`<h2>من يتعلّم الآن؟</h2><ul class="plist pick">${g.profiles.map(c => `<li><button class="who2 ${c.id === g.active ? 'act' : ''}" data-pick="${c.id}">${avatarHtml(c.avatar)}<b>${esc(c.name)}</b></button></li>`).join('')}</ul><button class="btn ghost" data-parents-go>${icon('lock', 20)} ركن الأسرة</button>`);
