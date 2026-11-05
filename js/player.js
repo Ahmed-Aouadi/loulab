@@ -10,8 +10,8 @@ export function run({ root, items, title, goal, icon: ic, color = '#1D4ED8', int
   const $ = s => root.querySelector(s);
   const bar = () => { $('.bar span').style.width = (i / items.length * 100) + '%'; $('.bar').setAttribute('aria-valuenow', i); $('.cnt').textContent = `${Math.min(i + 1, items.length)} / ${items.length}`; };
   const show = () => {
-    bar(); const st = $('.stage'); st.innerHTML = '<div class="act"></div>'; const host = st.firstChild, nx = $('#next'); nx.hidden = true; stopSpeak();
-    mount(host, items[i], { auto, onDone: ({ ok: o }) => { if (o) ok++; nx.textContent = i === items.length - 1 ? 'أنهيت الدرس' : 'التالي'; nx.innerHTML = `${nx.textContent} ${icon('next', 22)}`; nx.hidden = false; nx.focus({ preventScroll: true }); } });
+    bar(); const st = $('.stage'); st.innerHTML = `<div class="coach" aria-hidden="true">${mascot('happy', 92)}</div><div class="act"></div>`; const coach = st.firstChild, host = st.lastChild, nx = $('#next'); nx.hidden = true; stopSpeak();
+    mount(host, items[i], { auto, onDone: ({ ok: o }) => { if (o) ok++; coach.innerHTML = mascot(o ? 'cheer' : 'think', 92); coach.classList.add(o ? 'hop' : 'hmm'); nx.textContent = i === items.length - 1 ? 'أنهيت الدرس' : 'التالي'; nx.innerHTML = `${nx.textContent} ${icon('next', 22)}`; nx.hidden = false; nx.focus({ preventScroll: true }); } });
     window.scrollTo({ top: 0 });
   };
   const end = () => { stopSpeak(); const r = finish(ok, items.length); sfx('win'); const st = r.stars || 0;

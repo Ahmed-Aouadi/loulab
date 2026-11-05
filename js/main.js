@@ -13,16 +13,16 @@ import { $, toast, modal, confirmDialog, gate, closeGate, bigMascotDialog } from
 
 const view = $('#view'), top = $('#top'), dock = $('#dock');
 let route = 'home', ext = 0, blocking = false, sess = 0, lastAct = Date.now();
-const NAV = [['home', 'الحديقة', 'home'], ['learn', 'أتعلّم', 'book'], ['games', 'ألعاب', 'puzzle'], ['stories', 'حكايات', 'story'], ['bag', 'حقيبتي', 'bag']];
+const NAV = [['home', 'الحديقة', 'home', '#0B7A4B'], ['learn', 'أتعلّم', 'book', '#1D4ED8'], ['games', 'ألعاب', 'puzzle', '#C2410C'], ['stories', 'حكايات', 'story', '#6D28D9'], ['bag', 'حقيبتي', 'bag', '#BE185D']];
 
 function chrome() {
   const p = S.profile();
   top.innerHTML = `<a class="brand" href="#/home" aria-label="بُرعُم - الصفحة الرئيسية"><img src="brand/BRAND_MARK.svg" alt="" width="40" height="40"><span>بُرعُم</span></a><div class="topr"><span class="chipstar" aria-label="عدد النجوم">${icon('star', 20)} ${S.totalStars()}</span><button class="who" data-who aria-label="الأطفال والإعدادات">${avatarHtml(p.avatar)}<b>${esc(p.name)}</b></button><button class="iconbtn" data-parents aria-label="ركن الأسرة">${icon('lock', 24)}</button></div>`;
-  dock.innerHTML = NAV.map(([id, t, ic]) => `<a href="#/${id}" class="${route === id ? 'on' : ''}" ${route === id ? 'aria-current="page"' : ''}>${icon(ic, 28)}<span>${t}</span></a>`).join('');
+  dock.innerHTML = NAV.map(([id, t, ic, c]) => `<a href="#/${id}" class="${route === id ? 'on' : ''}" style="--tc:${c}" ${route === id ? 'aria-current="page"' : ''}><span class="dic">${icon(ic, 30)}</span><span>${t}</span></a>`).join('');
 }
 function setFull(on) { document.body.classList.toggle('full', on); }
 
-function applyPrefs() { const t = S.get().settings; document.documentElement.style.setProperty('--zoom', { m: 1, l: 1.15, xl: 1.3 }[t.textSize] || 1); document.body.classList.toggle('calm', !!t.calm); }
+function applyPrefs() { const t = S.get().settings; document.documentElement.style.setProperty('--zoom', { m: 1, l: 1.15, xl: 1.3 }[t.textSize] || 1); document.body.classList.toggle('calm', !!t.calm); document.body.classList.toggle('young', !!S.profile() && ['3-4', '5-6'].includes(S.currentBand())); }
 function render() {
   applyPrefs(); stopSpeak(); const [r = 'home', a, b] = (location.hash.replace(/^#\/?/, '') || 'home').split('/'); route = r;
   const p = S.profile();
