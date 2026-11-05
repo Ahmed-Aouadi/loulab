@@ -210,3 +210,29 @@ button:disabled{cursor:not-allowed}
   html{scroll-behavior:auto}
   main>*{animation:none!important}
 }
+
+
+/* ===== تثبيت شريط التنقل أثناء التمرير ===== */
+@media (min-width:900px){
+  .dock{
+    position:fixed;
+    top:73px;
+    bottom:0;
+    inset-inline-start:0;
+    width:112px;
+    height:auto;
+    max-height:calc(100dvh - 73px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    z-index:40;
+  }
+}
+@media (max-width:899px){
+  .dock{
+    position:fixed;
+    inset-inline:0;
+    bottom:0;
+    top:auto;
+    z-index:40;
+  }
+}
