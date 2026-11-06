@@ -13,7 +13,17 @@ let S = load();
 function load() {
   try { const raw = localStorage.getItem(KEY); if (raw) { const d = JSON.parse(raw); if (d && d.v === 2 && Array.isArray(d.profiles)) return merge(defaults(), d); } } catch { /* بيانات تالفة: نبدأ من جديد */ }
   const d = defaults();
-  try { const old = JSON.parse(localStorage.getItem('buroom-state') || 'null'); if (old && old.name) { const p = newProfile(old.name, +old.age || 6, 0); d.profiles.push(p); d.active = p.id; localStorage.removeItem('buroom-state'); } } catch { /* لا شيء للترحيل */ }
+  try {
+    const old = JSON.parse(localStorage.getItem('buroom-state') || 'null');
+    if (old && old.name) {
+      const p = newProfile(old.name, +old.age || 6, 0);
+      d.profiles.push(p);
+      d.active = p.id;
+      // احفظ النسخة الجديدة أولاً؛ لا تحذف المصدر القديم إذا فشل الحفظ.
+      localStorage.setItem(KEY, JSON.stringify(d));
+      localStorage.removeItem('buroom-state');
+    }
+  } catch { /* نُبقي الملف القديم آمناً إذا تعذّر الترحيل */ }
   return d;
 }
 const listeners = new Set();
