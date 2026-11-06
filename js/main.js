@@ -13,7 +13,7 @@ import { $, toast, modal, confirmDialog, gate, closeGate, bigMascotDialog } from
 
 const view = $('#view'), top = $('#top'), dock = $('#dock');
 let route = 'home', ext = 0, blocking = false, sess = 0, lastAct = Date.now();
-const NAV = [['home', 'الحديقة', 'home', '#0B7A4B'], ['learn', 'أتعلّم', 'book', '#1D4ED8'], ['games', 'ألعاب', 'puzzle', '#C2410C'], ['stories', 'حكايات', 'story', '#6D28D9'], ['bag', 'حقيبتي', 'bag', '#BE185D']];
+const NAV = [['home', 'الحديقة', 'home', 'var(--d1)'], ['learn', 'أتعلّم', 'book', 'var(--d2)'], ['games', 'ألعاب', 'puzzle', 'var(--d3)'], ['stories', 'حكايات', 'story', 'var(--d4)'], ['bag', 'حقيبتي', 'bag', 'var(--d5)']];
 
 function chrome() {
   const p = S.profile();
@@ -22,7 +22,7 @@ function chrome() {
 }
 function setFull(on) { document.body.classList.toggle('full', on); }
 
-function applyPrefs() { const t = S.get().settings; document.documentElement.style.setProperty('--zoom', { m: 1, l: 1.15, xl: 1.3 }[t.textSize] || 1); document.body.classList.toggle('calm', !!t.calm); document.body.classList.toggle('young', !!S.profile() && ['3-4', '5-6'].includes(S.currentBand())); }
+function applyPrefs() { const t = S.get().settings; document.body.dataset.theme = t.theme || 'sea'; document.documentElement.style.setProperty('--zoom', { m: 1, l: 1.15, xl: 1.3 }[t.textSize] || 1); document.body.classList.toggle('calm', !!t.calm); document.body.classList.toggle('young', !!S.profile() && ['3-4', '5-6'].includes(S.currentBand())); }
 function render() {
   applyPrefs(); stopSpeak(); const [r = 'home', a, b] = (location.hash.replace(/^#\/?/, '') || 'home').split('/'); route = r;
   const p = S.profile();
@@ -117,7 +117,9 @@ document.addEventListener('click', async e => {
   if (t.closest('[data-reset]')) { if (await confirmDialog('سيُحذف كل شيء: الأطفال والتقدّم والإعدادات. هل أنت متأكد؟', 'احذف كل شيء', 'ألغِ')) { S.reset(); closeGate(); location.hash = '#/home'; render(); } }
 });
 document.addEventListener('change', async e => {
-  if (route !== 'parents') return; const t = e.target;
+  const t = e.target;
+  if (t.name === 'theme') { S.get().settings.theme = t.value; S.save(); applyPrefs(); return; }
+  if (route !== 'parents') return;
   if (t.matches('[data-import]')) { const f = t.files[0]; if (!f) return; try { const d = JSON.parse(await f.text()); if (d.v !== 2 || !Array.isArray(d.profiles)) throw 0; if (await confirmDialog('سيُستبدل كل ما على هذا الجهاز بمحتوى الملف. متابعة؟', 'استبدل', 'ألغِ')) { S.replaceAll(d); toast('تم الاستيراد'); render(); } } catch { toast('هذا الملف ليس نسخة صالحة من بُرعُم'); } return; }
   const k = t.dataset.set; if (!k) return; const path = k.split('.'), key = path.pop(); let o = S.get(); path.forEach(x => o = o[x]);
   o[key] = t.type === 'checkbox' ? t.checked : /^\d+$/.test(t.value) ? +t.value : t.value; S.save(); applyPrefs(); if (k === 'parent.bed.on') render();

@@ -7,22 +7,13 @@ export const AVATARS = [['🦊', '#FFD9B8'], ['🐪', '#F6E3A8'], ['🐢', '#C9E
 export const STICKERS = ['🦊', '🐪', '🐢', '🦉', '🦋', '🐝', '🐘', '🐬', '🌻', '🌈', '🚀', '🍉', '🎈', '🌙', '⭐', '🦁', '🐠', '🍓', '🌴', '⛵', '🎨', '🧸', '🍀', '🏆'];
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 export const todayKey = today;
-const defaults = () => ({ v: 2, active: null, profiles: [], parent: { pin: null, limit: 0, brk: 20, bed: { on: false, from: '20:00', to: '06:00' }, lockSeq: false, lockBand: true }, settings: { sound: true, speech: true, autospeak: true, calm: false, textSize: 'm' } });
+const defaults = () => ({ v: 2, active: null, profiles: [], parent: { pin: null, limit: 0, brk: 20, bed: { on: false, from: '20:00', to: '06:00' }, lockSeq: false, lockBand: true }, settings: { sound: true, speech: true, autospeak: true, calm: false, textSize: 'm', theme: 'sea' } });
 const merge = (a, b) => { for (const k in b) a[k] = (a[k] && typeof a[k] === 'object' && !Array.isArray(a[k]) && b[k] && typeof b[k] === 'object') ? merge(a[k], b[k]) : b[k]; return a; };
 let S = load();
 function load() {
   try { const raw = localStorage.getItem(KEY); if (raw) { const d = JSON.parse(raw); if (d && d.v === 2 && Array.isArray(d.profiles)) return merge(defaults(), d); } } catch { /* بيانات تالفة: نبدأ من جديد */ }
   const d = defaults();
-  try {
-    const old = JSON.parse(localStorage.getItem('buroom-state') || 'null');
-    if (old && typeof old.name === 'string' && old.name.trim()) {
-      const p = newProfile(old.name, Math.min(10, Math.max(3, +old.age || 6)), 0);
-      d.profiles.push(p); d.active = p.id;
-      // احفظ النسخة الجديدة أولاً؛ لا تحذف بيانات الإصدار القديم قبل نجاح الكتابة.
-      localStorage.setItem(KEY, JSON.stringify(d));
-      localStorage.removeItem('buroom-state');
-    }
-  } catch { /* تعذّر الترحيل: نُبقي النسخة القديمة كما هي للمحاولة لاحقاً */ }
+  try { const old = JSON.parse(localStorage.getItem('buroom-state') || 'null'); if (old && old.name) { const p = newProfile(old.name, +old.age || 6, 0); d.profiles.push(p); d.active = p.id; localStorage.removeItem('buroom-state'); } } catch { /* لا شيء للترحيل */ }
   return d;
 }
 const listeners = new Set();
